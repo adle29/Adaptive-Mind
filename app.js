@@ -215,5 +215,11 @@ app.post('/resetPassword', function(req, res) {
   res.render('resetPasswordSuccess.jade');
 });
 
-app.listen(8080);
-console.log("AdaptiveMind is listening to port 8080.");
+// app.listen(8080);
+// console.log("AdaptiveMind is listening to port 8080.");
+
+var port = process.env.PORT || 5000;
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});
+
