@@ -1,0 +1,44 @@
+!!! 5
+html(lang="en")
+  head
+    title Adaptive Mind
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-Frame-Options', content='GOFORIT')
+    link(rel='stylesheet',href='/styles/bootstrap.css')
+    link(rel='stylesheet',href='/styles/styles.css')
+    link(rel='stylesheet',href='/styles/bootstrap-glyphicons.css')
+
+
+  body
+   .navbar.navbar-inverse
+    .container
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.nav-collapse')
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href='#') 
+         img(src='/img/logo.png', width='150')
+        .nav-collapse.collapse
+          ul.nav.navbar-nav
+            li.active
+             a(href='#login') 
+              img(src='/img/house.svg', width='70')
+            li
+             a(href='#about')
+              img(src='/img/pen.svg', width='70')
+            li
+             a(href='#contact')
+              img(src='/img/search.svg', width='70')
+            li
+             a(href='#contact')
+              img(src='/img/chat.svg', width='70')
+            li
+       
+  block content
+
+  block scripts
+
+
+
+
+

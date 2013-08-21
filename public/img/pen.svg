@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="425.2px" height="425.2px" viewBox="0 0 425.2 425.2" enable-background="new 0 0 425.2 425.2" xml:space="preserve">
+<symbol  id="Bloc_de_notas" viewBox="-32.947 -33.259 65.894 66.259">
+	<path fill="#F6F6F6" stroke="#C6C6C6" stroke-width="2" stroke-miterlimit="10" d="M-7.636,21.898v2.074h5.845v-2.074
+		c0-1.098,0.899-2,2-2h0.5c1.1,0,2,0.902,2,2v2.074h5.845v-2.074c0-1.098,0.9-2,2-2h0.5c1.1,0,2,0.902,2,2v2.074h1.193l3.807-3.738
+		v-5.98h4v7.66l-6.172,6.059h-2.828V30c0,1.098-0.9,2-2,2h-0.5c-1.1,0-2-0.902-2-2v-2.027H2.709V30c0,1.098-0.9,2-2,2h-0.5
+		c-1.101,0-2-0.902-2-2v-2.027h-5.845V30c0,1.098-0.9,2-2,2h-0.5c-1.101,0-2-0.902-2-2v-2.027h-5.845V30c0,1.098-0.9,2-2,2h-0.5
+		c-1.101,0-2-0.902-2-2v-2.027h-9.466V-32h17.666l1.002,4h-14.668v51.973h5.466v-2.074c0-1.098,0.899-2,2-2h0.5c1.1,0,2,0.902,2,2
+		v2.074h5.845v-2.074c0-1.098,0.899-2,2-2h0.5C-8.536,19.898-7.636,20.801-7.636,21.898z"/>
+	<path fill="#F6F6F6" stroke="#C6C6C6" stroke-width="2" stroke-miterlimit="10" d="M30.761,1.594l-6.402,6.402
+		c-1.555,1.559-4.074,1.586-5.596,0.066c-0.002-0.002-0.003-0.004-0.004-0.006l-0.002,0.002L-4.586-15.285l-0.47-0.465
+		l-4.041-16.133L7.019-27.84l1.506,1.531l0,0L30.823-4.004h-0.001C30.823-4.002,30.825-4.002,30.825-4
+		C32.347-2.48,32.317,0.039,30.761,1.594z M-3.402-17.377l8.811-8.809l-8.272-2.072l-2.582,2.719L-3.402-17.377z M7.026-20.734
+		L2.03-15.738L18.757,0.988l4.996-4.996L7.026-20.734z"/>
+</symbol>
+<symbol  id="Viñeta_6_-_Azul" viewBox="-24 -24 48 48">
+	<g>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-7.4893" y1="17.9863" x2="10.2789" y2="-24.6873">
+			<stop  offset="0" style="stop-color:#FFFFFF"/>
+			<stop  offset="1" style="stop-color:#D4D6D7"/>
+		</linearGradient>
+		<path fill="url(#SVGID_1_)" d="M0-23.75c-13.096,0-23.75,10.654-23.75,23.75S-13.096,23.75,0,23.75S23.75,13.095,23.75,0
+			S13.096-23.75,0-23.75z"/>
+		<g>
+			<path fill="#B2B4B7" d="M0,23.5c12.958,0,23.5-10.542,23.5-23.5c0-12.958-10.542-23.5-23.5-23.5S-23.5-12.958-23.5,0
+				C-23.5,12.958-12.958,23.5,0,23.5 M0,24c-13.256,0-24-10.745-24-24s10.744-24,24-24S24-13.255,24,0S13.256,24,0,24L0,24z"/>
+		</g>
+	</g>
+	<g>
+		<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="14.6592" y1="-18.2563" x2="-9.2984" y2="11.5796">
+			<stop  offset="0" style="stop-color:#FFFFFF"/>
+			<stop  offset="1" style="stop-color:#B8BABC"/>
+		</linearGradient>
+		<path fill="url(#SVGID_2_)" d="M17.5,0c0-9.666-7.834-17.5-17.5-17.5S-17.5-9.667-17.5,0S-9.666,17.5,0,17.5S17.5,9.666,17.5,0z"
+			/>
+	</g>
+	<g>
+		<radialGradient id="SVGID_3_" cx="-3.6514" cy="8.5806" r="17.5209" gradientUnits="userSpaceOnUse">
+			<stop  offset="0.1264" style="stop-color:#D1EDFB"/>
+			<stop  offset="1" style="stop-color:#3DA3DB"/>
+		</radialGradient>
+		<path fill="url(#SVGID_3_)" d="M0-14.5c-7.995,0-14.5,6.505-14.5,14.5S-7.995,14.5,0,14.5S14.5,7.995,14.5,0S7.995-14.5,0-14.5z"
+			/>
+		<g>
+			<path fill="#0080B8" d="M0,14c7.72,0,14-6.28,14-14S7.72-14,0-14S-14-7.72-14,0S-7.72,14,0,14 M0,15c-8.285,0-15-6.715-15-15
+				s6.715-15,15-15c8.283,0,15,6.715,15,15S8.283,15,0,15L0,15z"/>
+		</g>
+	</g>
+	<g opacity="0.8">
+		<linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="-2.7383" y1="8.5093" x2="6.6363" y2="-20.5519">
+			<stop  offset="0" style="stop-color:#FFFFFF"/>
+			<stop  offset="1" style="stop-color:#0094CD"/>
+		</linearGradient>
+		<path fill="url(#SVGID_4_)" d="M8.906,12.048C8.998,11.376,9.062,10.697,9.062,10c0-8.284-6.715-15-15-15
+			c-3.34,0-6.414,1.105-8.906,2.951C-13.844-9.362-7.588-15,0-15c8.283,0,15,6.715,15,15C15,4.945,12.596,9.316,8.906,12.048z"/>
+	</g>
+</symbol>
+<use xlink:href="#Viñeta_6_-_Azul"  width="48" height="48" x="-24" y="-24" transform="matrix(8.4301 0 0 -8.3202 212.3369 211.4639)" overflow="visible"/>
+<use xlink:href="#Bloc_de_notas"  width="65.894" height="66.259" id="XMLID_1_" x="-32.947" y="-33.259" transform="matrix(2.6534 0 0 -2.6534 227.5 207.876)" overflow="visible"/>
+</svg>
