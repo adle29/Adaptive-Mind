@@ -6,8 +6,8 @@ module.exports = {
   secureConnection: false,
   //name: "servername",
   auth: {
-    user: "adaptivemind2013@gmail.om",
-    pass: "rafaelcauduro"
+    user: "myusername",
+    pass: "mypassword"
   },
   ignoreTLS: false,
   debug: false,

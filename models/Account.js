@@ -62,7 +62,7 @@ module.exports = function(config, mongoose, nodemailer) {
         var smtpTransport = nodemailer.createTransport('SMTP', config.mail);
         resetPasswordUrl += '?account=' + doc._id;
         smtpTransport.sendMail({
-          from: 'thisapp@example.com',
+          from: 'adaptivemind2012@gmail.com',
           to: doc.email,
           subject: 'Adaptive Mind Password Request',
           text: 'Click here to reset your password: ' + resetPasswordUrl
