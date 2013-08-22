@@ -1,8 +1,8 @@
 require.config({
   paths: {
     jQuery: '/js/libs/jquery',
-    jQueryUIL: '/js/libs/jqueryUI', 
     jQueryPunch: '/js/libs/jqueryPunch', 
+    jQueryUIL: '/js/libs/jqueryUI', 
     Underscore: '/js/libs/underscore',
     Backbone: '/js/libs/backbone',
     models: 'models',
@@ -13,9 +13,9 @@ require.config({
   },
 
   shim: {
-    'jQueryPunch': ['jQuery'],
     'jQueryUIL': ['jQuery', 'jQueryPunch'], 
-    'Backbone': ['Underscore', 'jQuery', 'jQueryUIL','jQueryPunch'],
+    'jQueryPunch': ['jQuery'],
+    'Backbone': ['Underscore', 'jQuery', 'jQueryPunch', 'jQueryUIL'],
     'AdaptiveMind': ['Backbone']
   }
 });
