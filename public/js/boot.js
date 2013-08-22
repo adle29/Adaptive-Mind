@@ -13,7 +13,7 @@ require.config({
   },
 
   shim: {
-    'jQueryUIL': ['jQuery', 'jQueryPunch'], 
+    'jQueryUIL': ['jQuery'], 
     'jQueryPunch': ['jQuery'],
     'Backbone': ['Underscore', 'jQuery', 'jQueryPunch', 'jQueryUIL'],
     'AdaptiveMind': ['Backbone']
