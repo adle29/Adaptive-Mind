@@ -160,10 +160,18 @@ app.post('/register', function(req, res) {
     return;
   }
 
-models.Account.register(email, password, firstName, lastName);
-  req.session.loggedIn = true;
-  // req.session.accountId = account._id;
-  res.send(200);
+  models.Account.register(email, password, firstName, lastName);
+  models.Account.login(email, password, function(account) {
+    if ( !account ) {
+      res.send(401);
+      console.log('login was NOT successful');
+      return;
+    }
+    req.session.loggedIn = true;
+    req.session.accountId = account._id;
+    res.send(200);
+  });
+
 });
 
 app.get('/account/authenticated', function(req, res) {
