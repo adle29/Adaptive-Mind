@@ -13,9 +13,8 @@ function(AdaptiveMindView,  profileTemplate,  Vinbook, vinBookView ) {
 
     initialize: function() {
       this.model.bind('change', this.render, this);
-      this.model.vinbooks.on('add', this.prependVinbook, this);
+      this.model.vinbooks.on('add', this.render, this);
       $('div.navbar.navbar-inverse').show();
-      //this.model.vinbooks.on('reset', this.onVinbookCollectionReset, this);
     },
 
     //ACTION TO CREATE A NOTEBOOK
@@ -35,13 +34,14 @@ function(AdaptiveMindView,  profileTemplate,  Vinbook, vinBookView ) {
 
         }, function(data) {
           vinBooksCollection.add(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() }));
-      
+          //that.prependVinbook(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() })); 
         });
         this.model.fetch();
         return false;
     },
 
      prependVinbook: function(vinBookModel) {  
+      console.log('mistake');
       if (vinBookModel != null) {
         var vinBookHtml = (new vinBookView ({ model: vinBookModel }) ).render().el;
         $(vinBookHtml).prependTo('#vinBookListUl').hide().fadeIn('slow');
@@ -66,7 +66,7 @@ function(AdaptiveMindView,  profileTemplate,  Vinbook, vinBookView ) {
     render: function() {
       var that = this;
       this.$el.html(
-      	_.template(profileTemplate, this.model.toJSON() )
+        _.template(profileTemplate, this.model.toJSON() )
       );
       
       //this.$el.html(profileTemplate);
