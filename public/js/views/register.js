@@ -14,6 +14,7 @@ define(['text!templates/register.html'], function(registerTemplate) {
         password: $('input[name=password]').val(),
       }, function(data) {
         console.log(data);
+        if (!data.error){window.location.replace('#desk/me');}
       });
       return false;
     },

@@ -1,5 +1,7 @@
 define(['AdaptiveMindView', 'text!templates/vinbook.html', ], function(AdaptiveMindView, vinbookTemplate) {
 	var vinBookView = AdaptiveMindView.extend({
+		tagName : 'li',
+		className   :'list-group-item',
 
 		events: {
 			'click #close': 'deleteVinbook'
@@ -12,6 +14,7 @@ define(['AdaptiveMindView', 'text!templates/vinbook.html', ], function(AdaptiveM
 
 		render: function (){
 			console.log('Third Step', this.model.toJSON() );
+
 			$(this.el).html(_.template(vinbookTemplate,this.model.toJSON()));
 			return this;		
 		},

@@ -1,8 +1,8 @@
 require.config({
   paths: {
     jQuery: '/js/libs/jquery',
-    jQueryPunch: '/js/libs/jqueryPunch', 
     jQueryAI: '/js/libs/jqueryAI', 
+    bootJs: '/js/libs/bootstrap.min',
     Underscore: '/js/libs/underscore',
     Backbone: '/js/libs/backbone',
     models: 'models',
@@ -13,9 +13,9 @@ require.config({
   },
 
   shim: {
-    'jQueryAI': ['jQuery', 'jQueryPunch'], 
-    'jQueryPunch': ['jQuery'],
-    'Backbone': ['Underscore', 'jQuery', 'jQueryAI'],
+    'jQueryAI': ['jQuery'], 
+    'bootJs': ['jQuery'], 
+    'Backbone': ['Underscore', 'jQuery', 'jQueryAI', 'bootJs' ],
     'AdaptiveMind': ['Backbone']
   }
 });
@@ -23,3 +23,5 @@ require.config({
 require(['AdaptiveMind'], function(AdaptiveMind) {
   AdaptiveMind.initialize();
 });
+
+//        <script src="../../src/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>

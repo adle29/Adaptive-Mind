@@ -1,71 +1,89 @@
-<div class="row" >
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">ADAPTIVE MIND</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+</div>
 
-	<div class="col-lg-1"> </div>
-	<div class="col-lg-4 panel" id="noteBookManager"> 
-		<div  class="panel-heading" >My VINbooks <span class="badge" id="vinBookNum"></span> </div>
+  <br />
+  <br />
+  <br />
 
-		<ul id="vinBookListUl" class="list-group">
 
-		</ul>
+<div class="container" > 
+	
+
+	
+		<div class="panel panel-default" id="noteBookManager"> 
+			<div  class="panel-heading">
+				Pages <!-- <span class="badge" id="vinBookNum"></span>  -->
+			</div>
+			<ul id="vinBookListUl" class="list-group">
 		
-	</div>
-	<div class="col-lg-1"> </div>
-	<div class="col-lg-5 well"> 
+			</ul>
+			
+		</div>
 
-		<!-- Collection of Notebooks  -->
+	<div class="" >
 
-		<h1>What is on your mind?</h1>
-		<br />
-		<div class="well">
-			<button class="btn btn-primary btn-lg btn-block" id="newVinbook" >New VINbook </button>
-		</div><!-- Collection of Notebooks Close-->
+		<div class="panel panel-default "> 
 
-		<!-- Notebook Form -->
-		<form id="notebookCreaterForm" role="form" class="form-horizontal"> 
-			<fieldset>
-				<legend>Naming the notebook</legend>
+			<!-- Collection of Notebooks  -->
+			<div  class="panel-heading">
+				Create new Page
+			</div>
 
-				<div class="form-group">
-			        <label  class="col-lg-2 control-label">Title</label> 
-			        <div class="col-lg-10">
-			          <input type="text" name="title" class="form-control" >
-			        </div>
-			    </div>
+			<br />
 
-				<div class="form-group" >
-			        <label  class="col-lg-2 control-label">Subject</label> 
-			        <div class="col-lg-10">
-			         	<select name="subject" class="form-control"  form="notebookCreaterForm" >
-  							<option value="Arts">Arts</option>
-  							<option value="Biology">Biology</option>
-  							<option value="History">History</option>
-  							<option value="Mathematics">Literature</option>
-  							<option value="Mathematics">Mathematics</option>
-  							<option value="Physics">Physics</option>
-  							<option value="Programming">Programming</option>
-  							<option value="Mathematics">Mathematics</option>
-						</select>
-			     	</div>
-			     </div>
+			<!-- Notebook Form -->
+			<div class="panel-body">
+			<div class="row">
 
-			    <div class="form-group" >
-			     	<label  class="col-lg-3 control-label">Description</label> 
-			        <div class="col-lg-9">
-			     			<input type="text"  name="description" class="form-control" placeholder="Brief Description">
-			     	</div>
+			<form id="notebookCreaterForm" role="form" class="form-horizontal col-xs-12 col-md-8"> 
 
-			    </div>
 
-			    <div class="form-group" >
-			        <div class="col-lg-10">
-			        <input type="submit" name="enter"  class="btn btn-default">
-			        </div>
-			    </div>
-		     
+		    <input type="text" name="title" placeholder="Title" class="form-control" >
 
-			</fieldset>
-		</form><!-- Notebook Form  Close-->
 
-	</div>
+	          <br />
+	         	<select name="subject" class="form-control"  form="notebookCreaterForm" >
+						<option value="Arts">Arts</option>
+						<option value="Biology">Biology</option>
+						<option value="History">History</option>
+						<option value="Mathematics">Literature</option>
+						<option value="Mathematics">Mathematics</option>
+						<option value="Physics">Physics</option>
+						<option value="Programming">Programming</option>
+						<option value="Mathematics">Mathematics</option>
+				</select>
+
+				<br />
+	 			<input type="text"  name="description" class="form-control" placeholder="Brief Description">
+	 			<br />
+		        <input type="submit" name="enter" value="Create"  class="btn btn-default">
+			 </div> 
+			</form><!-- Notebook Form  Close-->
+			</div> 
+		</div>
+
+	</div> 
 
 </div> 
+
+
+
+
+

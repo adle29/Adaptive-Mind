@@ -12,9 +12,9 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'models/Vinbook'
 		initialize: function() {
 			this.collection.on('reset', this.gettingVinbook, this);
 			$('div.navbar.navbar-inverse').hide();
-
-
-   		 },
+                       // var dropbox = document.getElementById('#cont');
+                        this.allowDrag();
+   	},
 
    		 events: {
    		 	'click #IMG': 'showEntryImg',
@@ -113,6 +113,26 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'models/Vinbook'
    			}
    		}, 
 
+         allowDrag: function (){
+               $('#art').bind('dragenter', noopHandler, false);
+               $('#art').bind('dragexit', noopHandler, false);
+               $('#art').bind('dragover', noopHandler, false);
+                $('#art').bind('click', noopHandler, false);
+               $('#art').bind('drop', drop, false);
+
+               function noopHandler(evt) {
+                                   console.log('here');
+                 evt.stopPropagation();
+                 evt.preventDefault();
+               }
+               function drop(evt) {
+                 evt.stopPropagation();
+                 evt.preventDefault(); 
+                 var imageUrl = evt.dataTransfer.getData('url');
+                 alert(imageUrl);
+               } 
+         },
+
    		saveDoc: function (){
 
    			$.post('/vinbook/:id', {
@@ -131,8 +151,8 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'models/Vinbook'
 				this.$el.html( _.template(vinbookDocTemplate, 
 					model.toJSON()
 				) );
+            console.log('rendering');
 				$('#mediaForm').hide();
-				console.log('rendering' );
 			}
 
 		}
@@ -140,3 +160,5 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'models/Vinbook'
 
 	return vinbookDocView; 
 });
+
+

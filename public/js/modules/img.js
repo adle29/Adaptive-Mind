@@ -24,6 +24,7 @@ define([], function (){
 				this.set({'x': att.x});
 				this.set({'y': att.y});
 			}
+
 		},
 
 		removeImg: function (){
@@ -77,7 +78,6 @@ define([], function (){
 			$(id).mouseover(function(){ $('.del').show();  });
 			$(id).mouseout(function(){ $('.del').hide();  });
 			$(id).dblclick(function(){ that.removeImg()   } );
-
 
 
       	}

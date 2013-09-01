@@ -1,52 +1,64 @@
-<h1>Register</h1>
-
-<form>
-<fieldset>
-<legend>Your Name</legend>
-  <label>
-    First:
-    <input type="text" name="firstName" />
-  </label>
-
-  <label>
-    Last:
-    <input type="text" name="lastName" />
-  </label>
-</fieldset>
-
-<fieldset>
-  <legend>Email Address</legend>
-
-  <label>
-    Email:
-    <input type="text" name="email" />
-  </label>
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">ADAPTIVE MIND</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
 
   <br />
-
-  <label>
-    Email (confirm):
-    <input type="text" name="cemail" />
-  </label>
-</fieldset>
-
-<fieldset>
-  <legend>Password</legend>
-
-  <label>
-    Password:
-    <input type="password" name="password" />
-  </label>
-
+  <br />
   <br />
 
-  <label>
-    Password (confirm):
-    <input type="password" name="cpassword" />
-  </label>
-</fieldset>
+<div class="container" > 
+  
+  <div class="" >
 
-<p>
-  <input type="submit" value="Register Now"/>
-</p>
-</form>
+    <div class="panel panel-default "> 
+
+      <!-- Collection of Notebooks  -->
+      <div  class="panel-heading">
+        REGISTER
+      </div>
+
+      <br />
+
+      <!-- Notebook Form -->
+      <div class="panel-body">
+      <div class="row">
+
+      <form role="form" class="form-horizontal col-xs-12 col-md-8"> 
+            <input type="text" name="firstName" class="form-control" placeholder="First Name" autofocus />
+            <br/> 
+            <input type="text" name="lastName" class="form-control" placeholder="Last Name"  />
+            <br/> 
+            <input type="text" name="email"  class="form-control" placeholder="Email"  />
+            <br/> 
+            <input type="text" name="cemail" class="form-control" placeholder="Confirm Email" />
+            <br/> 
+            <input type="password" name="password" class="form-control" placeholder="Password" />
+            <br/> 
+            <input type="password" name="cpassword" class="form-control" placeholder="Confirm Password" />
+            <br/> 
+            <input type="submit" value="Register Now" 
+            class="btn btn-success" />
+       </div> 
+      </form><!-- Notebook Form  Close-->
+      </div> 
+    </div>
+
+  </div> 
+
+</div> 
