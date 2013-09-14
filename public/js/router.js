@@ -1,32 +1,28 @@
-define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 'views/profile',
-     'views/vinbookDoc', 'models/Account', 'models/Vinbook', 'models/vinBooksCollection'],
+define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 'views/desk',
+     'views/search', 'views/social', 'views/profile', 'views/group', 
+     'views/vinbookDoc', 'models/Account', 'models/Vinbook', 'models/vinBooksCollection',
+     'models/GroupCollection', ],
 
-  function(IndexView, RegisterView, LoginView, ForgotPasswordView, ProfileView, 
-                        vinbookDocView,  Account, Vinbook, vinBooksCollection) {
+  function(IndexView, RegisterView, LoginView, ForgotPasswordView, DeskView,
+                        SearchView,  SocialView, ProfileView, GroupView, 
+                        vinbookDocView,  Account, Vinbook, vinBooksCollection,
+                        GroupCollection) {
   
   var SocialRouter = Backbone.Router.extend({
     currentView: null,
 
     routes: {
-      "index": "index",
+      "forgotpassword": "forgotpassword",
+      "vinbook/:id": "showVinbook",
+      "register": "register",
       "login": "login",
       "desk/:id": "desk",
-      "profile/:id": "profile",
-      "register": "register",
-      "forgotpassword": "forgotpassword",
-      "vinbook/:id": "showVinbook"
+      "search": "search",
+      "social/:id": "social",
+      "group/:id": "group", 
+      "profile/:id": "profile"
     },
 
-    showVinbook: function(id) {
-
-        var getCollection = new vinBooksCollection();
-        getCollection.url = '/accounts/me/vinbook';
-        this.changeView( new vinbookDocView({ 
-            collection: getCollection,
-            id: id
-        }));
-        getCollection.fetch();
-    },
 
     changeView: function(view) {
       if ( null != this.currentView ) {
@@ -35,21 +31,6 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
       this.currentView = view;
       this.currentView.render();
     },
-
-    index: function() {
-      this.changeView(new IndexView() );
-    },
-
-    desk: function (id){
-      var model = new Account({id:id});
-      this.changeView(new ProfileView({model:model}));
-      model.fetch({ error: function(response){  console.log ('error'+JSON.stringify(response));  } });
-      console.log('works');
-    }, 
-
-    profile: function (id){
-      this.changeView(new IndexView() );
-    }, 
 
     login: function() {
       this.changeView(new LoginView());
@@ -61,7 +42,58 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
 
     register: function() {
       this.changeView(new RegisterView());
+    },
+
+    desk: function (id){
+      var model = new Account({id:id});
+      this.changeView(new DeskView({model:model}));
+      model.fetch({ error: function(response){  console.log ('error'+JSON.stringify(response));  } });
+      console.log('works');
+    }, 
+
+    showVinbook: function(id) {
+      var getCollection = new vinBooksCollection();
+      getCollection.url = '/accounts/me/vinbook';
+      this.changeView( new vinbookDocView({ 
+          collection: getCollection,
+          id: id
+      }));
+      getCollection.fetch();
+    },
+
+    search: function (){
+      this.changeView(new SearchView() );
+    },
+
+    social: function (id){
+      var model = new Account({id:'me'});
+      this.changeView(new SocialView({model:model}));
+      model.fetch({ error: function(response){  console.log ('success'+JSON.stringify(response));  } });
+    },
+
+    group: function (id){
+      var model = new Account({id:'me'});
+      var trial; 
+
+      var getCollection = new GroupCollection();
+      getCollection.url = '/accounts/me/group';
+
+      getCollection.fetch({ error: function(response){  console.log ('error'+JSON.stringify(response));  } });
+      
+      model.fetch({ error: function(response){  trial =JSON.stringify(response); }  });
+      this.changeView( new GroupView({ 
+          model: model, 
+          collection: getCollection,
+          id: id
+      }));
+    }, 
+
+
+    profile: function (id){
+      this.changeView(new ProfileView() );
     }
+
+
   });
 
   return new SocialRouter();

@@ -2,7 +2,8 @@ var express     = require("express");
 var app         = express();
 var nodemailer  = require('nodemailer');
 var MemoryStore = require('connect').session.MemoryStore;
-var dbPath      = 'mongodb://heroku_app17644347:cgug0p762b1rthc3aadncpgdpo@ds041208.mongolab.com:41208/heroku_app17644347';
+var dbPath      = 'mongodb://localhost/nodebackbone';
+//var dbPath      = 'mongodb://heroku_app17644347:cgug0p762b1rthc3aadncpgdpo@ds041208.mongolab.com:41208/heroku_app17644347';
 
 // Import the data layer
 var mongoose = require('mongoose');
@@ -27,7 +28,7 @@ app.configure(function(){
   });
 });
 
-
+//VINBOOKS DISPLAY AND RETRIEVAL
 
 app.get('/accounts/:id/vinbook', function(req, res) {
   var accountId = req.params.id == 'me'
@@ -100,6 +101,58 @@ app.get('/', function(req, res){
   res.render('index.jade');
 });
 
+
+
+//GROUPS DISPLAY AND RETRIEVAL
+
+app.get('/accounts/:id/group', function(req, res) {
+  var accountId = req.params.id == 'me'
+                     ? req.session.accountId
+                     : req.params.id;
+
+  models.Account.findById(accountId, function(account) {
+    console.log('GET GROUP REQUEST - SUCCESSFUL ');
+    res.send(account.groups);
+  });
+
+});
+
+app.post('/group/:id', function (req, res) {
+
+   var ids = req.param('ids', null);
+         console.log('here',ids);
+   var idAccount = req.param('AccountId', null);
+
+   var status = req.param('status', null);
+   var idOwner = req.param('idOwner', null);
+   var owner = req.param('owner', null);
+
+   models.Account.findById(idAccount, function(account) {
+    models.Account.saveStatus(account, ids, status, idOwner, owner ); 
+   });
+
+   res.send(200);
+}); 
+
+app.delete('/accounts/:id/status', function(req,res) {
+
+  var owner = req.param('owner', null);
+   var groupId = req.param('groupId', null);
+   var statusId = req.param('statusId', null);
+ 
+  models.Account.findById(owner, function(account) {
+    
+    if ( !account ) return;
+      models.Account.removeComment(account, groupId, statusId);
+    });
+
+  res.send(200);
+});
+
+
+
+//GENERAL URLS
+
 app.get('/accounts/:id', function(req, res) {
   var accountId = req.params.id == 'me'
   ? req.session.accountId
@@ -121,6 +174,67 @@ app.post('/vinbook/:id', function (req, res) {
    });
 
    res.send(200);
+}); 
+
+app.post('/search', function(req, res) {
+  var SearchData = req.param('searchData', null);
+  var TypeOfData = req.param('typeOfData', null);
+  console.log('Worked: ',SearchData, TypeOfData ); 
+  if ( null == SearchData ) {
+    res.send(400);
+    return;
+  }
+
+  models.Account.findByString(TypeOfData, SearchData, function(err, accounts, yes) {
+
+    if (err || accounts.length == 0) {
+      console.log(err);
+      res.send(404);
+    } else {
+      console.log('FOUND: ', accounts);
+      if (!yes){ res.send(accounts);}
+      else { res.send(accounts.vinbooks);   }
+    }
+
+
+  });
+
+});
+
+
+app.post('/social/:id', function (req, res) {
+  var accountId = req.params.id == 'me'
+  ? req.session.accountId
+  : req.params.id;
+  console.log('Here Group');
+
+  var name = req.param('groupName', null);
+  var subject = req.param('subject', null);
+  var description = req.param('description', null);
+
+  models.Account.findById(accountId, function(account) {
+     var group = {
+        AccountId: accountId, 
+        name: name,
+        subject: subject,
+        description: description,
+      };
+
+      account.groups.push(group);
+
+      account.save(function (err) {
+        if (err) {
+          console.log('Error saving vinbook: ' + err);
+        }
+        else{
+          console.log('POST REQUEST (Saving Group) - SUCCESSFUL');
+        }
+      });
+  });
+
+
+  console.log('Creating Group');
+  res.send(200);
 }); 
 
 //REGISTRATION - ACCOUNT

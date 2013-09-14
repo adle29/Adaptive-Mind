@@ -1,21 +1,45 @@
 module.exports = function(config, mongoose, nodemailer) {
   var crypto = require('crypto');
 
-    var Vinbook = new mongoose.Schema({
-      AccountId: { type: mongoose.Schema.ObjectId },
-      title: { type: String, default: 'empty todo...' },
-      subject: { type: String, default: 'empty todo...' },
-      description: { type: String  }, 
-      date: {
-        creation: { type: Date },
-        lastUpdate: { type: Date }
-      },
-      Entries: [Entry]
-    });
+  //-----------------------SCHEMAS---------------------------------
+
+  var Vinbook = new mongoose.Schema({
+    AccountId: { type: mongoose.Schema.ObjectId },
+    title: { type: String, default: 'empty todo...' },
+    subject: { type: String, default: 'empty todo...' },
+    description: { type: String  }, 
+    date: {
+      creation: { type: Date },
+      lastUpdate: { type: Date }
+    },
+    Entries: [Entry]
+  });
 
   var Entry = new mongoose.Schema({
         att: { type: String }
    });
+
+  var Friend = new mongoose.Schema ({
+
+  });
+
+  var StatusSchema = new mongoose.Schema ({
+        text: { type: String },
+        owner: { type: mongoose.Schema.ObjectId }, 
+        name: { type: String }
+  });
+
+  var Group = new mongoose.Schema ({
+      AccountId: { type: mongoose.Schema.ObjectId },
+      name: { type: String, unique: true },
+      subject: { type: String, default: 'empty todo...' },
+      description: { type: String  }, 
+      members:   { type: String },
+      open:      { type: Boolean },
+      files:     { type: String },
+      statuses: [Status]
+    
+  });
 
   var AccountSchema = new mongoose.Schema({
     email:     { type: String, unique: true },
@@ -31,10 +55,17 @@ module.exports = function(config, mongoose, nodemailer) {
     },
     photoUrl:  { type: String },
     biography: { type: String },
-    vinbooks: [Vinbook]
+    vinbooks: [Vinbook],
+    friends: [Friend],
+    groups: [Group]
   });
 
+  //-----------------------INSTANCES---------------------------------
+
   var Account = mongoose.model('Account', AccountSchema);
+  var Status = mongoose.model('Status', StatusSchema);
+
+  //-----------------------MAKING ACCOUNT FUNCTIONS---------------------------------
 
   var registerCallback = function(err) {
     if (err) {
@@ -110,6 +141,48 @@ module.exports = function(config, mongoose, nodemailer) {
     });
   };
 
+
+  //-----------------------GROUPS-STATUS---------------------------------
+
+
+  var saveStatus = function (account, id, status, idOwner, ownerName){
+    if ( null == account.groups ) return;
+
+    account.groups.forEach(function(group) {
+      console.log (group._id, id); 
+      if ( group._id == id ) {
+              console.log('here3');
+        var newStatus = new Status ({
+            text: status,
+            owner: idOwner,
+            name: ownerName
+        });
+
+        group.statuses.push(newStatus);
+        console.log( 'status saved',group, newStatus );
+      }
+    });
+    account.save();
+  };
+
+  var removeComment  = function (account, groupId, statusId ){
+    if ( null == account.groups ) return;
+    
+    account.groups.forEach(function(group) {
+      if ( groupId == group._id ) {
+         for ( var i =0; i< group.statuses.length; i++  ){
+            if (group.statuses[i]._id ==  statusId ){
+              group.statuses.splice(i, 1);
+            }
+         }
+      }
+    });
+    account.save();
+  }; 
+
+  //-----------------------VINBOOKS---------------------------------
+
+
   var removeVinbook = function(account, vinbookId) {
 
     if ( null == account.vinbooks ) return;
@@ -151,6 +224,42 @@ module.exports = function(config, mongoose, nodemailer) {
   };
 
 
+  //-----------------------SEARCH---------------------------------
+
+  var findByString = function(dataType, searchStr, callback ) {
+    var searchRegex = new RegExp(searchStr, 'i');
+    if (dataType == '0'){
+      Account.find({
+        $or: [
+          { 'vinbooks.title': { $regex: searchRegex } },
+          { 'vinbooks.subject': { $regex: searchRegex } },
+          { 'vinbooks.description': { $regex: searchRegex } }
+        ]
+      }, callback);
+    }
+
+    else if (dataType == '1'){
+      Account.find({
+        $or: [
+          { 'name.first': { $regex: searchRegex } },
+          { 'name.last': { $regex: searchRegex } },
+          { email: { $regex: searchRegex } }
+        ]
+      }, callback);
+    }
+
+    else{
+      Account.find({
+        $or: [
+          { groups: { $regex: searchRegex } }
+        ]
+      }, callback);
+    }
+
+  };
+
+  //-----------------------FUNCTION AVAILABLE---------------------------------
+
   return {
     register: register,
     forgotPassword: forgotPassword,
@@ -159,6 +268,9 @@ module.exports = function(config, mongoose, nodemailer) {
     removeVinbook: removeVinbook, 
     findVinbook: findVinbook, 
     findVinbookToSave: findVinbookToSave, 
+    saveStatus:saveStatus, 
+    removeComment: removeComment, 
+    findByString: findByString, 
     login: login,
     Account: Account
   }

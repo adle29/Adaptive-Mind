@@ -1,0 +1,71 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><%= name %> </a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#desk/me">Desk</a></li>
+            <li><a href="#search">Search</a></li>
+            <li class="active"><a href="#social/me">Social</a></li>
+            <li><a href="#profile/me">Profile</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+</div>
+
+  <br />
+  <br />
+  <br />
+
+<div class="container">
+        <h1><%= name %> </h1>
+        <hr>
+
+           <!-- Tab Bar -->
+<ul class="nav nav-tabs"  id="myTab" >
+    <li><a data-toggle="tab" data-target="#discuss" id="disc"> Topics </a></li>
+    <li><a data-toggle="tab" data-target="#files"> Files </a></li>
+    <li><a data-toggle="tab" data-target="#links"> Links </a></li>
+</ul>
+<br />
+
+<!-- Tab Panes -->
+<div class="tab-content">
+
+
+    <div id="discuss" class="tab-pane">
+      <div class="row"> 
+        <div class="input-group col-md-8">
+          <input type="text" class="form-control" name="status">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="comment">Comment</button>
+          </span>
+        </div><!-- /input-group -->
+     
+
+        </div>
+          <br />
+  
+          <ul class="list-group col-md-8" id="statusList" >
+
+          </ul>
+       
+    </div>
+
+    
+    <div id="files" class="tab-pane">Files</div>
+    <div id="links" class="tab-pane">Links</div>
+</div>
+
+
+
+
+</div> 
+
+
