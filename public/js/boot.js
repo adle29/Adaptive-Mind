@@ -4,6 +4,7 @@ require.config({
     jQueryAI: '/js/libs/jqueryAI', 
     bootJs: '/js/libs/bootstrap.min',
     Underscore: '/js/libs/underscore',
+    pep: '/js/libs/pep',
     Backbone: '/js/libs/backbone',
     models: 'models',
     text: '/js/libs/text',
@@ -13,9 +14,10 @@ require.config({
   },
 
   shim: {
-    'jQueryAI': ['jQuery'], 
+    'jQueryAI': ['jQuery'],
+    'pep': ['jQuery'],
     'bootJs': ['jQuery'], 
-    'Backbone': ['Underscore', 'jQuery', 'jQueryAI', 'bootJs' ],
+    'Backbone': ['Underscore', 'jQuery', 'pep','jQueryAI', 'bootJs' ],
     'AdaptiveMind': ['Backbone']
   }
 });

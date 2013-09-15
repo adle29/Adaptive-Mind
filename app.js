@@ -2,7 +2,6 @@ var express     = require("express");
 var app         = express();
 var nodemailer  = require('nodemailer');
 var MemoryStore = require('connect').session.MemoryStore;
-//var dbPath      = 'mongodb://localhost/nodebackbone';
 var dbPath      = 'mongodb://heroku_app17644347:cgug0p762b1rthc3aadncpgdpo@ds041208.mongolab.com:41208/heroku_app17644347';
 
 // Import the data layer
@@ -28,7 +27,7 @@ app.configure(function(){
   });
 });
 
-//VINBOOKS DISPLAY AND RETRIEVAL
+//----------------VINBOOKS DISPLAY AND RETRIEVAL----------------
 
 app.get('/accounts/:id/vinbook', function(req, res) {
   var accountId = req.params.id == 'me'
@@ -103,7 +102,7 @@ app.get('/', function(req, res){
 
 
 
-//GROUPS DISPLAY AND RETRIEVAL
+//----------------GROUPS DISPLAY AND RETRIEVAL----------------
 
 app.get('/accounts/:id/group', function(req, res) {
   var accountId = req.params.id == 'me'
@@ -118,9 +117,11 @@ app.get('/accounts/:id/group', function(req, res) {
 });
 
 app.post('/group/:id', function (req, res) {
+  var accountId = req.params.id == 'me'
+  ? req.session.accountId
+  : req.params.id;
 
    var ids = req.param('ids', null);
-         console.log('here',ids);
    var idAccount = req.param('AccountId', null);
 
    var status = req.param('status', null);
@@ -150,8 +151,36 @@ app.delete('/accounts/:id/status', function(req,res) {
 });
 
 
+//--------------------------------PROFILE--------------------------------
 
-//GENERAL URLS
+
+app.post('/profile/:id/edit', function(req, res) {
+  var accountId = req.params.id == 'me'
+  ? req.session.accountId
+  : req.params.id;
+
+  var pictureUrl1 = req.param('pictureUrl1', null);
+  var story = req.param('story', null);
+  var pictureUrl2 = req.param('pictureUrl2', null);
+  var experience = req.param('experience', null);
+  var pictureUrl3 = req.param('pictureUrl3', null);
+  var participation = req.param('participation', null);
+  var pictureUrl4 = req.param('pictureUrl4', null);
+  var portfolio = req.param('portfolio', null);
+
+
+  models.Account.findById(accountId, function(account) {
+    if ( !account ) return;
+    console.log('saving profile 1');
+    models.Account.saveProfile(account, pictureUrl1, pictureUrl2, 
+      pictureUrl3, pictureUrl4, story, experience, participation, portfolio);
+  });
+
+  res.send(200);
+});
+
+
+//--------------------------------GENERAL URLS--------------------------------
 
 app.get('/accounts/:id', function(req, res) {
   var accountId = req.params.id == 'me'
@@ -237,7 +266,8 @@ app.post('/social/:id', function (req, res) {
   res.send(200);
 }); 
 
-//REGISTRATION - ACCOUNT
+
+//-------------------REGISTRATION - ACCOUNT--------------------------------
 
 app.post('/login', function(req, res) {
   console.log('login request');
@@ -289,7 +319,6 @@ app.post('/register', function(req, res) {
 });
 
 app.get('/account/authenticated', function(req, res) {
-
   if ( req.session.loggedIn ) {
     res.send(200);
   } else {
@@ -298,7 +327,6 @@ app.get('/account/authenticated', function(req, res) {
 });
 
 app.get('/login', function(req, res) {
-  console.log('trial1');
     req.session.loggedIn = false;
     req.session.accountId = '';
     res.send(200);

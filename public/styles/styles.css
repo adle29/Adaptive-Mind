@@ -2,7 +2,7 @@
 article{
 	padding-top: 60px;
 }
-
+/* ------------------------DOC-------------------*/
 .drag {
 	width: 100%;
 	height: 100%;
@@ -32,7 +32,7 @@ form {
 #the-sticky-div {
     position: relative;
 }
-
+/* ------------------------PICTURE DOC-------------------*/
 .pict {
 	padding: 5px;
 	border: solid 4px white;
@@ -60,7 +60,7 @@ form {
         box-shadow: 1px 1px 5px #999;
     background-color: white;
 }
-
+/* ------------------------TEXT OF DOC-------------------*/
 .txta{
 	background-color: rgba(215, 44, 44, 0);
 	border: 0;
@@ -81,7 +81,7 @@ form {
 
 
 
-
+/* ------------------------RESIZABLE COMPONENTS OF DOC-------------------*/
 
 
 .white, .white a {
@@ -89,7 +89,7 @@ form {
 }
 
 
-}
+
 .ui-dialog .ui-resizable-se {
 	width: 12px;
 	height: 12px;
@@ -168,6 +168,8 @@ form {
 	top: -5px;
 }
 
+/* ------------------------SIGN IN FROM THE THE BEGINNING-------------------*/
+
 .form-signin {
   max-width: 330px;
   padding: 15px;
@@ -212,5 +214,72 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 
 .ui-resizable-helper { border: 2px dotted #00F; }
 
+/* ------------------------SLIDER OF  PROFILE-------------------*/
+.text {
+  background: black;
+  width:100%;
+  color: white;
+  display: block;
+  overflow-y: scroll;
 
+}
 
+.text .slide-container {
+  overflow: hidden;
+  height: 600px;
+  width:100%;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+}
+.text .slide-container .slider {
+  width: 2480px;
+}
+.text .slide-container .slider figure img {
+  width: auto;
+  height:100%; 
+  float: left;
+  cursor: move;
+}
+
+figure {
+  display: block;
+  position: relative;
+  float: left;
+  overflow: hidden;
+}
+figcaption {
+  position: absolute;
+  background: black;
+  background: rgba(0,0,0,0.5);
+  height:500px;
+  width:100%;
+  color: white;
+  padding: 10px 20px;
+  opacity: 0;
+  -webkit-transition: all 0.6s ease;
+  -moz-transition:    all 0.6s ease;
+  -o-transition:      all 0.6s ease;
+}
+figure:hover figcaption {
+  opacity: 1;
+}
+
+figure:hover:before {
+  opacity: 0;
+}
+
+.cap-left:before {  bottom: 10px; left: 10px; }
+.cap-left figcaption { bottom: 0; left: -30%; }
+.cap-left:hover figcaption { left: 0; }
+
+.cap-right:before { bottom: 10px; right: 10px; }
+.cap-right figcaption { bottom: 0; right: -30%; }
+.cap-right:hover figcaption { right: 0; }
+
+.cap-top:before { top: 10px; left: 10px; }
+.cap-top figcaption { left: 0; top: -30%; }
+.cap-top:hover figcaption { top: 0; }
+
+.cap-bot:before { bottom: 10px; left: 10px; }
+.cap-bot figcaption { left: 0; bottom: -30%;}
+.cap-bot:hover figcaption { bottom: 0; }

@@ -1,10 +1,10 @@
 define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 'views/desk',
-     'views/search', 'views/social', 'views/profile', 'views/group', 
+     'views/search', 'views/social', 'views/profile', 'views/group',  'views/edit',
      'views/vinbookDoc', 'models/Account', 'models/Vinbook', 'models/vinBooksCollection',
      'models/GroupCollection', ],
 
   function(IndexView, RegisterView, LoginView, ForgotPasswordView, DeskView,
-                        SearchView,  SocialView, ProfileView, GroupView, 
+                        SearchView,  SocialView, ProfileView, GroupView, EditView,
                         vinbookDocView,  Account, Vinbook, vinBooksCollection,
                         GroupCollection) {
   
@@ -20,7 +20,8 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
       "search": "search",
       "social/:id": "social",
       "group/:id": "group", 
-      "profile/:id": "profile"
+      "profile/:id": "profile",
+      "profile/:id/edit": "edit"
     },
 
 
@@ -90,7 +91,15 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
 
 
     profile: function (id){
-      this.changeView(new ProfileView() );
+      var model = new Account({id:id});
+      model.fetch({ error: function(response){  console.log ('error'+JSON.stringify(response));  } });
+      this.changeView(new ProfileView({ model:model }) );
+    },
+
+    edit: function(id){
+      var model = new Account({id:id});
+      model.fetch({ error: function(response){  console.log ('error'+JSON.stringify(response));  } });
+      this.changeView(new EditView({ model:model }) );
     }
 
 

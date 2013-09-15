@@ -24,20 +24,20 @@ module.exports = function(config, mongoose, nodemailer) {
   });
 
   var StatusSchema = new mongoose.Schema ({
-        text: { type: String },
+        text:  { type: String },
         owner: { type: mongoose.Schema.ObjectId }, 
-        name: { type: String }
+        name:  { type: String }
   });
 
   var Group = new mongoose.Schema ({
-      AccountId: { type: mongoose.Schema.ObjectId },
-      name: { type: String, unique: true },
-      subject: { type: String, default: 'empty todo...' },
+      AccountId:   { type: mongoose.Schema.ObjectId },
+      name:        { type: String, unique: true },
+      subject:     { type: String, default: 'empty todo...' },
       description: { type: String  }, 
-      members:   { type: String },
-      open:      { type: Boolean },
-      files:     { type: String },
-      statuses: [Status]
+      members:     { type: String },
+      open:        { type: Boolean },
+      files:       { type: String },
+      statuses:    [Status]
     
   });
 
@@ -53,11 +53,27 @@ module.exports = function(config, mongoose, nodemailer) {
       month:   { type: Number, min: 1, max: 12, required: false },
       year:    { type: Number }
     },
+    story: { 
+      text: { type: String, default: '' },
+      photoUrl: { type: String }
+    },
+    experience: { 
+      text: { type: String, default: ''  },
+      photoUrl: { type: String }
+    },
+    portfolio: { 
+      text: { type: String, default: ''  },
+      photoUrl: { type: String }
+    },
+    participation: { 
+      text: { type: String, default: ''    },
+      photoUrl: { type: String }
+    },
     photoUrl:  { type: String },
     biography: { type: String },
     vinbooks: [Vinbook],
     friends: [Friend],
-    groups: [Group]
+     groups: [Group]
   });
 
   //-----------------------INSTANCES---------------------------------
@@ -69,7 +85,7 @@ module.exports = function(config, mongoose, nodemailer) {
 
   var registerCallback = function(err) {
     if (err) {
-      return console.log(err);
+      return console.log( 'this is it', err);
     };
     return console.log('Account was created');
   };
@@ -142,6 +158,24 @@ module.exports = function(config, mongoose, nodemailer) {
   };
 
 
+  //-----------------------PROFILE SAVE REQUEST---------------------------------
+
+   var saveProfile = function(account, pictureUrl1, pictureUrl2, pictureUrl3, pictureUrl4, story, experience, participation, portfolio ) {
+      console.log('saving profile 2');
+      account.story.text = story; 
+      account.story.photoUrl = pictureUrl1; 
+      account.experience.text = experience; 
+      account.experience.photoUrl = pictureUrl2; 
+      account.participation.text = participation; 
+      account.participation.photoUrl = pictureUrl3; 
+      account.portfolio.text = portfolio; 
+      account.portfolio.photoUrl = pictureUrl4; 
+
+      account.save();
+      console.log('USER PROFILE SAVED');
+  };
+
+
   //-----------------------GROUPS-STATUS---------------------------------
 
 
@@ -151,7 +185,6 @@ module.exports = function(config, mongoose, nodemailer) {
     account.groups.forEach(function(group) {
       console.log (group._id, id); 
       if ( group._id == id ) {
-              console.log('here3');
         var newStatus = new Status ({
             text: status,
             owner: idOwner,
@@ -251,7 +284,7 @@ module.exports = function(config, mongoose, nodemailer) {
     else{
       Account.find({
         $or: [
-          { groups: { $regex: searchRegex } }
+          { 'groups.name': { $regex: searchRegex } }
         ]
       }, callback);
     }
@@ -269,6 +302,7 @@ module.exports = function(config, mongoose, nodemailer) {
     findVinbook: findVinbook, 
     findVinbookToSave: findVinbookToSave, 
     saveStatus:saveStatus, 
+    saveProfile:saveProfile, 
     removeComment: removeComment, 
     findByString: findByString, 
     login: login,

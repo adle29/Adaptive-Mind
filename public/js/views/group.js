@@ -66,7 +66,7 @@ function(AdaptiveMindView, groupTemplate, statusView, modelStatus ) {
 
    		renderStatusCollection: function (){
         $('#statusList').empty();
-        console.log('working',this.group.get('statuses') );
+
 
    			var that = this; 
         var myId =that.model.get('_id'); 
