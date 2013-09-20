@@ -293,23 +293,13 @@ figure:hover:before {
 .cap-bot figcaption { left: 0; bottom: -30%;}
 .cap-bot:hover figcaption { bottom: 0; }
 
-/*@media (max-width: 600px) {
-	.text .slide-container {
+html, body {
+  overflow: hidden;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
 
-	  border:solid red;
-	}
-	.text .slide-container .slider {
-			position:absolute;
-  		top:0px;
-  		left:0px;
-	  height: 3300px;
-	  width: 400px;
-	}
-	.text .slide-container .slider figure img {
-	  width: 100%;
-	  height:auto; 
-	}
-}*/
 /*--------------------trial profile==========================*/
   .scroll-pane { overflow: auto; width: 99%; height: 100%; float:left; }
   .scroll-content { width: 1700px; height: 400px; float: left; }
