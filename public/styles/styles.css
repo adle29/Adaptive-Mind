@@ -293,12 +293,7 @@ figure:hover:before {
 .cap-bot figcaption { left: 0; bottom: -30%;}
 .cap-bot:hover figcaption { bottom: 0; }
 
-html, body {
-  overflow: hidden;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-}
+
 
 /*--------------------trial profile==========================*/
   .scroll-pane { overflow: auto; width: 99%; height: 100%; float:left; }
