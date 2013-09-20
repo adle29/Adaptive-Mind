@@ -1,6 +1,5 @@
 
-define(['AdaptiveMindView', 'text!templates/index.html',
-        'views/vinbook', 'models/Vinbook'],
+define(['AdaptiveMindView', 'text!templates/index.html'],
 function(AdaptiveMindView, indexTemplate) {
     var indexView = AdaptiveMindView.extend ({
     	el: $('#content'),

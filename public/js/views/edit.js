@@ -27,7 +27,7 @@ function(AdaptiveMindView, editTemplate) {
                 console.log(data);
                 var html = '<div class="alert alert-success fade in"> <button type="button" '+
                             'class="close" data-dismiss="alert" aria-hidden="true">&times;'+
-                            '</button>Profile was saved. </div><'; 
+                            '</button>Profile was saved. </div>'; 
 
                 $('html, body').animate({ scrollTop: 0 }, 0);
                 if (!data.error){ $('.row').prepend(html); $(".alert").alert(); }

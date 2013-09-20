@@ -16,6 +16,7 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
       "vinbook/:id": "showVinbook",
       "register": "register",
       "login": "login",
+      "index": "index", 
       "desk/:id": "desk",
       "search": "search",
       "social/:id": "social",
@@ -35,6 +36,10 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
 
     login: function() {
       this.changeView(new LoginView());
+    },
+
+    index: function() {
+      this.changeView(new IndexView());
     },
 
     forgotpassword: function() {
