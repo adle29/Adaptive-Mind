@@ -1,7 +1,9 @@
 define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'models/Vinbook',
 			'models/EntriesCollection','modules/img', 'modules/vid', 'modules/txt'], 
 			function(AdaptiveMindView, vinbookDocTemplate, Vinbook, EntriesCollection, Img, Vid, Txt){
-
+  var page = 1, newPage = 0, newImgG = '';
+  var imageSearch;
+  var yes; 
 	var vinbookDocView = AdaptiveMindView.extend ({
 		el: $('#content'),
 		defaults: {
@@ -13,7 +15,7 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'models/Vinbook'
 			this.collection.on('reset', this.gettingVinbook, this);
 			$('div.navbar.navbar-inverse').hide();
                        // var dropbox = document.getElementById('#cont');
-                        this.allowDrag();
+             
    	},
 
    		 events: {
@@ -22,6 +24,8 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'models/Vinbook'
    		 	'click #TXT': 'showEntryTxt',
    		 	'click #close': 'closeEntry',
    		 	'click #sub': 'mediaEntry',
+        'click #search': 'mediaEntryPic', 
+        'click #more': 'more', 
    		 	'click #save': 'saveDoc'
 
    		 },
@@ -29,6 +33,7 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'models/Vinbook'
    		gettingVinbook: function () {
    			 var vinbookCollect = this.collection; 
    			 var that = this; 
+         yes = this; 
    			 vinbookCollect.each(function (model) {
    			 	if (model.get('_id') == that.id ) { 
 
@@ -44,8 +49,9 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'models/Vinbook'
    		},
 
    		showEntryImg: function (){
-   			$("#txtUrl").prop('placeholder', 'Img'); 
-   			$('#mediaForm').toggle(function(){console.log('pancakes'); });
+   			// $("#txtUrl").prop('placeholder', 'Img'); 
+			// $('#mediaForm').toggle(function(){console.log('pancakes'); });
+        $('#myModal').modal();
    		},
 
    		showEntryVid: function (){
@@ -82,6 +88,52 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'models/Vinbook'
    			newEntry.render();
    		}, 
 
+      mediaEntryPic: function(){
+        var that = this; 
+        imageSearch = new google.search.ImageSearch();
+        imageSearch.setResultSetSize(google.search.Search.LARGE_RESULTSET); 
+        imageSearch.setSearchCompleteCallback(null, that.imgComplete, null); 
+        imageSearch.execute($('#request').val());
+      }, 
+
+      more: function() {
+          imageSearch.gotoPage(page); 
+          page++;
+      },
+
+      imgComplete: function (){
+        var contentDiv = document.getElementById('image-content');
+         $('#image-content').empty();
+         contentDiv.innerHTML = '';
+        if (imageSearch.results && imageSearch.results.length > 0) {
+            var results = imageSearch.results;
+            console.log('yes5', imageSearch.results.length)
+            for (var i = 0; i < results.length; i++) {
+                var result = results[i];
+                var newImg = "<img class='imgGoogle' src='"+result.unescapedUrl+"' id='"+i+"''   />";
+                $('#image-content').append(newImg); 
+
+            } //for
+          $( ".imgGoogle" ).click(function() {
+              newImgG =$(this).attr('src'); 
+              yes.mediaEntryImg(newImgG);
+          });
+        }//if     
+      },
+
+      work:function(newImgG){
+        this.mediaEntryImg(newImgG);
+      },
+
+       mediaEntryImg: function(gUrl){
+          var newEntry = new Img ();
+          newEntry.set( {Ourl: gUrl, ids: Math.random().toString(36).substring(7)  } );
+                      newEntry.render();
+            this.entries.add(newEntry);
+            $('#closeModal').trigger('click');
+      }, 
+
+
    		renderEntries: function (entries){
 
    			this.entries = new EntriesCollection();
@@ -111,27 +163,7 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'models/Vinbook'
 		 		 }
 
    			}
-   		}, 
-
-         allowDrag: function (){
-               $('#art').bind('dragenter', noopHandler, false);
-               $('#art').bind('dragexit', noopHandler, false);
-               $('#art').bind('dragover', noopHandler, false);
-                $('#art').bind('click', noopHandler, false);
-               $('#art').bind('drop', drop, false);
-
-               function noopHandler(evt) {
-                                   console.log('here');
-                 evt.stopPropagation();
-                 evt.preventDefault();
-               }
-               function drop(evt) {
-                 evt.stopPropagation();
-                 evt.preventDefault(); 
-                 var imageUrl = evt.dataTransfer.getData('url');
-                 alert(imageUrl);
-               } 
-         },
+   		},
 
    		saveDoc: function (){
 
@@ -152,7 +184,6 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'models/Vinbook'
 					model.toJSON()
 				) );
             console.log('rendering');
-				$('#mediaForm').hide();
 			}
 
 		}

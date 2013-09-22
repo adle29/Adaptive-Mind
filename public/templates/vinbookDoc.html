@@ -1,27 +1,22 @@
-<nav id="bar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	<button id="IMG"  type="button" data-media="1" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-camera "></span></button>
+
+	<nav id="bar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<button id="IMG"  type="button" data-media="1" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-camera " data-toggle="modal" data-target="#myModal"></span></button>
+
 	<button id="VID"  type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-film "></span></button>
 	<button id="TXT"  type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-edit "></span></button>
 	<button id="TXT"  type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-book "></span></button>
 	<button id="FRM"  type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-arrow-up "></span></button>
-	<button id="GRP"  type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-screenshot "></span></button>
+<!-- 	<button id="GRP"  type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-screenshot "></span></button> -->
 	<button id="save"  type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-bookmark "></span></button>
 	<a href="#desk/me" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-arrow-left "></span></a>
-	<br /><br />
-	<span id="mediaForm">
-
-      		<div class="form-group col-lg-4" >
-        		<input id="txtUrl" name="txtUrl" type="text" class="form-control" >
-      		</div>
-      		<button class="btn btn-default" id="sub">Add</button>
-      		<button id="close" type="reset" class="btn btn-default" >Close</button>
-	</span> 
 </nav>
 
-<article id="art">
-	<div class="row"> 
-		<div class="col-lg-1"> </div>
-		<div class="col-lg-10">
+<br /><br />
+<div id="art" class="container"  >
+	
+
+		
+	
 			<header> 
 				<h1><%= title %> </h1>
 				<h4><%= subject %>  </h4> 
@@ -33,12 +28,35 @@
 			<div id="cont" style="height:1000px;" >
 
 			</div> 
-	</div> 
-</article> 
+	
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" id='closeModal' class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Look for an image!</h4>
+        </div>
+        <div class="modal-body">
+        	<!-- INPUT IMAGES -->
+			<div class="input-group">
+		      <input type="text" class="form-control" name="searchbox" id="request">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" type="button" id="search" >Google</button>
+		        <button class="btn btn-default" type="button" id="more" >More+</button>
+		      </span>
+		    </div>
 
+      	<!-- INPUT IMAGES -->
+        </div>
+        <br />
+        <div class="modal-footer">
+        	  <div id="image-content">
+		      </div>
+    
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 
-
-
-
-
-
+</div> 

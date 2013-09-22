@@ -12,6 +12,7 @@ function(AdaptiveMindView, groupTemplate, statusView, modelStatus ) {
         var that = this; 
         this.collection.on('reset', function() {
             this.gettingGroup();
+            this.renderStatusCollection();
         }, this);
 
         this.model.on('change', function() {
@@ -67,18 +68,16 @@ function(AdaptiveMindView, groupTemplate, statusView, modelStatus ) {
    		renderStatusCollection: function (){
         $('#statusList').empty();
 
-
    			var that = this; 
         var myId =that.model.get('_id'); 
 
-    		var statusCollection = this.group.get('statuses');
-    		if ( JSON.stringify(statusCollection)  != null){
+    		if ( JSON.stringify(this.group.get('statuses'))  != null){
+          var statusCollection = this.group.get('statuses');
     			_.each (statusCollection, function(status){
             if ( myId != null){
               status.viewer = myId;
               status.groupId = that.group.get('_id');
             }
-            
             var newStatusModel = new modelStatus ();
             newStatusModel.set(status); 
     				that.renderStatus(newStatusModel);
@@ -87,7 +86,7 @@ function(AdaptiveMindView, groupTemplate, statusView, modelStatus ) {
    		}, 
 
    		renderStatus: function (newStat){
-
+                    console.log('come one');
    			var statusHTML = (new statusView ({ model: newStat }) ).render().el;
         	$(statusHTML).prependTo('#statusList').hide().fadeIn('slow');
    		}, 

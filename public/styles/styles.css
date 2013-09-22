@@ -293,7 +293,12 @@ figure:hover:before {
 .cap-bot figcaption { left: 0; bottom: -30%;}
 .cap-bot:hover figcaption { bottom: 0; }
 
-
+html, body {
+  overflow: hidden;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
 
 /*--------------------trial profile==========================*/
   .scroll-pane { overflow: auto; width: 99%; height: 100%; float:left; }
@@ -305,5 +310,18 @@ figure:hover:before {
   .scroll-bar-wrap .ui-slider-handle { top:.2em; height: 1.5em; }
   .scroll-bar-wrap .ui-slider-handle .ui-icon { margin: -8px auto 0; position: relative; top: 50%; }
 
+.imgGoogle{
+	width:100%;
+	height:auto;
+}
+
+.imgGoogle:hover{
+	border:5px solid black;
+
+}
+
+#image-content{
+	/*width:50%;*/
+}
 
 
