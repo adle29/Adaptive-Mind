@@ -1,6 +1,6 @@
-define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'models/Vinbook',
+define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/vinbookDocIphone.html', 'models/Vinbook',
 			'models/EntriesCollection','modules/img', 'modules/vid', 'modules/txt'], 
-			function(AdaptiveMindView, vinbookDocTemplate, Vinbook, EntriesCollection, Img, Vid, Txt){
+			function(AdaptiveMindView, vinbookDocTemplate, vinbookDocTemplateIphone, Vinbook, EntriesCollection, Img, Vid, Txt){
   var page = 1, newPage = 0, newImgG = '';
   var imageSearch;
   var yes; 
@@ -15,7 +15,6 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'models/Vinbook'
 			this.collection.on('reset', this.gettingVinbook, this);
 			$('div.navbar.navbar-inverse').hide();
                        // var dropbox = document.getElementById('#cont');
-             
    	},
 
    		 events: {
@@ -179,10 +178,20 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'models/Vinbook'
    		},
 
 		render: function (model) {
+      var windowWith = $( window ).width(); 
+      console.log( 'width: ' ,windowWith);
 			if (model != null){
-				this.$el.html( _.template(vinbookDocTemplate, 
-					model.toJSON()
-				) );
+
+        if ( windowWith < 600){
+          this.$el.html( _.template(vinbookDocTemplateIphone, 
+            model.toJSON()        ) );
+        }
+        else {
+  				this.$el.html( _.template(vinbookDocTemplate, 
+  					model.toJSON()       ) );
+        }
+
+
             console.log('rendering');
 			}
 

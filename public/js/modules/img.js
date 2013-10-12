@@ -4,10 +4,10 @@ define([], function (){
 		    module: "img",
 		    ids: Math.random().toString(36).substring(7) , 
 		    Ourl: '', 
-		    width: 200,
-			height: 200,
-			x: 100,
-			y: 150
+		    width: 10,
+			height: 'auto',
+			x: 10,
+			y: 30
 		  },
 
 		  events: {
@@ -34,48 +34,84 @@ define([], function (){
 			 console.log('removing');
 		},
 
+
+
 		render: function () {
 
-			var that = this;
-
+			var that = this, widthFinal, yfinal, xfinal, yinitial, xinitial;
+			var id = " id='"+this.get('ids') + "'";
+			var id2 = " id='"+this.get('ids') + "2'";
 			//IMAGE HTML 
 			// var deleteButton = '<button id="del" style="position:absolute; top:-15px; right:-5px;" type="button" class="del">'+
 			// 				   '&#10006; </button>';
+			// var newImg = document.createElement("img");
+			// newImg.id = this.get('ids') ;
+			// newImg.setAttribute('src', this.get('Ourl') );
+			// newImg.style.width =  this.get('x') + '%';
+			// newImg.style.height =   this.get('y') + '%';
+			// newImg.setAttribute('class', 'drag');
+			xfinal = Math.round( this.get('x')*.01*$(window).width() );
+			yfinal = Math.round( this.get('y')*.01*$(window).height() );
+			widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
+			heightFinal = Math.round( this.get('height')*.01*$(window).height()) ; 
 
-		
-
-			var id = " id='"+this.get('ids') + "'";
-
-			var position = " style='position:absolute; top:"+this.get('y') + "px; left:"
-							+ this.get('x') + "px;"+ " width:"+this.get('width')+"px; height:"+ 
-							this.get('height') + "px;'"; 
-
-			var html = '<div class="pict"'+ id + position +'>' + "<img src='" + this.get('Ourl') 
-					   +"' class='drag' " + " />" + '</div>'  ;
 
 
-			console.log(html);
+			var position = " style='display:inline-block; left:"+xfinal +"px; top:" 
+							+yfinal+ "px;'";
+
+			var html = "<div"+ id + position + "> <img "+ id2 +" style='border:1px solid red; '  src='" + this.get('Ourl') 
+					   + "'  width='"+ widthFinal +"' height='auto' "  + " />"  ;
+
+		    console.log(html);
 			//RENDERING IMAGE
-			$('#cont').append(html);
+			$('#art').append(html);
 
 			//ADDING JQUERY
-			var id = '#'+this.get('ids'); 
+			id = '#'+this.get('ids'); 
+			id2 = '#'+this.get('ids')+'2'; 
 			$('.del').hide(); 
 
-			$(id).draggable({ containment: "#cont" });
 
- 			$(id).resizable();
+			$(id2).resizable({handles: 'se'});
+			$(id).draggable({
+			    appendTo: 'body',
+			    containment: "#art", cursor: "crosshair", 
+			    start: function(event, ui) {
+			        isDraggingMedia = true;
+			    },
+			    stop: function(event, ui) {
+			        isDraggingMedia = false;
+			    }
+			});
+
+	
+				//$(id).pep(); 
+	 		//$(id).draggable({ containment: "#art", cursor: "crosshair" });
+
+                $(".ui-wrapper").css('position', 'absolute');
+                $(id2).css('height', 'auto');
+                $(id).css('position', 'absolute');
+                $(".ui-wrapper").css('height', 'auto');
+                $(id).css('height', 'auto');
 
 			$(id).mouseup(function() {
 				var position = $(id).position();
-				that.set({'x': position.left });
-				that.set({'y': position.top });
-				that.set({'width': $(id).width() });
-				that.set({'height': $(id).height()  });
 
+				that.set({'x':     Math.round( position.left*100 / $(window).width() )  });
+				that.set({'y':     Math.round( position.top *100 / $(window).height() ) });
+				that.set({'width': Math.round( $(id2).width()*100 / $(window).width() ) });
+				that.set({'height': Math.round( $(id2).height()*100 / $(window).height() ) });
+							console.log(position, $(id2).width(), $(id2).height() );
 			});
 
-			$(id).mouseover(function(){ $('.del').show();  });
+			$(id).mouseover(function(){ 
+				var position = $(id).position();
+				that.set({'x':     Math.round( position.left*100 / $(window).width() )  });
+				that.set({'y':     Math.round( position.top *100 / $(window).height() ) });
+				that.set({'width': Math.round( $(id2).width()*100 / $(window).width() ) });
+				that.set({'height': Math.round( $(id2).height()*100 / $(window).height() ) });
+			  });
 			$(id).mouseout(function(){ $('.del').hide();  });
 			$(id).dblclick(function(){ that.removeImg()   } );
 
