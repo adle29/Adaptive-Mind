@@ -26,7 +26,7 @@ define(['router'], function(router) {
           }
      } 
      
-     if (window.location.hash = '#null' ){ window.location.hash = 'index';   }
+     //if (window.location.hash = '#null' ){ window.location.hash = 'index';   }
               Backbone.history.start();
 
   };
