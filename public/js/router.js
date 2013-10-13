@@ -22,7 +22,8 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
       "social/:id": "social",
       "group/:id": "group", 
       "profile/:id": "profile",
-      "profile/:id/edit": "edit"
+      "profile/:id/edit": "edit", 
+      "": "defaultRoute"
     },
 
 
@@ -103,6 +104,10 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
       var model = new Account({id:id});
       model.fetch({ success: function(response){ if (response.me =='me'){window.location.hash = 'login'; }   } });
       this.changeView(new EditView({ model:model }) );
+    },
+
+    defaultRoute: function(path) {
+      this.changeView(new IndexView());
     }
 
 
