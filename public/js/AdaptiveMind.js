@@ -21,7 +21,7 @@ define(['router'], function(router) {
     //   window.location.hash = 'login';
     // } 
          if  (!authenticated  ) {
-      if (window.location.hash != 'profile' || window.location.hash != 'vinbook' ){
+      if (window.location.hash != 'profile' && window.location.hash != 'vinbook'  ){
               window.location.hash = 'login';
 
       }
