@@ -133,7 +133,7 @@ module.exports = function(config, mongoose, nodemailer) {
   };
 
 
-  var register = function(email, password, firstName, lastName) {
+  var register = function(email, password, firstName, lastName, callback) {
     var shaSum = crypto.createHash('sha256');
     shaSum.update(password);
 
@@ -146,8 +146,16 @@ module.exports = function(config, mongoose, nodemailer) {
       },
       password: shaSum.digest('hex')
     });
-    user.save(registerCallback);
-    console.log('Save command was sent');
+    user.save(function (err){
+        if (err) {
+          return console.log( 'this is it', err);
+        }
+        else {
+          callback(); 
+          return console.log('Account was created');
+        }
+    });
+
    };
 
   var findById = function(accountId, callback) {

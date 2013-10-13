@@ -44,6 +44,7 @@ function(AdaptiveMindView, socialTemplate) {
     	}, 
 
     	render: function() {
+
       		this.$el.html(socialTemplate);
     	}
 

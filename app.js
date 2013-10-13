@@ -197,7 +197,7 @@ app.get('/accounts/:id', function(req, res) {
   var accountId = req.params.id == 'me'
   ? req.session.accountId
   : req.params.id;
-  console.log(accountId);
+
   models.Account.findById(accountId, function(account) {
     res.send(account);
   });
@@ -316,17 +316,19 @@ app.post('/register', function(req, res) {
     return;
   }
 
-  models.Account.register(email, password, firstName, lastName);
-  models.Account.login(email, password, function(account) {
-    if ( !account ) {
-      res.send(401);
-      console.log('login was NOT successful');
-      return;
-    }
-    req.session.loggedIn = true;
-    req.session.accountId = account._id;
-    res.send(200);
+  models.Account.register(email, password, firstName, lastName, function(){
+          models.Account.login(email, password, function(account) {
+          if ( !account ) {
+            res.send(401);
+            console.log('login was NOT successful');
+            return;
+          }
+          req.session.loggedIn = true;
+          req.session.accountId = account._id;
+          res.send(200);
+        });
   });
+
 
 });
 

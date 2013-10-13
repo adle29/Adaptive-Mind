@@ -17,16 +17,18 @@ define(['router'], function(router) {
 
   var runApplication = function(authenticated) {
 
-    //  if  (!authenticated ) {
-    //   window.location.hash = 'login';
-    // } 
-         if  (!authenticated  ) {
-      if (window.location.hash != 'profile' && window.location.hash != 'vinbook'  ){
-              window.location.hash = 'login';
 
-      }
-    } 
-    Backbone.history.start();
+     if  (window.location.hash == '#profile/me' || window.location.hash == '#search' || window.location.hash == '#desk/me'  || window.location.hash == '#social/me'   ) {
+          if (!authenticated  ){
+                window.location.hash = 'login';
+                //router.navigate('login', true);
+                console.log('you may not use this2', window.location.hash);
+          }
+     } 
+     
+     if (window.location.hash = '#null' ){ window.location.hash = 'index';   }
+              Backbone.history.start();
+
   };
 
   return {

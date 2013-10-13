@@ -51,12 +51,10 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
      onVinbookCollectionReset: function() {      
       var that = this; 
       var vinbooksCollection = this.model.get('vinbooks');
-      console.log ('First problem1 ' + JSON.stringify(vinbooksCollection) )  ;
 
       if (null != JSON.stringify(vinbooksCollection) ){
         _.each (vinbooksCollection, function(vinbookJson){
            var vinbookModel = new Vinbook (vinbookJson);
-           console.log ('First problem2  ' + JSON.stringify(vinbookJson) )  ;
            that.prependVinbook(vinbookModel);
           
         });
@@ -64,16 +62,12 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
     },
 
     render: function() {
+
       var that = this;
       this.$el.html(
         _.template(deskTemplate, this.model.toJSON() )
       );
-      
-      //this.$el.html(profileTemplate);
-
       this.onVinbookCollectionReset();
-
-      //$("#notebookCreaterForm").hide();
     }
 
   });

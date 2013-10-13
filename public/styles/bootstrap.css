@@ -4375,14 +4375,14 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
 }
 
-.navbar-default {
-  background-color: #f8f8f8;
+.navbar-default { 
+  background-color: #33CC33;
   border-color: #e7e7e7;
-}
+} /*one  - bar color*/ 
 
 .navbar-default .navbar-brand {
-  color: #777777;
-}
+  color: white;
+}/*one nav brand color */
 
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
@@ -4395,8 +4395,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: #777777;
-}
+  color: white;
+}/*one links color*/
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
@@ -4407,8 +4407,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  color: #555555;
-  background-color: #e7e7e7;
+  color: white;
+  background-color: #29A329;
 }
 
 .navbar-default .navbar-nav > .disabled > a,

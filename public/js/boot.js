@@ -26,4 +26,3 @@ require(['AdaptiveMind'], function(AdaptiveMind) {
   AdaptiveMind.initialize();
 });
 
-//        <script src="../../src/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>

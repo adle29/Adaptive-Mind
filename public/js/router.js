@@ -53,19 +53,10 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
     desk: function (id){
       var model = new Account({id:id});
       this.changeView(new DeskView({model:model}));
-      model.fetch({ error: function(response){  console.log ('error'+JSON.stringify(response));  } });
-      console.log('works');
+      model.fetch({ success: function(response){ if (response.me =='me'){window.location.hash = 'login'; }   } });
     }, 
 
     showVinbook: function(id) {
-      // var getCollection = new vinBooksCollection();
-      // getCollection.url = '/accounts/me/vinbook';
-      // this.changeView( new vinbookDocView({ 
-      //     collection: getCollection,
-      //     id: id
-      // }));
-      // console.log('here');
-      // getCollection.fetch();
       var model = new Account({id:'me'}); 
       this.changeView( new vinbookDocView({ 
           id: id,
@@ -81,7 +72,7 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
     social: function (id){
       var model = new Account({id:'me'});
       this.changeView(new SocialView({model:model}));
-      model.fetch({ error: function(response){  console.log ('success'+JSON.stringify(response));  } });
+      model.fetch({ success: function(response){ if (response.me =='me'){window.location.hash = 'login'; }      } });
     },
 
     group: function (id){
@@ -91,7 +82,7 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
       var getCollection = new GroupCollection();
       getCollection.url = '/accounts/me/group';
 
-      getCollection.fetch({ error: function(response){  console.log ('error'+JSON.stringify(response));  } });
+      getCollection.fetch({ error: function(response){   window.location.hash = 'login'; } });
       
       model.fetch({ error: function(response){  trial =JSON.stringify(response); }  });
       this.changeView( new GroupView({ 
@@ -103,7 +94,6 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
 
 
     profile: function (id){
-            console.log(  '52354ff211f48d5f12000004' == id);
       var model = new Account({id:id});
       model.fetch({ error: function(response){  console.log ('error'+JSON.stringify(response));  } });
       this.changeView(new ProfileView({ model:model }) );
@@ -111,7 +101,7 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
 
     edit: function(id){
       var model = new Account({id:id});
-      model.fetch({ error: function(response){  console.log ('error'+JSON.stringify(response));  } });
+      model.fetch({ success: function(response){ if (response.me =='me'){window.location.hash = 'login'; }   } });
       this.changeView(new EditView({ model:model }) );
     }
 
