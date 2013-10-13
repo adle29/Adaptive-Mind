@@ -2,8 +2,8 @@ var express     = require("express");
 var app         = express();
 var nodemailer  = require('nodemailer');
 var MemoryStore = require('connect').session.MemoryStore;
-//var dbPath      = 'mongodb://localhost/nodebackbone';
-var dbPath      = 'mongodb://heroku_app17644347:cgug0p762b1rthc3aadncpgdpo@ds041208.mongolab.com:41208/heroku_app17644347';
+var dbPath      = 'mongodb://localhost/nodebackbone';
+//var dbPath      = 'mongodb://heroku_app17644347:cgug0p762b1rthc3aadncpgdpo@ds041208.mongolab.com:41208/heroku_app17644347';
 
 // Import the data layer
 var mongoose = require('mongoose');
@@ -38,6 +38,16 @@ app.get('/accounts/:id/vinbook', function(req, res) {
   models.Account.findById(accountId, function(account) {
     console.log('GET REQUEST - SUCCESSFUL ');
     res.send(account.vinbooks);
+  });
+
+});
+
+app.get('/vinbook', function(req, res) {
+  console.log(models.Account.vinbooks);
+  var vinId = req.param('vinId', null);
+  models.Account.findVinbook2( vinId, function(book) {
+    console.log('GET REQUEST - SUCCESSFUL ', book);
+    res.send(book);
   });
 
 });
@@ -187,6 +197,7 @@ app.get('/accounts/:id', function(req, res) {
   var accountId = req.params.id == 'me'
   ? req.session.accountId
   : req.params.id;
+  console.log(accountId);
   models.Account.findById(accountId, function(account) {
     res.send(account);
   });

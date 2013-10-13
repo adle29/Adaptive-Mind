@@ -16,8 +16,15 @@ define(['router'], function(router) {
   };
 
   var runApplication = function(authenticated) {
-    if (!authenticated) {
-      window.location.hash = 'login';
+
+    //  if  (!authenticated ) {
+    //   window.location.hash = 'login';
+    // } 
+         if  (!authenticated  ) {
+      if (window.location.hash != 'profile' || window.location.hash != 'vinbook' ){
+              window.location.hash = 'login';
+
+      }
     } 
     Backbone.history.start();
   };

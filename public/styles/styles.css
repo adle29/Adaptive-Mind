@@ -242,7 +242,7 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 /* ------------------------SLIDER OF  PROFILE-------------------*/
 .text {
   width:100%;
-  color: white;
+  color: black;
   overflow-y: scroll;
   position:absolute;
   top:0px;
@@ -285,7 +285,7 @@ figcaption {
   position: absolute;
   background: black;
   background: rgba(0,0,0,0.5);
-  height:500px;
+  height:100%;
   width:100%;
   color: white;
   padding: 10px 20px;
@@ -302,7 +302,7 @@ figure:hover:before {
   opacity: 0;
 }
 
-.cap-left:before {  bottom: 10px; left: 10px; }
+/*.cap-left:before {  bottom: 10px; left: 10px; }
 .cap-left figcaption { bottom: 0; left: -30%; }
 .cap-left:hover figcaption { left: 0; }
 
@@ -317,7 +317,7 @@ figure:hover:before {
 .cap-bot:before { bottom: 10px; left: 10px; }
 .cap-bot figcaption { left: 0; bottom: -30%;}
 .cap-bot:hover figcaption { bottom: 0; }
-
+*/
 
 /*--------------------trial profile==========================*/
   .scroll-pane { overflow: auto; width: 99%; height: 100%; float:left; }

@@ -58,13 +58,20 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
     }, 
 
     showVinbook: function(id) {
-      var getCollection = new vinBooksCollection();
-      getCollection.url = '/accounts/me/vinbook';
+      // var getCollection = new vinBooksCollection();
+      // getCollection.url = '/accounts/me/vinbook';
+      // this.changeView( new vinbookDocView({ 
+      //     collection: getCollection,
+      //     id: id
+      // }));
+      // console.log('here');
+      // getCollection.fetch();
+      var model = new Account({id:'me'}); 
       this.changeView( new vinbookDocView({ 
-          collection: getCollection,
-          id: id
+          id: id,
+          model : model
       }));
-      getCollection.fetch();
+      model.fetch({ error: function(response){  }  });
     },
 
     search: function (){
@@ -96,6 +103,7 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
 
 
     profile: function (id){
+            console.log(  '52354ff211f48d5f12000004' == id);
       var model = new Account({id:id});
       model.fetch({ error: function(response){  console.log ('error'+JSON.stringify(response));  } });
       this.changeView(new ProfileView({ model:model }) );

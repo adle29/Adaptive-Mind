@@ -43,11 +43,11 @@ define([], function (){
 				+ xfinal + "px;"+ " width:"+widthFinal+"px; height:"+ 
 				heightFinal + "px;'"; 
 
-			var html = '<p contenteditable="true" '+id+ style +'>' 
-					   + this.get('content') +  '</p> '  ;
+			var html = '<div contenteditable="true" '+id+ style +'>' 
+					   + this.get('content') +  '</div> '  ;
 
 			$('#art	').append(html);
-			console.log(html);
+
 
 			//ADDING JQUERY
 			var ids = '#'+this.get('ids'); 

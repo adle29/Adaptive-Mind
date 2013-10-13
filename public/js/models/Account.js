@@ -10,12 +10,13 @@ define(['models/vinBooksCollection', 'models/GroupCollection'],
        this.groups 		   = new GroupCollection();
        this.groups.url     = '/accounts/' + this.id + '/group';
        this.me = this.id;
-    }
+       this.fetch();
+       this.bind('change', this.render, this);
+    },
 
-     // parse : function(response){
-     //  console.log(response);
-     //    return response;  
-     //  }  
+     render: function(){
+        this.me = this.get('_id'); 
+     }
 
   });
 

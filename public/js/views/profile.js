@@ -25,6 +25,7 @@ function(AdaptiveMindView, profileTemplate) {
 
     	render: function() {
     		  if (this.model.get('email') != null){
+            console.log(this.model.get('id'));
             if (this.model.get('id') == 'me'){
       			  console.log(this.model);
         			this.$el.html(_.template(profileTemplate, this.model.toJSON()));
@@ -43,7 +44,8 @@ function(AdaptiveMindView, profileTemplate) {
             $('.cap-left').css('width', function () {return $(window).width(); });
             $('.cap-top').css('width', function () {return $(window).width(); });
             $('.text .slide-container .slider').css('width', function () {return $(window).width()*4+5; });
-            console.log($('.slider').width() ); 
+
+           
 
             $('.slider').pep({
               axis: 'x',
