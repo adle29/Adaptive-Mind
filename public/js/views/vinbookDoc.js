@@ -159,17 +159,17 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
 		 		 	var gettingEntry = entrada[i]; 
 		 		 	if (gettingEntry.module == "img"){
 		 		 		var newEntry = new Img (gettingEntry);
-		 		 		newEntry.render();
+		 		 		newEntry.render(this.options.notYou);
 		 		 		this.entries.add(newEntry);
 		 		 	}
 		 		 	else if (gettingEntry.module == "vid")  {
 		 		 		var newEntry = new Vid (gettingEntry);
-		 		 		newEntry.render();
+		 		 		newEntry.render(this.options.notYou);
 		 		 		this.entries.add(newEntry);
 		 		 	}
 		 		 	else {
 		 		 		var newEntry = new Txt (gettingEntry);
-		 		 		newEntry.render();
+		 		 		newEntry.render(this.options.notYou);
 		 		 		this.entries.add(newEntry);
 		 		 	}
 
@@ -188,6 +188,12 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
 	        	entries: this.entries.toJSON() 
 	        }, function(data) {
 	      		console.log(data);
+            var html = '<div class="alert alert-success fade in"> <button type="button" '+
+                        'class="close" data-dismiss="alert" aria-hidden="true">&times;'+
+                        '</button>Profile was saved. </div>'; 
+
+            if (!data.error){ $('.aler').prepend(html); $(".alert").alert(); }
+
 	        }).error(function(){
 	        	console.log('POST REQUEST - UPDATE - ERROR');
 		    });
@@ -198,17 +204,16 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
       var windowWith = $( window ).width(); 
 
 			if (model != null){
-        console.log( 'works: ' ,this.model.me);
-       // console.log(myid, this.options.myId.get('id') );
-
         if ( windowWith < 600 || this.model.me != myid  ){
           this.$el.html( _.template(vinbookDocTemplateIphone, 
             model       ) );
-          console.log('not you');
+          this.options.notYou = false; 
+          console.log('not you', this.options.notYou);
         }
         else {
   				this.$el.html( _.template(vinbookDocTemplate, 
   					model  ) );
+          this.options.notYou = true; 
                     console.log('yes');
         }
 

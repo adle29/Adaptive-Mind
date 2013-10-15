@@ -2,7 +2,7 @@ define([], function (){
 	return Backbone.Model.extend ({
 		defaults: {
 		    module: "txt",
-		    ids: Math.random().toString(36).substring(7) , 
+		    ids: Math.random().toString(36).substring(7) + Date.now(), 
 		    content: 'Write Here',
 		    width: 30,
 			height: 20,
@@ -12,7 +12,7 @@ define([], function (){
 
 
 		events: {
-		  "click button": "removeImg"
+		  "click button": "removeImg",
 		},
 
 		initialize: function(att) {
@@ -32,8 +32,11 @@ define([], function (){
 			 console.log('removing');
 		},
 
-		render: function () {
+		render: function (showcase) {
+			this.set({'ids': Math.random().toString(36).substring(7) + Date.now()  });
 			var id = " id='"+this.get('ids') + "'";
+			var ids2 = " id='"+this.get('ids') + "2'"+'';
+			var ids3 = " id='"+this.get('ids') + "3'"+'';
 			var xfinal = Math.round( this.get('x')*.01*$(window).width() );
 			var yfinal = Math.round( this.get('y')*.01*$(window).height());
 			var widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
@@ -43,81 +46,98 @@ define([], function (){
 				+ xfinal + "px;"+ " width:"+widthFinal+"px; height:"+ 
 				heightFinal + "px;'"; 
 
-			var html = '<div contenteditable="true" '+id+ style +'>' 
-					   + this.get('content') +  '</div> '  ;
+			var html = '<div '+id+style+' >'+
+				'<div '+ids3+'class="txta"><button class="close txtclose">×</button></div>'+ 
+				'<p '+ids2+'contenteditable="true">'+
+				this.get('content') +
+				'</p></div>';
 
-			$('#art	').append(html);
+			if ($(window).width() < 600){
+				style = " style='width:100%;'"; 
+
+			 html = '<div '+id+style+' >'+
+				'<div '+ids3+'class="txta"><button class="close txtclose">×</button></div>'+ 
+				'<p '+ids2+'contenteditable="true">'+
+				this.get('content') +
+				'</p></div>';
+			}
+
+			var ids = '#'+this.get('ids');
+			ids2 = '#'+this.get('ids')+'2';
+			ids3 = '#'+this.get('ids')+'3';
+
+			 console.log(html);
+
+			$('#art').append(html);
+
+			$(ids2).inflateText({ 
+					maxFontSize: 14, minFontSize: 10, scale: 0.8 
+			}); 
+
+			$('p').inflateText({ maxFontSize: 12, minFontSize: 8, scale: 0.4 });
 
 
 			//ADDING JQUERY
-			var ids = '#'+this.get('ids'); 
-			var that = this;
+			$(ids3).css('visibility', 'hidden' );
 
-			// Delay dragging for a bit (100 ms)
-			 //$(ids).draggable({delay: 10});
-			 $('#example').tooltip('hello'); 
-			 $(ids).dblclick(function(){      } );
+			if (showcase || showcase == null || $(window).width() > 600 ){
+								console.log('less');
+				var that = this;
+				$(ids).draggable();
 
-			$(ids).dblclick(function(){ that.removeImg();   } );
+				$(ids).mouseover(function(){
+					$(ids3).css('visibility', 'visible' );
+					save(); 
+				})
 
-			 
+				$(ids).mouseout(function(){
+					$(ids3).css('visibility', 'hidden' );
+					save();
+				})
 
+				$(ids2).on("mousedown", function (e) {
+				    e.stopPropagation();
+				    save(); 
+				    return;
+				});
 
+				$(ids2).on("touchleave", function (e) {
+				    e.stopPropagation();
+				    save(); 
+				    return;
+				});
 
-			$(ids).inflateText({ 
-				maxFontSize: 14, minFontSize: 10, scale: 0.8 }); 
+				$(ids).resizable({
+			      helper: "ui-resizable-helper"
+			    });
 
-			  $(ids).mouseover(function(){
-			  	$(ids).pep({
-				  disableSelect: true
-				}) 
-				// $(ids).draggable({ disabled: true });
-			    
-			  });
+			    $( ids3 ).on( "resize", function( event, ui ) {save(); } );
+		
 
-			  $(ids).click(function(){
-			  	$(ids).trigger( "focus" );
-			  	$.pep.toggleAll(false);
-			  }); 
+				$(ids).click(function() {
+					save(); 
+				});
 
-			  $(ids).focusout(function(){
-			  	$.pep.toggleAll(true); 
-			  }); 
+				 function save (){
+				 	var position = $(ids).position();
+					that.set({'width': Math.round( $(ids).width()*100 / $(window).width() ) });
+					that.set({'height': Math.round( $(ids).height()*100 / $(window).height() ) });
+					that.set({'x':     Math.round( position.left*100 / $(window).width() )  });
+					that.set({'y':     Math.round( position.top *100 / $(window).height() ) });
+					that.set({'content': $(ids2).text()  });
+				 }
+		
 
-			 $(ids).resizable({ helper: "ui-resizable-helper", delay: 10,
-			 	start: function( event, ui ) { console.log('here'); $.pep.toggleAll(false);},
-			 	stop: function( event, ui ) {$.pep.toggleAll(true);}
-			 });
+				// $(id).mouseover(function(){ $('.del').show();  });
+				// $(id).mouseout(function(){ $('.del').hide();  });
+				 $(ids3 + ' button').click(function(){ that.removeImg();   } );
+				// $(id).click(function(){ $(id).focus();  } );
+		}
 
-			//$(id).tooltip('show');
-			// // $('.del').hide(); 
-
-			$(ids).click(function() {
-				var position = $(ids).position();
-				that.set({'x':     Math.round( position.left*100 / $(window).width() )  });
-				that.set({'y':     Math.round( position.top *100 / $(window).height() ) });
-				that.set({'width': Math.round( $(ids).width()*100 / $(window).width() ) });
-				that.set({'height': Math.round( $(ids).height()*100 / $(window).height() ) });
-				that.set({'content': $(ids).text()  });
-			});
-
-			$(ids).mouseover(function() {
-				var position = $(ids).position();
-				that.set({'x':     Math.round( position.left*100 / $(window).width() )  });
-				that.set({'y':     Math.round( position.top *100 / $(window).height() ) });
-				that.set({'width': Math.round( $(ids).width()*100 / $(window).width() ) });
-				that.set({'height': Math.round( $(ids).height()*100 / $(window).height() ) });
-				that.set({'content': $(ids).text()    });
-
-			});
-
-
-
-
-			// $(id).mouseover(function(){ $('.del').show();  });
-			// $(id).mouseout(function(){ $('.del').hide();  });
-			// $(id).dblclick(function(){ that.removeImg();   } );
-			// $(id).click(function(){ $(id).focus();  } );
+		else {
+			$('p').attr("contentEditable", "false");
+			console.log('true');
+		}
 
       	}
 

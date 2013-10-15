@@ -36,20 +36,13 @@ define([], function (){
 
 
 
-		render: function () {
+		render: function (showcase) {
 
 			var that = this, widthFinal, yfinal, xfinal, yinitial, xinitial;
 			var id = " id='"+this.get('ids') + "'";
 			var id2 = " id='"+this.get('ids') + "2'";
 			//IMAGE HTML 
-			// var deleteButton = '<button id="del" style="position:absolute; top:-15px; right:-5px;" type="button" class="del">'+
-			// 				   '&#10006; </button>';
-			// var newImg = document.createElement("img");
-			// newImg.id = this.get('ids') ;
-			// newImg.setAttribute('src', this.get('Ourl') );
-			// newImg.style.width =  this.get('x') + '%';
-			// newImg.style.height =   this.get('y') + '%';
-			// newImg.setAttribute('class', 'drag');
+
 			xfinal = Math.round( this.get('x')*.01*$(window).width() );
 			yfinal = Math.round( this.get('y')*.01*$(window).height() );
 			widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
@@ -60,14 +53,21 @@ define([], function (){
 			var position = " style='display:inline-block; left:"+xfinal +"px; top:" 
 							+yfinal+ "px;'";
 
-			var html = "<div"+ id + position + "> <img "+ id2 +" style='border:1px solid red; '  src='" + this.get('Ourl') 
+			var html = "<div"+ id + position + "> <img "+ id2 +" src='" + this.get('Ourl') 
 					   + "'  width='"+ widthFinal +"' height='auto' "  + " />"  ;
 
 		    console.log(html);
+		    
+		    if ($(window).width() < 600){
+			 html = "<div"+ id + position + "> <img "+ id2 +" src='" + this.get('Ourl') 
+					   + "'  width='100%' height='auto' "  + " />"  ;
+			}
+
 			//RENDERING IMAGE
 			$('#art').append(html);
-
+			console.log( 'showcase', showcase);
 			//ADDING JQUERY
+			if (showcase || showcase == null || $(window).width() > 600  ){
 			id = '#'+this.get('ids'); 
 			id2 = '#'+this.get('ids')+'2'; 
 			$('.del').hide(); 
@@ -115,7 +115,7 @@ define([], function (){
 			$(id).mouseout(function(){ $('.del').hide();  });
 			$(id).dblclick(function(){ that.removeImg()   } );
 
-
+			}
       	}
 
 
