@@ -71,6 +71,7 @@ define([], function (){
 			ids3 = '#'+this.get('ids')+'3';
 
 			 console.log(html);
+			 			$(ids3).css('visibility', 'hidden' );
 
 
 			// $(ids2).inflateText({ 
@@ -79,24 +80,21 @@ define([], function (){
 
 			$('p').inflateText({ maxFontSize: 12, minFontSize: 8, scale: 0.4 });
 
-
 			//ADDING JQUERY
-			$(ids3).css('visibility', 'visible' );
 
-			if (showcase || showcase == null || $(window).width() > 600 ){
-				console.log('less');
+			if (showcase || showcase == null && $(window).width() > 600 ){
+				console.log('less',showcase, showcase == null, $(window).width()  );
 				var that = this;
 				$(ids).draggable();
+				$(ids3).css('visibility', 'visible' );
 
 				$(ids).mouseover(function(){
-					$(ids3).css('visibility', 'visible' );
-					$(ids).css('border', '1px solid black' );
+
 					save(); 
 				})
 
 				$(ids).mouseout(function(){
-					$(ids3).css('visibility', 'hidden' );
-					$(ids).css('border', '0px solid black' );
+
 					save();
 				})
 
@@ -109,6 +107,7 @@ define([], function (){
 
 				$(ids2).on("touchleave", function (e) {
 				    e.stopPropagation();
+				    $(ids2).focus(); 
 				    save(); 
 				    return ;
 				});

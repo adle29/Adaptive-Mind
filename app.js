@@ -2,8 +2,8 @@ var express     = require("express");
 var app         = express();
 var nodemailer  = require('nodemailer');
 var MemoryStore = require('connect').session.MemoryStore;
-//var dbPath      = 'mongodb://localhost/nodebackbone';
-var dbPath      = 'mongodb://heroku_app17644347:cgug0p762b1rthc3aadncpgdpo@ds041208.mongolab.com:41208/heroku_app17644347';
+var dbPath      = 'mongodb://localhost/nodebackbone';
+//var dbPath      = 'mongodb://heroku_app17644347:cgug0p762b1rthc3aadncpgdpo@ds041208.mongolab.com:41208/heroku_app17644347';
 
 // Import the data layer
 var mongoose = require('mongoose');

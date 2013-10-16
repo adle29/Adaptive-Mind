@@ -50,10 +50,10 @@ define([], function (){
 
 
 
-			var position = " style='display:inline-block; left:"+xfinal +"px; top:" 
+			var position = " style='display:inline-block; position:absolute; left:"+xfinal +"px; top:" 
 							+yfinal+ "px;'";
 
-			var html = "<div"+ id + position + "> <img "+ id2 +" src='" + this.get('Ourl') 
+			var html = "<div   "+ id + position + "> <img class='pict' "+ id2 +" src='" + this.get('Ourl') 
 					   + "'  width='"+ widthFinal +"' height='auto' "  + " />"  ;
 
 		    console.log(html);
@@ -61,59 +61,62 @@ define([], function (){
 		    if ($(window).width() < 600){
 			 html = "<div"+ id + position + "> <img "+ id2 +" src='" + this.get('Ourl') 
 					   + "'  width='100%' height='auto' "  + " />"  ;
+					   console.log('smaller display');
 			}
 
 			//RENDERING IMAGE
 			$('#art').append(html);
 			console.log( 'showcase', showcase);
 			//ADDING JQUERY
-			if (showcase || showcase == null || $(window).width() > 600  ){
-			id = '#'+this.get('ids'); 
-			id2 = '#'+this.get('ids')+'2'; 
-			$('.del').hide(); 
+			if (showcase || showcase == null && $(window).width() > 600  ){
+				id = '#'+this.get('ids'); 
+				id2 = '#'+this.get('ids')+'2'; 
+				$('.del').hide(); 
 
 
-			$(id2).resizable({handles: 'se'});
-			$(id).draggable({
-			    appendTo: 'body',
-			    containment: "#art", cursor: "crosshair", 
-			    start: function(event, ui) {
-			        isDraggingMedia = true;
-			    },
-			    stop: function(event, ui) {
-			        isDraggingMedia = false;
-			    }
-			});
+				$(id2).resizable({handles: 'se'});
+				$(id).draggable({
+				    appendTo: 'body',
+				    containment: "#art", cursor: "crosshair", 
+				    start: function(event, ui) {
+				        isDraggingMedia = true;
+				    },
+				    stop: function(event, ui) {
+				        isDraggingMedia = false;
+				    }
+				});
 
-	
-				//$(id).pep(); 
-	 		//$(id).draggable({ containment: "#art", cursor: "crosshair" });
+		
+					//$(id).pep(); 
+		 		//$(id).draggable({ containment: "#art", cursor: "crosshair" });
 
-                $(".ui-wrapper").css('position', 'absolute');
-                $(id2).css('height', 'auto');
-                $(id).css('position', 'absolute');
-                $(".ui-wrapper").css('height', 'auto');
-                $(id).css('height', 'auto');
+	                $(".ui-wrapper").css('position', 'absolute');
+	                $(id2).css('height', 'auto');
+	                $(id).css('position', 'absolute');
+	                $(".ui-wrapper").css('height', 'auto');
+	                $(id).css('height', 'auto');
 
-			$(id).mouseup(function() {
-				var position = $(id).position();
+				$(id).mouseup(function() {
+					save();
+				});
 
-				that.set({'x':     Math.round( position.left*100 / $(window).width() )  });
-				that.set({'y':     Math.round( position.top *100 / $(window).height() ) });
-				that.set({'width': Math.round( $(id2).width()*100 / $(window).width() ) });
-				that.set({'height': Math.round( $(id2).height()*100 / $(window).height() ) });
-							console.log(position, $(id2).width(), $(id2).height() );
-			});
+				$(id).mouseover(function(){ 
+					save();
+				  });
 
-			$(id).mouseover(function(){ 
-				var position = $(id).position();
-				that.set({'x':     Math.round( position.left*100 / $(window).width() )  });
-				that.set({'y':     Math.round( position.top *100 / $(window).height() ) });
-				that.set({'width': Math.round( $(id2).width()*100 / $(window).width() ) });
-				that.set({'height': Math.round( $(id2).height()*100 / $(window).height() ) });
-			  });
-			$(id).mouseout(function(){ $('.del').hide();  });
-			$(id).dblclick(function(){ that.removeImg()   } );
+				$(id).mouseout(function(){ $('.del').hide();  });
+				$(id).dblclick(function(){ that.removeImg()   } );
+
+
+				function save(){
+										var position = $(id).position();
+					that.set({'x':     Math.round( position.left*100 / $(window).width() )  });
+					that.set({'y':     Math.round( position.top *100 / $(window).height() ) });
+					that.set({'width': Math.round( $(id2).width()*100 / $(window).width() ) });
+					that.set({'height': Math.round( $(id2).height()*100 / $(window).height() ) });
+				}
+
+
 
 			}
       	}
