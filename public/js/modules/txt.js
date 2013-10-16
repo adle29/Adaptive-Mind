@@ -42,25 +42,29 @@ define([], function (){
 			var widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
 			var heightFinal = Math.round( this.get('height')*.01*$(window).height()); 
 
-			var style = " style='position:absolute; top:"+yfinal + "px; left:"
+			var style = " style='display:inline-block;  position:absolute; top:"+yfinal + "px; left:"
 				+ xfinal + "px;"+ " width:"+widthFinal+"px; height:"+ 
 				heightFinal + "px;'"; 
 
 			var html = '<div '+id+style+' >'+
-				'<div '+ids3+'class="txta"><button class="close txtclose">×</button></div>'+ 
-				'<p '+ids2+'contenteditable="true">'+
+				'<div '+ids3+' class="txta"><button class="close txtclose">×</button></div>'+ 
+				'<p '+ids2+' class="txtFormat" contenteditable="true">'+
 				this.get('content') +
 				'</p></div>';
 
 			if ($(window).width() < 600){
 				style = " style='width:100%;'"; 
 
-			 html = '<div '+id+style+' >'+
-				'<div '+ids3+'class="txta"><button class="close txtclose">×</button></div>'+ 
-				'<p '+ids2+'contenteditable="true">'+
-				this.get('content') +
-				'</p></div>';
+				 html = '<div '+id+style+' >'+
+					'<div '+ids3+'class="txta"><button class="close txtclose">×</button></div>'+ 
+					'<p '+ids2+' class="txtFormat" contenteditable="true">'+
+					this.get('content') +
+					'</p></div>';
+
+				console.log('smaller devices');
 			}
+
+			$('#art').append(html);
 
 			var ids = '#'+this.get('ids');
 			ids2 = '#'+this.get('ids')+'2';
@@ -68,43 +72,45 @@ define([], function (){
 
 			 console.log(html);
 
-			$('#art').append(html);
 
-			$(ids2).inflateText({ 
-					maxFontSize: 14, minFontSize: 10, scale: 0.8 
-			}); 
+			// $(ids2).inflateText({ 
+			// 		maxFontSize: 14, minFontSize: 10, scale: 0.8 
+			// }); 
 
 			$('p').inflateText({ maxFontSize: 12, minFontSize: 8, scale: 0.4 });
 
 
 			//ADDING JQUERY
-			$(ids3).css('visibility', 'hidden' );
+			$(ids3).css('visibility', 'visible' );
 
 			if (showcase || showcase == null || $(window).width() > 600 ){
-								console.log('less');
+				console.log('less');
 				var that = this;
 				$(ids).draggable();
 
 				$(ids).mouseover(function(){
 					$(ids3).css('visibility', 'visible' );
+					$(ids).css('border', '1px solid black' );
 					save(); 
 				})
 
 				$(ids).mouseout(function(){
 					$(ids3).css('visibility', 'hidden' );
+					$(ids).css('border', '0px solid black' );
 					save();
 				})
 
 				$(ids2).on("mousedown", function (e) {
+					console.log('here');
 				    e.stopPropagation();
 				    save(); 
-				    return;
+				    return ;
 				});
 
 				$(ids2).on("touchleave", function (e) {
 				    e.stopPropagation();
 				    save(); 
-				    return;
+				    return ;
 				});
 
 				$(ids).resizable({
@@ -139,7 +145,7 @@ define([], function (){
 			console.log('true');
 		}
 
-      	}
+      }
 
 
 	});

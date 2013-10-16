@@ -208,7 +208,7 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
           this.$el.html( _.template(vinbookDocTemplateIphone, 
             model       ) );
           this.options.notYou = false; 
-          console.log('not you', this.options.notYou);
+          console.log('not you', this.options.notYou, this.model.me );
         }
         else {
   				this.$el.html( _.template(vinbookDocTemplate, 
