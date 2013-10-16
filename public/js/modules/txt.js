@@ -105,7 +105,7 @@ define([], function (){
 				    return ;
 				});
 
-				$(ids2).on("touchleave", function (e) {
+				$(ids2).on("touchstart", function (e) {
 				    e.stopPropagation();
 				    $(ids2).focus(); 
 				    save(); 
