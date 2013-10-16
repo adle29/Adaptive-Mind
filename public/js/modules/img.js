@@ -59,7 +59,7 @@ define([], function (){
 		    console.log(html);
 		    
 		    if ($(window).width() < 600){
-			 html = "<div"+ id + position + "> <img "+ id2 +" src='" + this.get('Ourl') 
+			 html = "<div"+ id + "> <img "+ id2 +" src='" + this.get('Ourl') 
 					   + "'  width='100%' height='auto' "  + " />"  ;
 					   console.log('smaller display');
 			}

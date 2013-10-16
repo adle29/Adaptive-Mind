@@ -1,11 +1,11 @@
 define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 'views/desk',
      'views/search', 'views/social', 'views/profile', 'views/group',  'views/edit',
-     'views/vinbookDoc', 'models/Account', 'models/Vinbook', 'models/vinBooksCollection',
-     'models/GroupCollection', ],
+     'views/vinbookDoc', 'views/world', 'models/Account', 'models/Vinbook', 'models/vinBooksCollection',
+     'models/GroupCollection' ],
 
   function(IndexView, RegisterView, LoginView, ForgotPasswordView, DeskView,
                         SearchView,  SocialView, ProfileView, GroupView, EditView,
-                        vinbookDocView,  Account, Vinbook, vinBooksCollection,
+                        vinbookDocView, worldView,  Account, Vinbook, vinBooksCollection,
                         GroupCollection) {
   
   var SocialRouter = Backbone.Router.extend({
@@ -23,6 +23,7 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
       "group/:id": "group", 
       "profile/:id": "profile",
       "profile/:id/edit": "edit", 
+      "world": "world", 
       "": "defaultRoute"
     },
 
@@ -104,6 +105,10 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
       var model = new Account({id:id});
       model.fetch({ success: function(response){ if (response.me =='me'){window.location.hash = 'login'; }   } });
       this.changeView(new EditView({ model:model }) );
+    },
+
+    world: function (){
+      this.changeView(new worldView());
     },
 
     defaultRoute: function(path) {

@@ -28,6 +28,17 @@ app.configure(function(){
   });
 });
 
+//----------------d3.js ----------------
+
+app.get('/world', function(req, res) {
+  models.Account.findAllVinbooks(function(allVinbooks) {
+    console.log('GET REQUEST - SUCCESSFUL ');
+    res.send(allVinbooks);
+  });
+
+});
+
+
 //----------------VINBOOKS DISPLAY AND RETRIEVAL----------------
 
 app.get('/accounts/:id/vinbook', function(req, res) {

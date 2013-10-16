@@ -257,6 +257,14 @@ module.exports = function(config, mongoose, nodemailer) {
       });
   };
 
+  var findAllVinbooks = function(callback) {
+    console.log(Account.vinbooks);
+      Account.find({},function(err,doc){
+        console.log(err, doc);
+        callback(doc);
+      });
+  };
+
   var findVinbookToSave = function (account, id, entries){
     if ( null == account.vinbooks ) return;
 
@@ -317,6 +325,7 @@ module.exports = function(config, mongoose, nodemailer) {
     removeVinbook: removeVinbook, 
     findVinbook: findVinbook, 
     findVinbook2: findVinbook2, 
+    findAllVinbooks: findAllVinbooks,
     findVinbookToSave: findVinbookToSave, 
     saveStatus:saveStatus, 
     saveProfile:saveProfile, 
