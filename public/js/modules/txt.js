@@ -112,6 +112,11 @@ define([], function (){
 				    return ;
 				});
 
+				$(ids2).on("touchend", function (e) {
+				    save(); 
+				    return ;
+				});
+
 				$(ids).resizable({
 			      helper: "ui-resizable-helper"
 			    });
