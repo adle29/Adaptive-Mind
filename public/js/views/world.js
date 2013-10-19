@@ -12,7 +12,7 @@ function(AdaptiveMindView, worldTemplate) {
 
     	locateDate: function() {
     	  var that = this; 
-        $('#myDiv').css('background', 'black' );
+        $('#myDiv').css('height', $(window).height());
 
     	  $.get('/world', {
 
@@ -87,7 +87,7 @@ function(AdaptiveMindView, worldTemplate) {
             var width = $(window).width(),
                 height = $(window).height()
 
-            var svg = d3.select("#content").append("svg")
+            var svg = d3.select("#myDiv").append("svg")
                 .attr("width", width)
                 .attr("height", height);
 
