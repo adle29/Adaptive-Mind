@@ -38,7 +38,6 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
           $.get('/vinbook', {
             vinId: this.id
           }, function(data){
-            console.log('here1', data);
             that.gettingVinbook2(data); 
           }); 
    		},
@@ -205,20 +204,16 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
 
 			if (model != null){
         if ( windowWith < 600 || this.model.me != myid  ){
-          this.$el.html( _.template(vinbookDocTemplateIphone, 
-            model       ) );
+          this.$el.html( _.template(vinbookDocTemplateIphone, model ) );
           this.options.notYou = false; 
           console.log('not you', this.options.notYou, this.model.me );
         }
         else {
-  				this.$el.html( _.template(vinbookDocTemplate, 
-  					model  ) );
+  				this.$el.html( _.template(vinbookDocTemplate, model  ) );
           this.options.notYou = true; 
-                    console.log('yes');
+          console.log('yes');
         }
 
-
-            console.log('rendering');
 			}
 
 		}

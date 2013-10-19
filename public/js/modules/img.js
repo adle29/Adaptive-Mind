@@ -55,8 +55,6 @@ define([], function (){
 
 			var html = "<div   "+ id + position + "> <img class='pict' "+ id2 +" src='" + this.get('Ourl') 
 					   + "'  width='"+ widthFinal +"' height='auto' "  + " />"  ;
-
-		    console.log(html);
 		    
 		    if ($(window).width() < 600){
 			 html = "<div"+ id + "> <img "+ id2 +" src='" + this.get('Ourl') 

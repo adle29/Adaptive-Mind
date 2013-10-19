@@ -15,6 +15,7 @@ define(['models/vinBooksCollection', 'models/GroupCollection'],
     },
 
      render: function(){
+        
         this.me = this.get('_id'); 
         console.log ('I am logged in', this.me);
      }

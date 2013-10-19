@@ -54,6 +54,7 @@ define([], function (){
 
 			if ($(window).width() < 600){
 				style = " style='width:100%;'"; 
+				
 
 				 html = '<div '+id+style+' >'+
 					'<div '+ids3+'class="txta"><button class="close txtclose">×</button></div>'+ 
@@ -70,15 +71,15 @@ define([], function (){
 			ids2 = '#'+this.get('ids')+'2';
 			ids3 = '#'+this.get('ids')+'3';
 
-			 console.log(html);
-			 			$(ids3).css('visibility', 'hidden' );
+
+			 $(ids3).css('visibility', 'hidden' );
 
 
 			// $(ids2).inflateText({ 
 			// 		maxFontSize: 14, minFontSize: 10, scale: 0.8 
 			// }); 
 
-			$('p').inflateText({ maxFontSize: 12, minFontSize: 8, scale: 0.4 });
+			$('p').inflateText({ maxFontSize: 12, minFontSize: 10, scale: 0.4 });
 
 			//ADDING JQUERY
 

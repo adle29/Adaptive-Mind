@@ -85,7 +85,7 @@ function(AdaptiveMindView, worldTemplate) {
             // json.links = [{"source":1,"target":0,"value":1},{"source":2,"target":0}]  ;
              console.log(json);
             var width = $(window).width(),
-                height = $(window).height()
+                height = $(window).height();
 
             var svg = d3.select("#myDiv").append("svg")
                 .attr("width", width)

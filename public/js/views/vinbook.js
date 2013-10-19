@@ -13,8 +13,6 @@ define(['AdaptiveMindView', 'text!templates/vinbook.html', ], function(AdaptiveM
 		},
 
 		render: function (){
-			console.log('Third Step', this.model.toJSON() );
-
 			$(this.el).html(_.template(vinbookTemplate,this.model.toJSON()));
 			return this;		
 		},

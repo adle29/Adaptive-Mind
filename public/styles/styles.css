@@ -410,3 +410,7 @@ figure:hover:before {
   height:100%;
   background-color: black;
 }
+
+.specidalBreadCrumb{
+  margin-bottom: 0px;
+}
