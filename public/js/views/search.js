@@ -50,7 +50,7 @@ function(AdaptiveMindView, searchTemplate) {
     							console.log(nameBook);
     							var mat = nameBook.match(mtch); 
     							if ( mat != null ){
-			    					var html = '<li class="list-group-item" > <a href="#vinbook/'+book.vinbooks[j]._id +'"  >'+ book.vinbooks[j].title + ' ' +'</a></li>';
+			    					var html = '<li class="list-group-item" > <a href="#vinbook/'+book.vinbooks[j]._id +'"  >'+ book.vinbooks[j].title +'</a></li>';
 				    				$(html).prependTo('#itemList').hide().fadeIn('slow');
 			    				}
 		    				}
@@ -63,14 +63,19 @@ function(AdaptiveMindView, searchTemplate) {
 	    		for (var i = 0; i <= data.length; i++ ){
 	    			if(data[i] != null){
 	    				console.log(data[i]);
-		    			var html = '<li class="list-group-item" > <a href="#profile/'+data[i]._id  +'">'+ data[i].name.first +' '+ data[i].name.last  +'</a></li>';
+		    			var html = '<li class="list-group-item" > <a href="#profile/'+data[i]._id  +'">'+ data[i].name.first +' '+ data[i].name.last  +'</a>'+
+                      '<span class="pull-right" ><button>+</button></span>' +  '</li>';
 		    			$(html).prependTo('#itemList').hide().fadeIn('slow');
 	    			}
 	    		}
     		}
     		else{
     			for (var i = 0; i <= data.length; i++ ){
-
+                    if(data[i] != null){
+                        console.log(data[i]);
+                        var html = '<li class="list-group-item" > <a href="#group/'+data[i]._id  +'">'+ data[i].groups[i].name +'</a></li>';
+                        $(html).prependTo('#itemList').hide().fadeIn('slow');
+                    }
 	    		}
     		}
     	},
