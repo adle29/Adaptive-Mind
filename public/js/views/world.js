@@ -12,7 +12,7 @@ function(AdaptiveMindView, worldTemplate) {
 
     	locateDate: function() {
     	  var that = this; 
-        $('#content').css('background', 'black' );
+        $('#myDiv').css('background', 'black' );
 
     	  $.get('/world', {
 

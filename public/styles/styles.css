@@ -404,3 +404,8 @@ figure:hover:before {
     top:25px;
     left:5px;
 } 
+
+#myDiv{
+  width:100%;
+  height:100%;
+}
