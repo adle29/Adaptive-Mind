@@ -116,6 +116,18 @@ form {
   width:100%;
 }
 
+.txtFormatMobile {
+    text-align: justify;
+  width:100%; 
+  margin-top:5px; 
+  margin-bottom:10px; 
+}
+
+.ImageMobile {
+  width:100%; 
+  height:auto;
+  margin-bottom: 10px;
+}
 
 /*! jQuery UI - v1.10.3 - 2013-10-13
 * http://jqueryui.com
@@ -308,10 +320,33 @@ figcaption {
   text-align: justify;
 }
 
-#story{
-
+.divEdit{
+  width:300px;
+display: block;
+  width: 100%;
+  height: 200px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  overflow:scroll;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
+/*#story:hover{
+    border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+*/
 figure:hover figcaption {
   opacity: 1;
 }
@@ -413,4 +448,13 @@ figure:hover:before {
 
 .specidalBreadCrumb{
   margin-bottom: 0px;
+}
+
+.ajax-loader {
+    position: absolute;
+    left: 45%;
+    top: 25%;
+    width:100px;
+    height:auto;
+    display: block;     
 }

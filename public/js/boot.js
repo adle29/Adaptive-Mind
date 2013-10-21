@@ -3,6 +3,8 @@ require.config({
     jQuery: '/js/libs/jquery',
     jQueryAI: '/js/libs/jqueryAI', 
     bootJs: '/js/libs/bootstrap.min',
+    rangyCore:'/js/libs/rangy-core',
+    hallo: '/js/libs/hallo',
     d3: '/js/libs/d3',
     Underscore: '/js/libs/underscore',
     pep: '/js/libs/pep',
@@ -16,10 +18,12 @@ require.config({
 
   shim: {
     'jQueryAI': ['jQuery'],
+    'rangyCore': ['jQuery','jQueryAI'],
+    'hallo': ['jQuery','jQueryAI'],
     'd3': ['jQuery'], 
     'pep': ['jQuery'],
     'bootJs': ['jQuery'], 
-    'Backbone': ['Underscore', 'jQuery', 'pep','jQueryAI', 'bootJs', 'd3'],
+    'Backbone': ['Underscore', 'jQuery', 'pep','jQueryAI', 'rangyCore', 'hallo', 'bootJs', 'd3'],
     'AdaptiveMind': ['Backbone']
   }
 });

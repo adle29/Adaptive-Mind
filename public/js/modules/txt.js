@@ -22,6 +22,7 @@ define([], function (){
 				this.set({'width': att.width});
 				this.set({'height': att.height});
 				this.set({'x': att.x});
+				
 			}
 		},
 
@@ -42,7 +43,7 @@ define([], function (){
 			var widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
 			var heightFinal = Math.round( this.get('height')*.01*$(window).height()); 
 
-			var style = " style='display:inline-block;  position:absolute; top:"+yfinal + "px; left:"
+			var style = " style='position:absolute; top:"+yfinal + "px; left:"
 				+ xfinal + "px;"+ " width:"+widthFinal+"px; height:"+ 
 				heightFinal + "px;'"; 
 
@@ -53,14 +54,9 @@ define([], function (){
 				'</p></div>';
 
 			if ($(window).width() < 600){
-				style = " style='width:100%;'"; 
-				
 
-				 html = '<div '+id+style+' >'+
-					'<div '+ids3+'class="txta"><button class="close txtclose">×</button></div>'+ 
-					'<p '+ids2+' class="txtFormat" contenteditable="true">'+
-					this.get('content') +
-					'</p></div>';
+			    html = '<p class="txtFormatMobile">'+
+					this.get('content') + '</p>';
 
 				console.log('smaller devices');
 			}
@@ -74,16 +70,15 @@ define([], function (){
 
 			 $(ids3).css('visibility', 'hidden' );
 
-
-			// $(ids2).inflateText({ 
-			// 		maxFontSize: 14, minFontSize: 10, scale: 0.8 
-			// }); 
-
-			$('p').inflateText({ maxFontSize: 12, minFontSize: 10, scale: 0.4 });
-
 			//ADDING JQUERY
 
 			if (showcase || showcase == null && $(window).width() > 600 ){
+				var fontSize = parseInt($(ids2).css('font-size')); 
+				 do {
+			        fontSize--;
+			        $(ids2).css('font-size', fontSize + 'px');
+			    } while ($(ids2).height() > heightFinal); 
+
 				console.log('less',showcase, showcase == null, $(window).width()  );
 				var that = this;
 				$(ids).draggable();

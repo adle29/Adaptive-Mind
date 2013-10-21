@@ -11,12 +11,16 @@ function(AdaptiveMindView, profileTemplate) {
 
       renderText: function(model){
             if (this.model.get('story').photoUrl != null){
+
                 //$('#story').val(this.model.get('story').photoUrl   );
+
                 $('#story').append('<p>'+ this.model.get('story').text + '</p>'  );
+
+
                 //$('input[name=pictureUrl2]').val( this.model.get('experience').photoUrl   );
                 $('#experience').append('<p>'+  this.model.get('experience').text + '</p>'  );
                 //$('input[name=pictureUrl3]').val( this.model.get('participation').photoUrl );
-                $('#participation').append('<p>'+ this.model.get('participation').text + '</p>' )
+                $('#participation').append('<p>'+ this.model.get('participation').text + '</p>' );
                 //$('input[name=pictureUrl4]').val( this.model.get('portfolio').photoUrl );
                 $('#portfolio').append('<p>'+  this.model.get('portfolio' ).text + '</p>' );
             }

@@ -4,10 +4,10 @@ define([], function (){
 		    module: "img",
 		    ids: Math.random().toString(36).substring(7) , 
 		    Ourl: '', 
-		    width: 10,
+		    width: 30,
 			height: 'auto',
 			x: 10,
-			y: 30
+			y: $(window).scrollTop()
 		  },
 
 		  events: {
@@ -37,7 +37,6 @@ define([], function (){
 
 
 		render: function (showcase) {
-
 			var that = this, widthFinal, yfinal, xfinal, yinitial, xinitial;
 			var id = " id='"+this.get('ids') + "'";
 			var id2 = " id='"+this.get('ids') + "2'";
@@ -46,6 +45,7 @@ define([], function (){
 			xfinal = Math.round( this.get('x')*.01*$(window).width() );
 			yfinal = Math.round( this.get('y')*.01*$(window).height() );
 			widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
+						console.log(	);
 			heightFinal = Math.round( this.get('height')*.01*$(window).height()) ; 
 
 
@@ -57,8 +57,7 @@ define([], function (){
 					   + "'  width='"+ widthFinal +"' height='auto' "  + " />"  ;
 		    
 		    if ($(window).width() < 600){
-			 html = "<div"+ id + "> <img "+ id2 +" src='" + this.get('Ourl') 
-					   + "'  width='100%' height='auto' "  + " />"  ;
+			 html = "<img class='pict ImageMobile' src='" + this.get('Ourl') + "' />"  ;
 					   console.log('smaller display');
 			}
 
@@ -78,10 +77,12 @@ define([], function (){
 				    containment: "#art", cursor: "crosshair", 
 				    start: function(event, ui) {
 				        isDraggingMedia = true;
+				        				    				console.log($(window).scrollTop());
 				    },
 				    stop: function(event, ui) {
 				        isDraggingMedia = false;
 				    }
+
 				});
 
 		

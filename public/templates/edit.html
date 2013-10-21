@@ -6,15 +6,22 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Edit Profile</a>
+
         </div>
         <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-          	<li class="active"><a href="#desk/me">Desk</a></li>
-            <li><a href="#search">Search</a></li>
-            <li><a href="#social/me">Social</a></li>
-            <li><a href="#profile/me">Profile</a></li>
-          </ul>
+          <button type="button" id="bold" class="btn btn-default navbar-btn"><a href="#profile/me">See Profile</a></button>
+          <button type="button" id="bold" class="btn btn-default navbar-btn"><a href="#desk/me">Desk</a></button>
+	        <button id="save" class="btn btn-default navbar-btn">
+	    	<a>Save</a></button>
+           	<button id="bold"  type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-bold "></span></button>
+           <button type="button" id="list" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-list "></span></button>
+          <button type="button" id="link" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-link "></span></button>
+
+           
+
+
+
+
         </div><!--/.nav-collapse -->
       </div>
 </div>
@@ -33,16 +40,18 @@
 		  		<h1>My Story</h1>
 		  		<input type="text"  name="pictureUrl1" class="form-control" placeholder="Picture Url"  autofocus/>
 	            <br/> 
-	            <textarea class="form-control" name="story" rows="5" placeholder="My story is ..." >
-	            	
-	            </textarea>
+	            <div class="divEdit one" id="story"   contenteditable="true"  >
+
+	            </div>
 		  </div>
 
 		  <div class="">
 		  		<h1>Experience</h1>
 		  		<input type="text" name="pictureUrl2" class="form-control" placeholder="Picture Url"  />
 	            <br/> 
-	            <textarea class="form-control" name="experience" rows="5" placeholder="I have experience in ..." >  </textarea>
+	            <div class="divEdit one" id="experience"  contenteditable="true"  >
+
+	            </div>
 		  </div>
 
 
@@ -50,8 +59,9 @@
 		  	<h1>Participation</h1>
 		  		<input type="text" name="pictureUrl3" class="form-control" placeholder="Picture Url"  />
 	            <br/> 
-	            <textarea class="form-control" name="participation" rows="5" placeholder="I have participated in ..." >  </textarea>	
-	      	      	<br />
+	            <div class="divEdit one" id="participation"  contenteditable="true"  >
+
+	            </div>
 	      </div>
 
 
@@ -59,14 +69,12 @@
 		  	<h1>Portfolio</h1>
 		  		<input type="text" name="pictureUrl4" class="form-control" placeholder="Picture Url"  />
 	            <br/> 
-	            <textarea class="form-control" name="portfolio" rows="5" placeholder="These are my works..." ></textarea>
-	            	      	<br />	
-	      </div>
+	            <div class="divEdit one" id="portfolio"  contenteditable="true"  >
 
-	      <div class="col-xs-12 col-md-12 col-lg-12  ">
-	      	<input type="submit" value="SAVE" class="btn btn-success col-xs-12 col-md-12 " />
-	      	<br />	<br />	
+	            </div>
 	      </div>
+<br />	<br />	
+	
  	 </form>
 	</div>
 </div>

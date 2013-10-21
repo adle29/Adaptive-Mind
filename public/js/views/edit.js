@@ -5,23 +5,41 @@ function(AdaptiveMindView, editTemplate) {
     	el: $('#content'),
 
         events: {
-            'submit form': 'saveProfile'
+            'click #save': 'saveProfile',
+            'click #bold': 'bold',
+            'click #list': 'list' 
         },
 
     	initialize: function() {
 	       this.model.bind('change', this.render, this);
 	    },
 
+        formatize: function(text){
+
+            return;
+        },
+
+        bold: function(){
+                        console.log('here');
+            document.execCommand("bold", false);
+        },
+
+        list: function(){
+                        console.log('here');
+            document.execCommand("insertUnorderedList", false);
+        },  
+
+
         saveProfile: function(){
             $.post('/profile/me/edit', {
                 pictureUrl1: $('input[name=pictureUrl1]').val(),
-                story: $('textarea[name=story]').val(),
+                story: $( "#story" ).html(),
                 pictureUrl2: $('input[name=pictureUrl2]').val(),
-                experience: $('textarea[name=experience]').val(),
+                experience: $( "#experience" ).html(),
                 pictureUrl3: $('input[name=pictureUrl3]').val(),
-                participation: $('textarea[name=participation]').val(),
+                participation: $( "#participation" ).html(),
                 pictureUrl4: $('input[name=pictureUrl4]').val(),
-                portfolio: $('textarea[name=portfolio]').val()
+                portfolio: $( "#portfolio" ).html()
 
             }, function(data) {
                 console.log(data);
@@ -37,14 +55,17 @@ function(AdaptiveMindView, editTemplate) {
 
         renderText: function(model){
             if (this.model.get('story').photoUrl != null){
+
+                $('#story').append('<p>'+ this.model.get('story').text +'</p>'  );
+                $('#experience').append('<p>'+ this.model.get('experience').text +'</p>'  );
+                $('#participation').append('<p>'+ this.model.get('participation').text +'</p>'  );
+                $('#portfolio').append('<p>'+ this.model.get('portfolio').text +'</p>'  );
+ 
                 $('input[name=pictureUrl1]').val(this.model.get('story').photoUrl   );
-                $('textarea[name=story]').val( this.model.get('story').text   );
                 $('input[name=pictureUrl2]').val( this.model.get('experience').photoUrl   );
-                $('textarea[name=experience]').val( this.model.get('experience').text  );
                 $('input[name=pictureUrl3]').val( this.model.get('participation').photoUrl );
-                $('textarea[name=participation]').val(this.model.get('participation').text )
                 $('input[name=pictureUrl4]').val( this.model.get('portfolio').photoUrl );
-                $('textarea[name=portfolio]').val( this.model.get('portfolio').text);
+
             }
         }, 
 
@@ -52,8 +73,9 @@ function(AdaptiveMindView, editTemplate) {
     		if (this.model.get('email') != null){
       		    this.$el.html(_.template(editTemplate, this.model.toJSON()));
                 this.renderText(this.model); 
-      	    }
-    	}
+
+      	    }//end if
+    	}//end render
 
     }); 
     
