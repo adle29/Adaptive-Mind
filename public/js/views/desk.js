@@ -64,10 +64,17 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
     render: function() {
 
       var that = this;
-      this.$el.html(
-        _.template(deskTemplate, this.model.toJSON() )
-      );
-      this.onVinbookCollectionReset();
+      if ( this.model.me != 'me'  ){
+        this.$el.html(
+          _.template(deskTemplate, this.model.toJSON() )
+        );
+
+        this.onVinbookCollectionReset();
+       }
+      else {
+        window.location.hash = '';
+      }
+
     }
 
   });
