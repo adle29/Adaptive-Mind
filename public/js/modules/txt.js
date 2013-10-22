@@ -67,17 +67,32 @@ define([], function (){
 			ids2 = '#'+this.get('ids')+'2';
 			ids3 = '#'+this.get('ids')+'3';
 
-
+			console.log($(window).height());
 			 $(ids3).css('visibility', 'hidden' );
+
+			 if ($(window).width() > 600 ){
+			 	var scaleFactor = 0.5;
+
+			  // choose a maximum and minimum scale factor (e.g. 4 is 400% and 0.5 is 50%)
+			  var defaultWidth = 1280;
+			  var maxScale = 4;
+			  var minScale = 0.5;
+
+				var scale = 1 + scaleFactor * ($(window).width() - defaultWidth) / defaultWidth;
+			    if (scale > maxScale) {
+			      scale = maxScale;
+			    }
+			    else if (scale < minScale) {
+			      scale = minScale;
+			    }
+			    $('p').css('font-size', scale * 100 + '%');
+			 }
 
 			//ADDING JQUERY
 
 			if (showcase || showcase == null && $(window).width() > 600 ){
-				var fontSize = parseInt($(ids2).css('font-size')); 
-				 do {
-			        fontSize--;
-			        $(ids2).css('font-size', fontSize + 'px');
-			    } while ($(ids2).height() > heightFinal); 
+
+				
 
 				console.log('less',showcase, showcase == null, $(window).width()  );
 				var that = this;

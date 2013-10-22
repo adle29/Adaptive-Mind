@@ -69,13 +69,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
         this.$el.html(
           _.template(deskTemplate, this.model.toJSON() )
         );
-
-        this.onVinbookCollectionReset();
-      //  }
-      // else {
-      //   window.location.hash = '';
-      // }
-
+        this.onVinbookCollectionReset();     
     }
 
   });

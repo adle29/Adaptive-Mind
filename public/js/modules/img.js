@@ -59,6 +59,7 @@ define([], function (){
 		    if ($(window).width() < 600){
 			 html = "<img class='pict ImageMobile' src='" + this.get('Ourl') + "' />"  ;
 					   console.log('smaller display');
+
 			}
 
 			//RENDERING IMAGE
@@ -77,7 +78,7 @@ define([], function (){
 				    containment: "#art", cursor: "crosshair", 
 				    start: function(event, ui) {
 				        isDraggingMedia = true;
-				        				    				console.log($(window).scrollTop());
+				        				    				
 				    },
 				    stop: function(event, ui) {
 				        isDraggingMedia = false;
@@ -117,6 +118,9 @@ define([], function (){
 
 
 
+			}
+			else {
+				
 			}
       	}
 
