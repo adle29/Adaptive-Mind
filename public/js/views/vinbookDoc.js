@@ -175,18 +175,21 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
    		},
 
    		saveDoc: function (){
-        console.log(this.id, this.me);
+        $('#save').removeClass();
+        $('#save').addClass('btn btn-success'); 
    			$.post('/vinbook/:id', {
 	        	ids: this.id,
 	        	AccountId: this.model.me,
 	        	entries: this.entries.toJSON() 
 	        }, function(data) {
-	      		console.log(data);
-            var html = '<div class="alert alert-success fade in"> <button type="button" '+
-                        'class="close" data-dismiss="alert" aria-hidden="true">&times;'+
-                        '</button>Profile was saved. </div>'; 
 
-            if (!data.error){ $('.aler').prepend(html); $(".alert").alert(); }
+            if (!data.error){ 
+               
+              setTimeout(function(){
+                  $('#save').removeClass();
+                  $('#save').addClass('btn btn-default'); 
+              },1500);    
+            }
 
 	        }).error(function(){
 	        	console.log('POST REQUEST - UPDATE - ERROR');
@@ -210,6 +213,7 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
         }
 
 			}
+
 
 		}
 	});
