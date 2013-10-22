@@ -39,9 +39,9 @@ define([], function (){
 			var ids2 = " id='"+this.get('ids') + "2'"+'';
 			var ids3 = " id='"+this.get('ids') + "3'"+'';
 			var xfinal = Math.round( this.get('x')*.01*$(window).width() );
-			var yfinal = Math.round( this.get('y')*.01*$('body').height());
+			var yfinal = Math.round( this.get('y')*.01*610);
 			var widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
-			var heightFinal = Math.round( this.get('height')*.01*$('body').height()); 
+			var heightFinal = Math.round( this.get('height')*.01*610); 
 
 			var style = " style='position:absolute; top:"+yfinal + "px; left:"
 				+ xfinal + "px;"+ " width:"+widthFinal+"px; height:"+ 

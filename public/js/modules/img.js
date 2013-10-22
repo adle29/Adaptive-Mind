@@ -44,11 +44,11 @@ define([], function (){
 			//IMAGE HTML 
 
 			xfinal = Math.round( this.get('x')*.01*$(window).width() );
-			yfinal = Math.round( this.get('y')*.01*$('body').height() );
+			yfinal = Math.round( this.get('y')*.01*610 );
 			widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
-			heightFinal = Math.round( this.get('height')*.01*$('body').height()) ; 
-			console.log($('#art').height());
-			$('#art').css('border', 'solid red');
+			heightFinal = Math.round( this.get('height')*.01*610) ; 
+
+	
 
 			var position = " style='display:inline-block; position:absolute; left:"+xfinal +"px; top:" 
 							+yfinal+ "px;'";
