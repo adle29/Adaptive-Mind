@@ -4,10 +4,10 @@ define([], function (){
 		    module: "img",
 		    ids: Math.random().toString(36).substring(7) , 
 		    Ourl: '', 
-		    width: 30,
+		    width: 10,
 			height: 'auto',
 			x: 10,
-			y: $(window).scrollTop()
+			y: 30
 		  },
 
 		  events: {
@@ -37,29 +37,31 @@ define([], function (){
 
 
 		render: function (showcase) {
+
 			var that = this, widthFinal, yfinal, xfinal, yinitial, xinitial;
 			var id = " id='"+this.get('ids') + "'";
 			var id2 = " id='"+this.get('ids') + "2'";
 			//IMAGE HTML 
 
 			xfinal = Math.round( this.get('x')*.01*$(window).width() );
-			yfinal = Math.round( this.get('y')*.01*$(window).height() );
+			yfinal = Math.round( this.get('y')*.01*$('body').height() );
 			widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
-						console.log(	);
-			heightFinal = Math.round( this.get('height')*.01*$(window).height()) ; 
-
-
+			heightFinal = Math.round( this.get('height')*.01*$('body').height()) ; 
+			console.log($('#art').height());
+			$('#art').css('border', 'solid red');
 
 			var position = " style='display:inline-block; position:absolute; left:"+xfinal +"px; top:" 
 							+yfinal+ "px;'";
 
 			var html = "<div   "+ id + position + "> <img class='pict' "+ id2 +" src='" + this.get('Ourl') 
-					   + "'  width='"+ widthFinal +"' height='auto' "  + " />"  ;
+					   + "' style='width:"+ widthFinal +"px;  height:auto; '"  + " />"  ;
+
+		    console.log(html);
 		    
 		    if ($(window).width() < 600){
-			 html = "<img class='pict ImageMobile' src='" + this.get('Ourl') + "' />"  ;
+			 html = "<div"+ id + "> <img "+ id2 +" src='" + this.get('Ourl') 
+					   + "'  width='100%' height='auto' "  + " />"  ;
 					   console.log('smaller display');
-
 			}
 
 			//RENDERING IMAGE
@@ -78,12 +80,10 @@ define([], function (){
 				    containment: "#art", cursor: "crosshair", 
 				    start: function(event, ui) {
 				        isDraggingMedia = true;
-				        				    				
 				    },
 				    stop: function(event, ui) {
 				        isDraggingMedia = false;
 				    }
-
 				});
 
 		
@@ -118,9 +118,6 @@ define([], function (){
 
 
 
-			}
-			else {
-				
 			}
       	}
 
