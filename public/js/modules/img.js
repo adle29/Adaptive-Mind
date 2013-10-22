@@ -44,9 +44,9 @@ define([], function (){
 			//IMAGE HTML 
 
 			xfinal = Math.round( this.get('x')*.01*$(window).width() );
-			yfinal = Math.round( this.get('y')*.01*610 );
+			yfinal = Math.round( this.get('y')*.01*600 );
 			widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
-			heightFinal = Math.round( this.get('height')*.01*610) ; 
+			heightFinal = Math.round( this.get('height')*.01*$(window).width()) ; 
 
 	
 
