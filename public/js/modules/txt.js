@@ -44,14 +44,14 @@ define([], function (){
 			var widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
 			var heightFinal = Math.round( this.get('height')*.01*$(window).height()	); 
 
-			var style = " style='border: 2px solid blue; position:absolute; top:"+yfinal + "px; left:"
+			var style = " style='position:absolute; top:"+yfinal + "px; left:"
 				+ xfinal + "px;"+ " width:"+widthFinal+"px; height:"+ 
 				heightFinal + "px;'"; 
 
 			var html = '<div '+id+style+' >'+
 				'<div '+ids3+' class="txta"><button class="close txtclose">×</button></div>'+ 
 				'<p '+ids2+' class="txtFormat" contenteditable="true">'+
-				this.get('content') +
+				
 				'</p></div>';
 
 			if ($(window).width() < 600){
@@ -62,8 +62,12 @@ define([], function (){
 				console.log('smaller devices');
 			}
 
+
 			
 			$('#art').append(html);
+			if ($(window).width() > 600) {
+				$('#'+this.get('ids')+'2').append(this.get('content')); 
+			}
 
 
 			var ids = '#'+this.get('ids');
@@ -105,7 +109,7 @@ define([], function (){
 			  //   $(ids2).on('mouseout', function () {
 					// $('myToolTip').show(); 
 			  //   });
-
+				$(ids).css('border', '2px solid blue') ; 
 
 
 
