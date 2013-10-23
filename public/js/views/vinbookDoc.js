@@ -27,7 +27,10 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
    		 	'click #sub': 'mediaEntry',
         'click #search': 'mediaEntryPic', 
         'click #more': 'more', 
-   		 	'click #save': 'saveDoc'
+   		 	'click #save': 'saveDoc',
+        "click #bold": "bold",
+        "click #list": "list",
+        "click #link": "link"
 
    		 },
 
@@ -195,6 +198,23 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
 	        	console.log('POST REQUEST - UPDATE - ERROR');
 		    });
    		},
+
+
+    bold: function(){
+                    console.log('here');
+        document.execCommand("bold", false);
+    },
+
+    list: function(){
+                    console.log('here');
+        document.execCommand("insertUnorderedList", false);
+    },  
+    
+    link: function(){
+                    console.log('here');
+        var links=prompt("Please enter the link:","Link")
+        document.execCommand("CreateLink", false, links);
+    },
 
 		render: function (myid, model) {
 

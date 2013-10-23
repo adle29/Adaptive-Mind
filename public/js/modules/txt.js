@@ -32,6 +32,7 @@ define([], function (){
 			 $(objectImg).remove().fadeOut('slow'); 
 			 console.log('removing');
 		},
+ 
 
 		render: function (showcase) {
 			this.set({'ids': Math.random().toString(36).substring(7) + Date.now()  });
@@ -41,9 +42,9 @@ define([], function (){
 			var xfinal = Math.round( this.get('x')*.01*$(window).width() );
 			var yfinal = Math.round( this.get('y')*.01*600);
 			var widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
-			var heightFinal = Math.round( this.get('height')*.01*$(window).width()	); 
+			var heightFinal = Math.round( this.get('height')*.01*$(window).height()	); 
 
-			var style = " style='position:absolute; top:"+yfinal + "px; left:"
+			var style = " style='border: 2px solid blue; position:absolute; top:"+yfinal + "px; left:"
 				+ xfinal + "px;"+ " width:"+widthFinal+"px; height:"+ 
 				heightFinal + "px;'"; 
 
@@ -61,7 +62,9 @@ define([], function (){
 				console.log('smaller devices');
 			}
 
+			
 			$('#art').append(html);
+
 
 			var ids = '#'+this.get('ids');
 			ids2 = '#'+this.get('ids')+'2';
@@ -92,7 +95,19 @@ define([], function (){
 
 			if (showcase || showcase == null && $(window).width() > 600 ){
 
-				
+
+				$(ids2).on('selectstart', function () {
+					$(ids2).focus(); 
+			    });
+			 //    	console.log(window.getSelection());
+			 //    });
+
+			  //   $(ids2).on('mouseout', function () {
+					// $('myToolTip').show(); 
+			  //   });
+
+
+
 
 				console.log('less',showcase, showcase == null, $(window).width()  );
 				var that = this;
@@ -102,15 +117,19 @@ define([], function (){
 				$(ids).mouseover(function(){
 
 					save(); 
-				})
+				});
 
 				$(ids).mouseout(function(){
 
 					save();
-				})
+				});
+
+				$('#bold, #link, #list').click(function () {
+					save(); 
+					console.log('happens');
+			    });
 
 				$(ids2).on("mousedown", function (e) {
-					console.log('here');
 				    e.stopPropagation();
 				    save(); 
 				    return ;
@@ -142,10 +161,10 @@ define([], function (){
 				 function save (){
 				 	var position = $(ids).position();
 					that.set({'width': Math.round( $(ids).width()*100 / $(window).width() ) });
-					that.set({'height': Math.round( $(ids).height()*100 / 600 ) });
+					that.set({'height': Math.round( $(ids).height()*100 / $(window).height() ) });
 					that.set({'x':     Math.round( position.left*100 / $(window).width() )  });
 					that.set({'y':     Math.round( position.top *100 / 600 ) });
-					that.set({'content': $(ids2).text()  });
+					that.set({'content': $(ids2).html()  });
 				 }
 		
 
