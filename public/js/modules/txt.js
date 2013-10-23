@@ -41,7 +41,7 @@ define([], function (){
 			var xfinal = Math.round( this.get('x')*.01*$(window).width() );
 			var yfinal = Math.round( this.get('y')*.01*600);
 			var widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
-			var heightFinal = Math.round( this.get('height')*.01*600	); 
+			var heightFinal = Math.round( this.get('height')*.01*$(window).width()	); 
 
 			var style = " style='position:absolute; top:"+yfinal + "px; left:"
 				+ xfinal + "px;"+ " width:"+widthFinal+"px; height:"+ 
