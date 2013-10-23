@@ -41,7 +41,7 @@ define([], function (){
 			var xfinal = Math.round( this.get('x')*.01*$(window).width() );
 			var yfinal = Math.round( this.get('y')*.01*600);
 			var widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
-			var heightFinal = Math.round( this.get('height')*.01*600); 
+			var heightFinal = Math.round( this.get('height')*.01*600	); 
 
 			var style = " style='position:absolute; top:"+yfinal + "px; left:"
 				+ xfinal + "px;"+ " width:"+widthFinal+"px; height:"+ 
@@ -142,9 +142,9 @@ define([], function (){
 				 function save (){
 				 	var position = $(ids).position();
 					that.set({'width': Math.round( $(ids).width()*100 / $(window).width() ) });
-					that.set({'height': Math.round( $(ids).height()*100 / $(window).height() ) });
+					that.set({'height': Math.round( $(ids).height()*100 / 600 ) });
 					that.set({'x':     Math.round( position.left*100 / $(window).width() )  });
-					that.set({'y':     Math.round( position.top *100 / $(window).height() ) });
+					that.set({'y':     Math.round( position.top *100 / 600 ) });
 					that.set({'content': $(ids2).text()  });
 				 }
 		
