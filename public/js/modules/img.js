@@ -111,9 +111,9 @@ define([], function (){
 				function save(){
 										var position = $(id).position();
 					that.set({'x':     Math.round( position.left*100 / $(window).width() )  });
-					that.set({'y':     Math.round( position.top *100 / $(window).height() ) });
+					that.set({'y':     Math.round( position.top *100 / 600 ) });
 					that.set({'width': Math.round( $(id2).width()*100 / $(window).width() ) });
-					that.set({'height': Math.round( $(id2).height()*100 / $(window).height() ) });
+					that.set({'height': Math.round( $(id2).height()*100 / 600 ) });
 				}
 
 
