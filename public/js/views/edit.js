@@ -7,7 +7,8 @@ function(AdaptiveMindView, editTemplate) {
         events: {
             'click #save': 'saveProfile',
             'click #bold': 'bold',
-            'click #list': 'list' 
+            'click #list': 'list' ,
+            'click #link': 'link' 
         },
 
     	initialize: function() {
@@ -29,16 +30,26 @@ function(AdaptiveMindView, editTemplate) {
             document.execCommand("insertUnorderedList", false);
         },  
 
+        link: function(){
+            console.log('here');
+            var links=prompt("Please enter the link:","Link")
+            document.execCommand("CreateLink", false, links);
+        },
+
+        color: function(){
+
+            document.execCommand('ForeColor', false, '0000FF');
+        },
 
         saveProfile: function(){
             $.post('/profile/me/edit', {
-                pictureUrl1: $('input[name=pictureUrl1]').val(),
+                pictureUrl1: '',
                 story: $( "#story" ).html(),
-                pictureUrl2: $('input[name=pictureUrl2]').val(),
+                pictureUrl2: '',
                 experience: $( "#experience" ).html(),
-                pictureUrl3: $('input[name=pictureUrl3]').val(),
+                pictureUrl3: '',
                 participation: $( "#participation" ).html(),
-                pictureUrl4: $('input[name=pictureUrl4]').val(),
+                pictureUrl4: '',
                 portfolio: $( "#portfolio" ).html()
 
             }, function(data) {
@@ -61,10 +72,10 @@ function(AdaptiveMindView, editTemplate) {
                 $('#participation').append('<p>'+ this.model.get('participation').text +'</p>'  );
                 $('#portfolio').append('<p>'+ this.model.get('portfolio').text +'</p>'  );
  
-                $('input[name=pictureUrl1]').val(this.model.get('story').photoUrl   );
-                $('input[name=pictureUrl2]').val( this.model.get('experience').photoUrl   );
-                $('input[name=pictureUrl3]').val( this.model.get('participation').photoUrl );
-                $('input[name=pictureUrl4]').val( this.model.get('portfolio').photoUrl );
+                // $('input[name=pictureUrl1]').val(this.model.get('story').photoUrl   );
+                // $('input[name=pictureUrl2]').val( this.model.get('experience').photoUrl   );
+                // $('input[name=pictureUrl3]').val( this.model.get('participation').photoUrl );
+                // $('input[name=pictureUrl4]').val( this.model.get('portfolio').photoUrl );
 
             }
         }, 

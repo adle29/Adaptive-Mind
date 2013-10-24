@@ -56,8 +56,8 @@ define([], function (){
 
 			if ($(window).width() < 600){
 
-			    html = '<p class="txtFormatMobile">'+
-					this.get('content') + '</p>';
+			    html = '<div class="txtFormatMobile">'+
+					this.get('content') + '</div>';
 
 				console.log('smaller devices');
 			}

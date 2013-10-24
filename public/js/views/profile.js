@@ -42,13 +42,19 @@ function(AdaptiveMindView, profileTemplate) {
               $('#owner').remove(); 
             }
 
+            var slideNum = $(window).width()*4; 
+            var num = slideNum/4; 
+            var that = this; 
             //set picture to the window frame can set the complete window to that value
-            $('.cap-bot').css('width', function () {return $(window).width(); });
-            $('.cap-right').css('width', function () {return $(window).width(); });
-            $('.cap-left').css('width', function () {return $(window).width(); });
-            $('.cap-top').css('width', function () {return $(window).width(); });
-            $('.text .slide-container .slider').css('width', function () {return $(window).width()*4+5; });
+            $('.cap-bot').css('width', function () {return num; });
+            $('.cap-bot2').css('width', function () {return num; });
+            $('.cap-bot3').css('width', function () {return num; });
+            $('.cap-bot4').css('width', function () {return num; });
+            $('.text .slide-container .slider').css('width', function () {return slideNum; });
 
+            $( window ).resize(function() {
+              that.render();
+            });
            
 
             $('.slider').pep({
