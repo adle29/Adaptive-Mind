@@ -1,29 +1,25 @@
 require.config({
+  baseUrl: '/js', 
   paths: {
-    jQuery: '/js/libs/jquery',
-    jQueryAI: '/js/libs/jqueryAI', 
-    bootJs: '/js/libs/bootstrap.min',
-    rangyCore:'/js/libs/rangy-core',
-    hallo: '/js/libs/hallo',
-    d3: '/js/libs/d3',
-    Underscore: '/js/libs/underscore',
-    pep: '/js/libs/pep',
-    Backbone: '/js/libs/backbone',
+    jQuery: 'libs/jquery',
+    jQueryAI: 'libs/jqueryAI', 
+    bootJs: 'libs/bootstrap.min',
+    d3: 'libs/d3',
+    Underscore: 'libs/underscore',
+    pep: 'libs/pep',
+    Backbone: 'libs/backbone',
     models: 'models',
     text: '/js/libs/text',
     templates: '../templates',
-
-    AdaptiveMindView: '/js/AdaptiveMindView'
+    AdaptiveMindView: 'AdaptiveMindView'
   },
 
   shim: {
     'jQueryAI': ['jQuery'],
-    'rangyCore': ['jQuery','jQueryAI'],
-    'hallo': ['jQuery','jQueryAI'],
     'd3': ['jQuery'], 
     'pep': ['jQuery'],
     'bootJs': ['jQuery'], 
-    'Backbone': ['Underscore', 'jQuery', 'pep','jQueryAI', 'rangyCore', 'hallo', 'bootJs', 'd3'],
+    'Backbone': ['Underscore', 'jQuery', 'pep','jQueryAI', 'bootJs', 'd3'],
     'AdaptiveMind': ['Backbone']
   }
 });
