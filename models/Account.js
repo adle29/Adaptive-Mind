@@ -20,7 +20,9 @@ module.exports = function(config, mongoose, nodemailer) {
    });
 
   var Friend = new mongoose.Schema ({
-
+        id: { type: Object },
+        firstName: { type: String },
+        lastname: { type: String }
   });
 
   var StatusSchema = new mongoose.Schema ({
@@ -73,7 +75,7 @@ module.exports = function(config, mongoose, nodemailer) {
     biography: { type: String },
     vinbooks: [Vinbook],
     friends: [Friend],
-     groups: [Group]
+    groups: [Group]
   });
 
   //-----------------------INSTANCES---------------------------------
@@ -315,6 +317,45 @@ module.exports = function(config, mongoose, nodemailer) {
 
   };
 
+
+
+  //-----------------------ADD FRIEND---------------------------------
+
+ var addFriend = function (userId, friendId){
+    console.log('adding friend');
+    var user, friend; 
+    findById(friendId, function(friend) {
+      findById(userId, function(user) {
+        var newFriend = {
+          id: friend._id,
+          firstName: friend.name.first,
+          lastname: friend.name.last
+        }
+
+        user.friends.push(newFriend);
+        user.save();
+        console.log('friend saved', friend.name.first, user.name.first );
+      }); 
+    }); 
+ };
+
+  var removeFriend = function (userId, friendId){
+    console.log('deleting friend');
+    var user, friend; 
+      findById(userId, function(user) {
+        var getIndex = 0; 
+
+        for (var i = 0; i< user.friends.length;i++){
+          if (user.friends[i].id = friendId ) {
+            getIndex  = i;
+            break; 
+          }
+        }
+        user.friends.splice(getIndex, 1);
+        user.save();
+      }); 
+  }; 
+
   //-----------------------FUNCTION AVAILABLE---------------------------------
 
   return {
@@ -329,6 +370,8 @@ module.exports = function(config, mongoose, nodemailer) {
     findVinbookToSave: findVinbookToSave, 
     saveStatus:saveStatus, 
     saveProfile:saveProfile, 
+    addFriend:addFriend,
+    removeFriend:removeFriend, 
     removeComment: removeComment, 
     findByString: findByString, 
     login: login,

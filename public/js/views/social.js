@@ -28,17 +28,50 @@ function(AdaptiveMindView, socialTemplate) {
     	},
 
     	renderGroup: function (group){
-    		var html =  '<li class="list-group-item" ><a href="#group/'+group._id+'">'+ group.name+'</a></li> ';
+    		var html =  '<li class="list-group-item" ><a href="#group/'+group._id+'">'+ group.name+'</a>'+
+            '<button id="close" type="button" class="close pull-right" >&times;</button></li> ';
     		$(html).prependTo('#groupList').hide().fadeIn('slow');
-    	}, 
+    	},
+
+        renderFriends: function (friend){
+            var myId = friend._id; 
+            var that = this; 
+            var html =  '<li id="'+myId +'2" class="list-group-item" ><a href="#profile/'
+                        +friend.id+'">'+ friend.firstName + ' ' + friend.lastname +'</a>'+
+            '<button id="'+friend._id+'" type="button" class="close pull-right" >&times;</button></li> ';
+            $(html).prependTo('#friendList').hide().fadeIn('slow');
+
+            console.log(friend);
+            $('#'+myId ).click(function(){
+                that.removeFriend(myId); 
+            });
+        },  
+
+        removeFriend: function (id){
+             $.ajax({
+                url: '/addFriend/delete' ,
+                type: 'DELETE',
+                data: {
+                  userId: this.model.me,
+                  friendId: id
+                }}).fail(function onError() {
+                    console.log('error deleting friend');
+                });
+                $('#'+id +'2').remove().fadeOut('slow');
+        },  
 
     	renderGroups: function (){
     		 var that = this; 
     		 var groupCollection = this.model.get('groups');
+             var friendCollection = this.model.get('friends');
     		if ( JSON.stringify(groupCollection)  != null){
     			_.each (groupCollection, function(group){
     				that.renderGroup(group);
 		        });
+
+                _.each (friendCollection, function(friend){
+                    that.renderFriends(friend);
+                });   
     		}
 
     	}, 

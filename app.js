@@ -227,6 +227,7 @@ app.post('/vinbook/:id', function (req, res) {
 
    res.send(200);
 }); 
+//---------------SEARCH - PEOPLE, PAGES, GROUPS----------------------------------
 
 app.post('/search', function(req, res) {
   var SearchData = req.param('searchData', null);
@@ -243,7 +244,7 @@ app.post('/search', function(req, res) {
       console.log(err);
       res.send(404);
     } else {
-      console.log('FOUND: ', accounts);
+      console.log('FOUND' );
       if (!yes){ res.send(accounts);}
       else { res.send(accounts.vinbooks);   }
     }
@@ -251,6 +252,21 @@ app.post('/search', function(req, res) {
 
   });
 
+});
+
+//---------------------ADD FRIEND----------------------
+app.post('/addFriend', function(req, res) {
+   var userId = req.param('userId', null);
+   var friendId = req.param('friendId', null);
+   models.Account.addFriend(userId, friendId ); 
+   res.send(200); 
+});
+
+app.delete('/addFriend/delete', function(req, res) {
+   var userId = req.param('userId', null);
+   var friendId = req.param('friendId', null);
+   models.Account.removeFriend(userId, friendId ); 
+   res.send(200); 
 });
 
 

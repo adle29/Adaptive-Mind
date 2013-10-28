@@ -68,7 +68,8 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
     },
 
     search: function (){
-      this.changeView(new SearchView() );
+      var model = new Account({id:'me'});
+      this.changeView(new SearchView({model:model}) );
     },
 
     social: function (id){

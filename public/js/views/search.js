@@ -39,6 +39,7 @@ function(AdaptiveMindView, searchTemplate) {
     		$("#results").slideUp();
     		$('#itemList li').remove(); 
     		var mtch = new RegExp(srchData,"gi"); 
+            var that = this; 
 
     		if (typeSearch == '0'){
     			for (var i = 0; i <= data.length; i++ ){
@@ -63,9 +64,14 @@ function(AdaptiveMindView, searchTemplate) {
 	    		for (var i = 0; i <= data.length; i++ ){
 	    			if(data[i] != null){
 	    				console.log(data[i]);
+                        var myId =data[i]._id; 
 		    			var html = '<li class="list-group-item" > <a href="#profile/'+data[i]._id  +'">'+ data[i].name.first +' '+ data[i].name.last  +'</a>'+
-                      '<span class="pull-right" ><button>+</button></span>' +  '</li>';
+                      '<span class="pull-right" ><button id="'+myId+'">+</button></span>' +  '</li>';
 		    			$(html).prependTo('#itemList').hide().fadeIn('slow');
+                        
+                        $('#'+myId).click(function(){
+                            that.addFriend(this.id); 
+                        });
 	    			}
 	    		}
     		}
@@ -79,6 +85,16 @@ function(AdaptiveMindView, searchTemplate) {
 	    		}
     		}
     	},
+
+        addFriend: function(ids){
+            console.log(this.model.me, ids);
+            $.post('/addFriend', {
+              userId: this.model.me,
+              friendId: ids
+            }, function(data) {
+                console.log(data);
+            });
+        },
 
     	render: function() {
       		this.$el.html(searchTemplate);
