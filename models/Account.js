@@ -33,7 +33,7 @@ module.exports = function(config, mongoose, nodemailer) {
 
   var Group = new mongoose.Schema ({
       AccountId:   { type: mongoose.Schema.ObjectId },
-      name:        { type: String, unique: true },
+      name:        { type: String },
       subject:     { type: String, default: 'empty todo...' },
       description: { type: String  }, 
       members:     { type: String },
