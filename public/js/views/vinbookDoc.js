@@ -30,7 +30,8 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
    		 	'click #save': 'saveDoc',
         "click #bold": "bold",
         "click #list": "list",
-        "click #link": "link"
+        "click #link": "link",
+        "click #video": "video"
 
    		 },
 
@@ -212,9 +213,14 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
     
     link: function(){
                     console.log('here');
-        var links=prompt("Please enter the link:","Link")
+        var links=prompt("Please enter the link:","Link"); 
         document.execCommand("CreateLink", false, links);
     },
+
+    video: function(){
+      var video=prompt("Please enter the video:","Video"); 
+      document.execCommand('insertHTML', false,video);
+    }, 
 
 		render: function (myid, model) {
 
