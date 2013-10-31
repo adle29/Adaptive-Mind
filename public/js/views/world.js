@@ -14,9 +14,8 @@ function(AdaptiveMindView, worldTemplate) {
     	  var that = this; 
         $('#myDiv').css('height', $(window).height());
 
-    	  $.get('/world', {
-
-          }, function(data){
+    	  $.get('/world', {}, 
+          function(data){
             var json = {}; 
             var count = 7; 
             var nodes = [{name:'Arts', value:1 },{name:'Literature', value:1 }, {name:'Biology',value:1}, {name:'History', value:1},
@@ -25,7 +24,6 @@ function(AdaptiveMindView, worldTemplate) {
             
             var links = [{"source":0,"target":0},{"source":1,"target":1},{"source":2,"target":2},
                         {"source":3,"target":3},{"source":4,"target":4},{"source":5,"target":5},{"source":6,"target":6} ];  
-          // var links = [{},{},{},{},{},{} ]; 
 
             for (var i = 0; i < data.length; i++){
               var newPerson = data[i]; 
@@ -119,7 +117,7 @@ function(AdaptiveMindView, worldTemplate) {
             // Append the labels to each group
             //10
             var circle = node.append("circle")
-              .attr("r", function(d) { console.log(d.name.length); return d.value == 1 ? 40 : d.name.length*4 })
+              .attr("r", function(d) { console.log(d.name.length); return d.value == 1 ? 40 : 20 })
               .attr("class", function(d) { return d.value == 1 ? 'leaf' : 'branch' }   ); 
             //  .html("<a href='newPage.html'>new page</a>");
           //    .style("fill", function(d) { return d.value == 1 ? 'red' : 'blue' } );

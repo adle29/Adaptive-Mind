@@ -46,12 +46,12 @@ define([], function (){
 			xfinal = Math.round( this.get('x')*.01*$(window).width() );
 			yfinal = Math.round( this.get('y')*.01*600 );
 			widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
-			heightFinal = Math.round( this.get('height')*.01*$(window).height()) ; 
+			heightFinal = Math.round( this.get('height')*.01*600) ; 
 			//url = getVideoString(this.get('Ourl')); 
 			
 
 			var position = " style='display:inline-block; position:absolute; left:"+xfinal +"px; top:" 
-							+yfinal+ "; width:"+ widthFinal +"px;  height:"+heightFinal+"px; '" 
+							+yfinal+ "px; width:"+ widthFinal +"px;  height:"+heightFinal+"px; '" 
 
 			var html = "<div  class='pict' "+ id + position + "> <iframe  "+ id2 +" src='//" + url
 					   + "' style='width:100%;  height:100%; '"  + " frameborder='0' allowfullscreen ></iframe>"  ;
@@ -93,8 +93,6 @@ define([], function (){
 	                $(".ui-wrapper").css('position', 'absolute');
 	               // $(id2).css('height', 'auto');
 	                $(id).css('position', 'absolute');
-//$(".ui-wrapper").css('height', 'auto');
-	              //  $(id).css('height', 'auto');
 
 				$(id).mouseup(function() {
 					save();

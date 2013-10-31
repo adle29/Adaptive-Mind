@@ -343,7 +343,7 @@ display: block;
 .cap-bot{
   height:100%;
   color:white;
-background-color: rgba(215, 44, 255, 0.8);
+background-color: #FF6666;
 overflow: scroll;
 padding:15px;
 }
@@ -451,7 +451,8 @@ figure:hover:before {
   /*pointer-events: none;*/
   font: 12px sans-serif ;
   color:white;
-  fill: white;
+  fill: #6666FF;
+  font-weight: bold;
 }
 
 

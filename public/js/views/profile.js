@@ -55,7 +55,7 @@ function(AdaptiveMindView, profileTemplate) {
             $( window ).resize(function() {
               that.render();
             });
-           
+
 
             $('.slider').pep({
               axis: 'x',
