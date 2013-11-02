@@ -2,8 +2,8 @@ var express     = require("express");
 var app         = express();
 var nodemailer  = require('nodemailer');
 var MemoryStore = require('connect').session.MemoryStore;
-//var dbPath      = 'mongodb://localhost/nodebackbone';
-var dbPath      = 'mongodb://heroku_app17644347:cgug0p762b1rthc3aadncpgdpo@ds041208.mongolab.com:41208/heroku_app17644347';
+var dbPath      = 'mongodb://localhost/nodebackbone';
+//var dbPath      = 'mongodb://heroku_app17644347:cgug0p762b1rthc3aadncpgdpo@ds041208.mongolab.com:41208/heroku_app17644347';
 
 // Import the data layer
 var mongoose = require('mongoose');
@@ -94,6 +94,45 @@ app.post ('/accounts/:id/vinbook', function (req,res){
         }
         else{
           console.log('POST REQUEST (Saving vinbook) - SUCCESSFUL');
+        }
+      });
+  });
+  
+
+  res.send(200);
+});
+
+app.post ('/settings', function (req,res){
+
+  var accountId = req.param.id == 'me'
+                  ? req.session.accountId
+                  : req.params.id;
+
+  var title = req.param('title', null);
+  var subject = req.param('subject', null);
+  var description = req.param('description', null);
+  var AccountId = req.param('AccountId', null);
+  var vinId = req.param('vinId', null);
+
+  console.log('POST REQUEST - SUCCESSFUL');
+
+  models.Account.findById(AccountId, function(account) {
+    console.log( 'working here' ,account.vinbooks);
+      for (var i = 0; i < account.vinbooks.length; i++){
+        if (account.vinbooks[i]._id == vinId ){
+            var vin = account.vinbooks[i];
+            vin.title = title; 
+            vin.subject = subject; 
+            vin.description = description;
+        }
+      }
+
+      account.save(function (err) {
+        if (err) {
+          console.log('Error saving vinbook: ' + err);
+        }
+        else{
+          console.log('POST REQUEST (Updating vinbook) - SUCCESSFUL');
         }
       });
   });

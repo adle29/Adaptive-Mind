@@ -12,6 +12,7 @@ module.exports = function(config, mongoose, nodemailer) {
       creation: { type: Date },
       lastUpdate: { type: Date }
     },
+    height: { type: String },
     Entries: [Entry]
   });
 

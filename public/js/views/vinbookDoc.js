@@ -181,7 +181,7 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
 
    		saveDoc: function (){
         $('#save').removeClass();
-        $('#save').addClass('btn btn-success'); 
+        $('#save').addClass('btn btn-danger'); 
    			$.post('/vinbook/:id', {
 	        	ids: this.id,
 	        	AccountId: this.model.me,
@@ -192,7 +192,7 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
                
               setTimeout(function(){
                   $('#save').removeClass();
-                  $('#save').addClass('btn btn-default'); 
+                  $('#save').addClass('btn btn-success'); 
               },1500);    
             }
 

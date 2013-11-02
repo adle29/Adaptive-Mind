@@ -1,12 +1,12 @@
 define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 'views/desk',
      'views/search', 'views/social', 'views/profile', 'views/group',  'views/edit',
-     'views/vinbookDoc', 'views/world', 'models/Account', 'models/Vinbook', 'models/vinBooksCollection',
-     'models/GroupCollection' ],
+     'views/vinbookDoc', 'views/world', 'views/about', 'views/contact', 'views/settings',
+     'models/Account', 'models/Vinbook', 'models/vinBooksCollection','models/GroupCollection' ],
 
   function(IndexView, RegisterView, LoginView, ForgotPasswordView, DeskView,
                         SearchView,  SocialView, ProfileView, GroupView, EditView,
-                        vinbookDocView, worldView,  Account, Vinbook, vinBooksCollection,
-                        GroupCollection) {
+                        vinbookDocView, worldView, aboutView, contactView, settingsView,
+                        Account, Vinbook, vinBooksCollection, GroupCollection) {
   
   var SocialRouter = Backbone.Router.extend({
     currentView: null,
@@ -14,9 +14,12 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
     routes: {
       "forgotpassword": "forgotpassword",
       "vinbook/:id": "showVinbook",
+      "settings/:id": "settings", 
       "register": "register",
       "login": "login",
-      "index": "index", 
+      "index": "index",
+      "about": "about", 
+      "contact": "contact",
       "desk/:id": "desk",
       "search": "search",
       "social/:id": "social",
@@ -44,6 +47,14 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
       this.changeView(new IndexView());
     },
 
+    about: function() {
+      this.changeView(new aboutView());
+    },
+
+    contact: function() {
+      this.changeView(new contactView());
+    },
+
     forgotpassword: function() {
       this.changeView(new ForgotPasswordView());
     },
@@ -61,6 +72,15 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
     showVinbook: function(id) {
       var model = new Account({id:'me'}); 
       this.changeView( new vinbookDocView({ 
+          id: id,
+          model : model
+      }));
+      model.fetch({ error: function(response){  }  });
+    },
+
+    settings: function(id){
+      var model = new Account({id:'me'}); 
+      this.changeView( new settingsView({ 
           id: id,
           model : model
       }));
