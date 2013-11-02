@@ -23,9 +23,7 @@ define([], function (){
 				this.set({'height': att.height});
 				this.set({'x': att.x});
 				this.set({'y': att.y});
-			}
-
-
+			}	
 		},
 
 		removeImg: function (){
