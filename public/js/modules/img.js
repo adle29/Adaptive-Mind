@@ -41,6 +41,7 @@ define([], function (){
 			var that = this, widthFinal, yfinal, xfinal, yinitial, xinitial;
 			var id = " id='"+this.get('ids') + "'";
 			var id2 = " id='"+this.get('ids') + "2'";
+			var idEliminate = " id='"+this.get('ids') + "eliminate'";
 			//IMAGE HTML 
 
 			xfinal = Math.round( this.get('x')*.01*$(window).width() );
@@ -53,8 +54,10 @@ define([], function (){
 			var position = " style='display:inline-block; position:absolute; left:"+xfinal +"px; top:" 
 							+yfinal+ "px;'";
 
+			var deleteIcon = "<button"+idEliminate+" class='btn btn-xs btn-danger imgClose'>X</button> ";
+
 			var html = "<div   "+ id + position + "> <img class='pict' "+ id2 +" src='" + this.get('Ourl') 
-					   + "' style='width:"+ widthFinal +"px;  height:auto; '"  + " />"  ;
+					   + "' style='width:"+ widthFinal +"px;  height:auto; ' />"+deleteIcon+"  </div> "  ;
 
 		    console.log(html);
 		    
@@ -71,6 +74,7 @@ define([], function (){
 			if (showcase || showcase == null && $(window).width() > 600  ){
 				id = '#'+this.get('ids'); 
 				id2 = '#'+this.get('ids')+'2'; 
+				idEliminate = '#'+this.get('ids') + "eliminate";
 				$('.del').hide(); 
 
 
@@ -105,7 +109,7 @@ define([], function (){
 				  });
 
 				$(id).mouseout(function(){ $('.del').hide();  });
-				$(id).dblclick(function(){ that.removeImg()   } );
+				$(idEliminate).click(function(){ that.removeImg()   } );
 
 
 				function save(){

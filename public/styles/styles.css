@@ -66,23 +66,23 @@ form {
 }
 /* ------------------------PICTURE DOC-------------------*/
 .pict {
-/*	padding: -5px;
-	border: solid 8px white;
-	-moz-box-shadow: 1px 1px 5px #999;
-	-webkit-box-shadow: 1px 1px 5px #999;
-        box-shadow: 1px 1px 5px #999;
-    background-color: white;*/
-/*         border: 5px solid white; 
-          -moz-box-shadow: 1px 1px 5px #999;
-  -webkit-box-shadow: 1px 1px 5px #999;
-        box-shadow: 1px 1px 5px #999;*/
-          padding: 4px;
 
+  padding: 4px;
   background-color: #ffffff;
   border: 1px solid #dddddd;
   border-radius: 4px;
- 
-       
+}
+
+.imgClose{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color:white;
+  font-weight: bold;
+}
+
+.imgClose:hover{
+  color:yellow;
 }
 
 .pict2 {
@@ -154,6 +154,15 @@ form {
 
 .white, .white a {
   color: #fff;
+}
+
+.ui-icon { 
+  width: 16px; 
+  height: 16px; 
+  background-image: url(http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/images/ui-icons_222222_256x240.png);
+  background-position: -82px -224px; 
+  position:absolute;
+
 }
 
 
