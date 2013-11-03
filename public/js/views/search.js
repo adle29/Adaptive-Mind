@@ -63,7 +63,7 @@ function(AdaptiveMindView, searchTemplate) {
     		else if (typeSearch == '1'){	
 	    		for (var i = 0; i <= data.length; i++ ){
 	    			if(data[i] != null){
-	    				console.log(data[i]);
+	    			
                         var myId =data[i]._id; 
 		    			var html = '<li class="list-group-item" > <a href="#profile/'+data[i]._id  +'">'+ data[i].name.first +' '+ data[i].name.last  +'</a>'+
                       '<span class="pull-right" ><button id="'+myId+'">+</button></span>' +  '</li>';

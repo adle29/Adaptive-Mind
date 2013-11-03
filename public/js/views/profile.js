@@ -1,6 +1,6 @@
 
-define(['AdaptiveMindView', 'text!templates/profile.html'],
-function(AdaptiveMindView, profileTemplate) {
+define(['AdaptiveMindView', 'text!templates/profile.html', 'text!templates/profile2.html'],
+function(AdaptiveMindView, profileTemplate, profile2Template) {
     var profileView = AdaptiveMindView.extend ({
     	el: $('#content'),
 
@@ -35,17 +35,16 @@ function(AdaptiveMindView, profileTemplate) {
 
 
     	render: function() {
-        console.log('yes', this.model.get('email'));
+
     		  if (this.model.get('email') != null){
-            console.log(this.model.get('id'));
+
             if (this.model.get('id') == 'me'){
-      			  console.log(this.model);
+              
         			this.$el.html(_.template(profileTemplate, this.model.toJSON()));
               this.renderText(this.model); 
       		  }
             else {
-              console.log(this.model);
-              this.$el.html(_.template(profileTemplate, this.model.toJSON()));
+              this.$el.html(_.template(profile2Template, this.model.toJSON()));
               this.renderText(this.model); 
               $('#owner').remove(); 
             }
