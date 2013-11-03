@@ -8,7 +8,7 @@ require.config({
     Underscore: 'libs/underscore',
     //json2: 'libs/json2', 
     pep: 'libs/pep',
-    doc: 'libs/doc', 
+   // doc: 'libs/doc', 
     Backbone: 'libs/backbone',
     models: 'models',
     text: '/js/libs/text',
@@ -22,7 +22,7 @@ require.config({
     'pep': ['jQuery'],
     'bootJs': ['jQuery'], 
     'doc': ['jQuery'],
-    'Backbone': ['Underscore', 'jQuery', 'doc', 'pep','jQueryAI', 'bootJs', 'd3'],
+    'Backbone': ['Underscore', 'jQuery',  'pep','jQueryAI', 'bootJs', 'd3'],
     'AdaptiveMind': ['Backbone']
   }
 });
