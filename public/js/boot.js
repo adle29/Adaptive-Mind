@@ -8,6 +8,7 @@ require.config({
     d3: 'libs/d3',
     Underscore: 'libs/underscore',
     pep: 'libs/pep',
+    doc: 'libs/doc', 
     Backbone: 'libs/backbone',
     models: 'models',
     text: '/js/libs/text',
@@ -21,7 +22,8 @@ require.config({
     'd3': ['jQuery'], 
     'pep': ['jQuery'],
     'bootJs': ['jQuery'], 
-    'Backbone': ['Underscore', 'jQuery', 'pep','jQueryAI', 'bootJs', 'd3']
+    'doc': ['jQuery'],
+    'Backbone': ['Underscore', 'jQuery', 'doc', 'pep','jQueryAI', 'bootJs', 'd3']
   }
 });
 
