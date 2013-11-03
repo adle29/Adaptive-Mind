@@ -52,10 +52,12 @@ module.exports = function(config, mongoose, nodemailer) {
       last:    { type: String }
     },
     birthday: {
-      day:     { type: Number, min: 1, max: 31, required: false },
-      month:   { type: Number, min: 1, max: 12, required: false },
-      year:    { type: Number }
+      day:     { type: String},
+      month:   { type: String},
+      year:    { type: String }
     },
+    school: { type: String}, 
+    country: { type: String}, 
     story: { 
       text: { type: String, default: '' },
       photoUrl: { type: String }
@@ -171,8 +173,18 @@ module.exports = function(config, mongoose, nodemailer) {
 
   //-----------------------PROFILE SAVE REQUEST---------------------------------
 
-   var saveProfile = function(account, pictureUrl1, pictureUrl2, pictureUrl3, pictureUrl4, story, experience, participation, portfolio ) {
+   var saveProfile = function(account, location, day, month, year, pictureUrl1, pictureUrl2, pictureUrl3, pictureUrl4, story, experience, participation, portfolio ) {
       console.log('saving profile 2');
+
+/*
+
+    account.school: school; */
+    account.country = location; 
+    account.birthday.day = day;
+    account.birthday.month = month;
+    account.birthday.year = year;
+
+    console.log(year); 
       account.story.text = story; 
       account.story.photoUrl = pictureUrl1; 
       account.experience.text = experience; 

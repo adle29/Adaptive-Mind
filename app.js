@@ -220,6 +220,10 @@ app.post('/profile/:id/edit', function(req, res) {
   ? req.session.accountId
   : req.params.id;
 
+  var location = req.param('location', null);
+  var day = req.param('day', null);
+  var month = req.param('month', null);
+  var year = req.param('year', null);
   var pictureUrl1 = req.param('pictureUrl1', null);
   var story = req.param('story', null);
   var pictureUrl2 = req.param('pictureUrl2', null);
@@ -233,7 +237,7 @@ app.post('/profile/:id/edit', function(req, res) {
   models.Account.findById(accountId, function(account) {
     if ( !account ) return;
     console.log('saving profile 1');
-    models.Account.saveProfile(account, pictureUrl1, pictureUrl2, 
+    models.Account.saveProfile(account, location, day, month, year, pictureUrl1, pictureUrl2, 
       pictureUrl3, pictureUrl4, story, experience, participation, portfolio);
   });
 

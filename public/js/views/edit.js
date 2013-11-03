@@ -43,7 +43,11 @@ function(AdaptiveMindView, editTemplate) {
 
         saveProfile: function(){
             $.post('/profile/me/edit', {
-                pictureUrl1: '',
+                pictureUrl1: '', //$('input[name=pic]').val(),
+                location: $('input[name=location]').val(),
+                day: $('select[name=day]').val(),
+                month: $('select[name=month]').val(),
+                year: $('select[name=year]').val(), 
                 story: $( "#story" ).html(),
                 pictureUrl2: '',
                 experience: $( "#experience" ).html(),
@@ -66,12 +70,17 @@ function(AdaptiveMindView, editTemplate) {
 
         renderText: function(model){
             if (this.model.get('story').photoUrl != null){
+               // $('input[name=pic]').val(this.model.get('experience').photoUrl);
+                $('input[name=location]').val(this.model.get('country'));
+                $('select[name=day]').val(this.model.get('birthday').day);
+                $('select[name=month]').val(this.model.get('birthday').month);
+                $('select[name=year]').val(this.model.get('birthday').year);
 
                 $('#story').append('<p>'+ this.model.get('story').text +'</p>'  );
                 $('#experience').append('<p>'+ this.model.get('experience').text +'</p>'  );
                 $('#participation').append('<p>'+ this.model.get('participation').text +'</p>'  );
                 $('#portfolio').append('<p>'+ this.model.get('portfolio').text +'</p>'  );
- 
+            console.log(this.model);
                 // $('input[name=pictureUrl1]').val(this.model.get('story').photoUrl   );
                 // $('input[name=pictureUrl2]').val( this.model.get('experience').photoUrl   );
                 // $('input[name=pictureUrl3]').val( this.model.get('participation').photoUrl );

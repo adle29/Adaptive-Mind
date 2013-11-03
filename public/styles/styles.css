@@ -120,6 +120,7 @@ form {
 
 .txtFormat{
   text-align: justify;
+  word-wrap:break-word;
   height:100%;
   width:100%;
 }
@@ -281,61 +282,39 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 .ui-resizable-helper { border: 2px dotted #00F; }
 
 /* ------------------------SLIDER OF  PROFILE-------------------*/
-.text {
-  width:100%;
-  color: black;
-  overflow-y: scroll;
-  position:absolute;
-  top:0px;
-  left:0px;
-  height:100%;
-  background-color: black;
-  margin-top: 27px;
+
+.caps{
+  text-transform:capitalize;
 }
 
-.text .slide-container {
-  overflow: hidden;
-  position:absolute;
-  top:0px;
-  left:0px;
-  width:100%;
-  height:100%;
+.bigCaption{
+  border: 1px solid black;
+  word-wrap:break-word;
 }
 
-.text .slide-container .slider {
-	position:absolute;
-  	top:0px;
-  	left:0px;
-    height:100%;
-}
-.text .slide-container .slider figure img {
-  width: auto;
-  height:auto; 
-  float: left;
-  cursor: move;
+.bigCaption p { text-align: justify;
+    word-wrap:break-word;
+ }
+.bigCaption a { text-align: justify;
+  word-wrap:break-word;
+ }
 
-}
-
-figure {
-  display: block;
-  position: relative;
-  float: left;
-  overflow: hidden;
-}
-figcaption {
-  position: absolute;
-  background: black;
-  background: rgba(0,0,0,0.5);
-  height:100%;
-  width:100%;
-  color: white;
-  padding: 10px 20px;
-  opacity: 0;
-  -webkit-transition: all 0.6s ease;
-  -moz-transition:    all 0.6s ease;
-  -o-transition:      all 0.6s ease;
+.smallCaption{
+  border: 1px solid black;
+  word-wrap:break-word;
   text-align: justify;
 }
+
+.bigTitle{
+  text-transform:uppercase;
+}
+
+.smallTitle{
+  width:100%;
+  background-color: #3399FF; 
+}
+
+
 
 .divEdit{
   width:300px;
@@ -357,81 +336,7 @@ display: block;
           transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
-.cap-bot{
-  height:100%;
-  color:white;
-background-color: #FF6666;
-overflow: scroll;
-padding:15px;
-}
 
-.cap-bot2{
-  height:100%;
-    color:white;
-background-color: rgba(43, 255, 0, 0.8);
-
-overflow: scroll;
-padding:15px;
-
-}
-
-.cap-bot3{
-  height:100%;
-      color:white;
-background-color: rgba(0, 126, 255, 0.8);
-padding:15px;
-overflow: scroll;
-}
-
-.cap-bot4{
-  height:100%;
-      color:white;
-background-color: rgba(255, 121, 70, 0.8);
-overflow: scroll;
-padding:15px;
-}
-
-
-.cap-bot a, .cap-bot2 a, .cap-bot3 a, .cap-bot4 a {
-  color:white;
-  text-decoration: underline;
-}
-
-.cap-bot a:hover, .cap-bot2 a:hover, .cap-bot3 a:hover, .cap-bot4 a:hover {
-  text-decoration: none;
-}
-
-/*#story:hover{
-    border-color: #66afe9;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-}
-*/
-/*figure:hover figcaption {
-  opacity: 1;
-}
-
-figure:hover:before {
-  opacity: 0;
-}*/
-
-/*.cap-left:before {  bottom: 10px; left: 10px; }
-.cap-left figcaption { bottom: 0; left: -30%; }
-.cap-left:hover figcaption { left: 0; }
-
-.cap-right:before { bottom: 10px; right: 10px; }
-.cap-right figcaption { bottom: 0; right: -30%; }
-.cap-right:hover figcaption { right: 0; }
-
-.cap-top:before { top: 10px; left: 10px; }
-.cap-top figcaption { left: 0; top: -30%; }
-.cap-top:hover figcaption { top: 0; }
-
-.cap-bot:before { bottom: 10px; left: 10px; }
-.cap-bot figcaption { left: 0; bottom: -30%;}
-.cap-bot:hover figcaption { bottom: 0; }
-*/
 
 /*--------------------trial profile==========================*/
   .scroll-pane { overflow: auto; width: 99%; height: 100%; float:left; }
