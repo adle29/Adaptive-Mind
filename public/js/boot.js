@@ -5,6 +5,7 @@ require.config({
     jQueryAI: 'libs/jqueryAI', 
     bootJs: 'libs/bootstrap.min',
     d3: 'libs/d3',
+
     Underscore: 'libs/underscore',
     //json2: 'libs/json2', 
     pep: 'libs/pep',
@@ -15,6 +16,7 @@ require.config({
     templates: '../templates',
     AdaptiveMindView: 'AdaptiveMindView'
   },
+  waitSeconds: 200,
 
   shim: {
     'jQueryAI': ['jQuery'],
