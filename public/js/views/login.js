@@ -18,7 +18,7 @@ define(['AdaptiveMindView','text!templates/login.html'], function(AdaptiveMindVi
         email: $('input[name=email]').val(),
         password: $('input[name=password]').val()
       }, 
-      cache: false,
+      {cache: false},
       function(data) {
         console.log(data);
         if (!data.error){window.location.replace('#desk/me');}
