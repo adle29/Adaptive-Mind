@@ -244,7 +244,6 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
         else {
   				this.$el.html( _.template(vinbookDocTemplate, model  ) );
           this.options.notYou = true; 
-          console.log('yes');
         }
 
 			}
