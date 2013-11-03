@@ -46,7 +46,7 @@ function(AdaptiveMindView, profileTemplate, profile2Template) {
             else {
               this.$el.html(_.template(profile2Template, this.model.toJSON()));
               this.renderText(this.model); 
-              $('#owner').remove(); 
+              //$('#owner').remove(); 
             }
 
           }//if 
