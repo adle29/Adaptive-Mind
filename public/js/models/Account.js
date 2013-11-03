@@ -15,9 +15,9 @@ define(['models/vinBooksCollection', 'models/GroupCollection'],
     },
 
      render: function(){
-        
+      if (this.me != null){
         this.me = this.get('_id'); 
-        console.log ('I am logged in', this.me);
+      }
      }
 
   });
