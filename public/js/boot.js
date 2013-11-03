@@ -23,7 +23,7 @@ require.config({
     'pep': ['jQuery'],
     'bootJs': ['jQuery'], 
     'doc': ['jQuery'],
-    'Backbone': ['Underscore', 'jQuery',  'pep','jQueryAI', 'bootJs', 'd3'],
+    'Backbone': ['Underscore', 'jQuery', 'doc', 'pep','jQueryAI', 'bootJs', 'd3'],
     'AdaptiveMind': ['Backbone']
   }
 });
