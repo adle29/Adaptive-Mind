@@ -53,6 +53,7 @@ define([], function (){
 				'<p '+ids2+' class="txtFormat" contenteditable="true">'+
 				
 				'</p></div>';
+			//----------------------Small Screen---------------------------------------
 
 			if ($(window).width() < 600){
 
@@ -62,6 +63,7 @@ define([], function (){
 				console.log('smaller devices');
 			}
 
+			//----------------------append html----------------------------------------
 
 			
 			$('#art').append(html);
@@ -69,16 +71,18 @@ define([], function (){
 				$('#'+this.get('ids')+'2').append(this.get('content')); 
 			}
 
+			//----------------------Scaling functions----------------------------------------
 
 			var ids = '#'+this.get('ids');
 			ids2 = '#'+this.get('ids')+'2';
 			ids3 = '#'+this.get('ids')+'3';
+			$(ids3).css('visibility', 'hidden' );
+			
+			$(ids2+ ' p').removeAttr('style');
+			console.log('removing', $(ids2+ ' p'));
 
-			console.log($(window).height());
-			 $(ids3).css('visibility', 'hidden' );
-
-			 if ($(window).width() > 600 ){
-			 	var scaleFactor = 0.5;
+			if ($(window).width() > 600 ){
+			  var scaleFactor = 0.5;
 
 			  // choose a maximum and minimum scale factor (e.g. 4 is 400% and 0.5 is 50%)
 			  var defaultWidth = 1280;
@@ -92,10 +96,10 @@ define([], function (){
 			    else if (scale < minScale) {
 			      scale = minScale;
 			    }
-			    $('p').css('font-size', scale * 100 + '%');
-			 }
+			    $(ids2 +' p').css('font-size', scale * 100 + '%');
+			 }//end if 
 
-			//ADDING JQUERY
+			//----------------------DDING JQUERY----------------------------------------
 
 			if (showcase || showcase == null && $(window).width() > 600 ){
 

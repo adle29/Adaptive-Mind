@@ -65,6 +65,7 @@ function(AdaptiveMindView, editTemplate) {
                 $('html, body').animate({ scrollTop: 0 }, 0);
                 if (!data.error){ $('.row').prepend(html); $(".alert").alert(); }
             });
+            console.log($( "#experience" ).html()); 
             return false;
         },
 

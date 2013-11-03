@@ -39,7 +39,7 @@ function(AdaptiveMindView, profileTemplate, profile2Template) {
     		  if (this.model.get('email') != null){
 
             if (this.model.get('id') == 'me'){
-              
+
         			this.$el.html(_.template(profileTemplate, this.model.toJSON()));
               this.renderText(this.model); 
       		  }
