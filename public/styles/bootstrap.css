@@ -1991,7 +1991,7 @@ textarea.input-lg {
 /*--------------------------------------------------*/
 .btn-purple {
   color: #ffffff;
-  background-color: #6600CC ;
+  background-color: green ;
   border-color: #4cae4c;
 }
 
@@ -2000,14 +2000,14 @@ textarea.input-lg {
 .btn-purple:active,
 .btn-purple.active,
 .open .dropdown-toggle.btn-purple {
-  color: white;
-  background-color: purple;
+  color: #ffffff;
+  background-color: #009933;
   border-color: #398439;
 }
 
 
-.btn-success:active,
-.btn-success.active,
+.btn-purple:active,
+.btn-purple.active,
 .open .dropdown-toggle.btn-success {
   background-image: none;
 }

@@ -103,14 +103,8 @@ define([], function (){
 				$(ids2).on('selectstart', function () {
 					$(ids2).focus(); 
 			    });
-			 //    	console.log(window.getSelection());
-			 //    });
 
-			  //   $(ids2).on('mouseout', function () {
-					// $('myToolTip').show(); 
-			  //   });
 				$(ids).css('border', '2px solid blue') ; 
-
 
 
 				console.log('less',showcase, showcase == null, $(window).width()  );
@@ -156,6 +150,13 @@ define([], function (){
 			    });
 
 			    $( ids3 ).on( "resize", function( event, ui ) {save(); } );
+
+			    $(ids2).on('paste', function(e) {
+				  //  $(this).removeAttr("style");
+
+				    console.log('PASTING', $(ids2).text(), $(ids2).text() );
+				});
+
 		
 
 				$(ids).click(function() {
