@@ -35,6 +35,7 @@ define(['AdaptiveMindView', 'text!templates/vinbook.html', ], function(AdaptiveM
 		remove: function(){
         	this.$el.remove().fadeOut('slow');  // 4. Calling Jquery remove function to remove that HTML li tag element..
     	}
+    	//hello 
 
 
 	});
