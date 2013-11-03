@@ -1,6 +1,5 @@
 require.config({
   baseUrl: '/js', 
-  waitSeconds: 200,
   paths: {
     jQuery: 'libs/jquery',
     jQueryAI: 'libs/jqueryAI', 
@@ -19,12 +18,12 @@ require.config({
 
   shim: {
     'AdaptiveMind': ['Backbone'],
+    'Backbone': ['Underscore', 'jQuery', 'json2', 'doc', 'pep','jQueryAI', 'bootJs', 'd3'],
     'jQueryAI': ['jQuery'],
     'd3': ['jQuery'], 
     'pep': ['jQuery'],
     'bootJs': ['jQuery'], 
-    'doc': ['jQuery'],
-    'Backbone': ['Underscore', 'jQuery', 'json2', 'doc', 'pep','jQueryAI', 'bootJs', 'd3']
+    'doc': ['jQuery']
   }
 });
 
