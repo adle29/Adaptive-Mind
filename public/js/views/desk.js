@@ -41,7 +41,6 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
     },
 
      prependVinbook: function(vinBookModel) {  
-      console.log('mistake');
       if (vinBookModel != null) {
         var vinBookHtml = (new vinBookView ({ model: vinBookModel }) ).render().el;
         $(vinBookHtml).prependTo('#vinBookListUl').hide().fadeIn('slow');
@@ -64,7 +63,6 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
     render: function() {
 
       var that = this;
-      console.log('AQUI',this.model.me ,this.model.me == 'me');
      // if ( this.model.me != 'me'  ){
         this.$el.html(
           _.template(deskTemplate, this.model.toJSON() )
