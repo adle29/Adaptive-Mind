@@ -16,12 +16,12 @@ require.config({
   },
 
   shim: {
+    'AdaptiveMind': ['Backbone'],
     'jQueryAI': ['jQuery'],
     'd3': ['jQuery'], 
     'pep': ['jQuery'],
     'bootJs': ['jQuery'], 
-    'Backbone': ['Underscore', 'jQuery', 'pep','jQueryAI', 'bootJs', 'd3'],
-    'AdaptiveMind': ['Backbone']
+    'Backbone': ['Underscore', 'jQuery', 'pep','jQueryAI', 'bootJs', 'd3']
   }
 });
 
