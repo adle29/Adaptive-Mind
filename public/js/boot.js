@@ -10,7 +10,7 @@ require.config({
     jQueryAI: 'libs/jqueryAI', 
     //json2: 'libs/json2', 
     pep: 'libs/pep',
-   // doc: 'libs/doc', 
+    doc: 'libs/doc', 
     models: 'models',
     templates: '../templates',
     AdaptiveMindView: 'AdaptiveMindView'
@@ -22,7 +22,7 @@ require.config({
     'd3': ['jQuery'], 
     'pep': ['jQuery'],
     'bootJs': ['jQuery'], 
-   // 'doc': ['jQuery'],
+    'doc': ['jQuery'],
     'Backbone': ['Underscore', 'jQuery',  'pep','jQueryAI', 'bootJs', 'd3'],
     'AdaptiveMind': ['Backbone']
   }
