@@ -10,11 +10,11 @@ require.config({
     models: 'models',
     Underscore: 'libs/underscore',
     Backbone: 'libs/backbone',
-    text: '/js/libs/text',
+    text: 'libs/text',
     templates: '../templates',
     AdaptiveMindView: 'AdaptiveMindView'
   },
-  waitSeconds: 200,
+//  waitSeconds: 200,
 
   shim: {
     'jQueryAI': ['jQuery'],
