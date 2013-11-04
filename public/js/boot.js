@@ -1,17 +1,16 @@
 require.config({
   baseUrl: '/js', 
-  paths: {
+  paths: { 
     jQuery: 'libs/jquery',
+    jQueryAI: 'libs/jqueryAI', 
+    bootJs: 'libs/bootstrap.min',
+    d3: 'libs/d3',
+    doc: 'libs/doc',
+    pep: 'libs/pep',
+    models: 'models',
     Underscore: 'libs/underscore',
     Backbone: 'libs/backbone',
     text: '/js/libs/text',
-    bootJs: 'libs/bootstrap.min',
-    d3: 'libs/d3',
-    jQueryAI: 'libs/jqueryAI', 
-    //json2: 'libs/json2', 
-    pep: 'libs/pep',
-    doc: 'libs/doc', 
-    models: 'models',
     templates: '../templates',
     AdaptiveMindView: 'AdaptiveMindView'
   },
