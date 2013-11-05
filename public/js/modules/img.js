@@ -56,10 +56,17 @@ define([], function (){
 
 			var deleteIcon = "<button"+idEliminate+" class='btn btn-xs btn-danger imgClose'>X</button> ";
 
+
+
+			if (showcase || showcase == null && $(window).width() > 600  ){
 			var html = "<div   "+ id + position + "> <img class='pict' "+ id2 +" src='" + this.get('Ourl') 
 					   + "' style='width:"+ widthFinal +"px;  height:auto; ' />"+deleteIcon+"  </div> "  ;
 
-		    console.log(html);
+		    }
+		    else {
+			var html = "<div   "+ id + position + "> <img class='pict' "+ id2 +" src='" + this.get('Ourl') 
+					   + "' style='width:"+ widthFinal +"px;  height:auto; ' />  </div> "  ;		    	
+		    }
 		    
 		    if ($(window).width() < 600){
 			 html = "<div"+ id + "> <img "+ id2 +" src='" + this.get('Ourl') 
