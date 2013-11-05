@@ -129,6 +129,7 @@ form {
     text-align: justify;
   width:100%; 
   margin-top:5px; 
+    word-wrap:break-word;
   margin-bottom:10px; 
 }
 

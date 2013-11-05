@@ -78,7 +78,7 @@ define([], function (){
 			ids3 = '#'+this.get('ids')+'3';
 			$(ids3).css('visibility', 'hidden' );
 			
-			$(ids2+ ' p').removeAttr('style');
+			//$(ids2+ ' p').removeAttr('style');
 			console.log('removing', $(ids2+ ' p'));
 
 			if ($(window).width() > 600 ){
