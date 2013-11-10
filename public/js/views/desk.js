@@ -55,7 +55,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
       }
       else {
         this.alert(); 
-         return true;
+         return false;
       }
       return false;
     },
