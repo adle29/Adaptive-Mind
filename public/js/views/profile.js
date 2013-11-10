@@ -1,4 +1,3 @@
-
 define(['AdaptiveMindView', 'text!templates/profile.html', 'text!templates/profile2.html'],
 function(AdaptiveMindView, profileTemplate, profile2Template) {
     var profileView = AdaptiveMindView.extend ({
