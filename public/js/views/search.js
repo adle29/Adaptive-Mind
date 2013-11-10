@@ -65,8 +65,12 @@ function(AdaptiveMindView, searchTemplate) {
 	    			if(data[i] != null){
 	    			
                         var myId =data[i]._id; 
-		    			var html = '<li class="list-group-item" > <a href="#profile/'+data[i]._id  +'">'+ data[i].name.first +' '+ data[i].name.last  +'</a>'+
-                      '<span class="pull-right" ><button id="'+myId+'">+</button></span>' +  '</li>';
+		    			// var html = '<li class="list-group-item" > <a href="#profile/'+data[i]._id  +'">'+ data[i].name.first +' '+ data[i].name.last  +'</a>'+
+         //              '<span class="pull-right" ><button id="'+myId+'">+</button></span>' +  '</li>';
+                        var html = '<li class="list-group-item" > <a href="#profile/'
+                                    + data[i]._id  +'">'+ data[i].name.first +' '
+                                    + data[i].name.last  +'</a></li>';
+
 		    			$(html).prependTo('#itemList').hide().fadeIn('slow');
                         
                         $('#'+myId).click(function(){

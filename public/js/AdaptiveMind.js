@@ -15,6 +15,20 @@ define(['router'], function(router) {
     });
   };
 
+    var checkLoginAfter = function() {
+    $.ajax("/account/authenticated", {
+      method: "GET",
+      success: function() {
+        return true;
+      },
+      error: function(data) {
+        return false;
+      }
+    });
+  };
+
+
+
   var runApplication = function(authenticated) {
 
 
@@ -24,10 +38,9 @@ define(['router'], function(router) {
                 //router.navigate('login', true);
                 console.log('you may not use this2', window.location.hash);
           }
-     } 
-     
-     //if (window.location.hash = '#null' ){ window.location.hash = 'index';   }
-              Backbone.history.start();
+    } 
+    
+      Backbone.history.start();
 
   };
 

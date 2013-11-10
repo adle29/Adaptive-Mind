@@ -22,22 +22,42 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
       $('#notebookCreaterForm').slideDown(); 
     },
 
-    createShow: function (){
-      $('#notebookCreaterForm').slideUp(); 
-      var vinBooksCollection = this.model.vinbooks; 
-      var that = this;
-      $.post('/accounts/' + this.model.get('_id')+'/vinbook', {
-          AccountId: this.model.get('_id'),
-          title: $('input[name=title]').val(),
-          subject: $('select[name=subject]').val(),
-          description: $('input[name=description]').val()
+    alert: function (){
+      var html = '<div class="alert alert-danger fade in"> <button type="button" '+
+            'class="close" data-dismiss="alert" aria-hidden="true">&times;'+
+            '</button> Your page needs to have a title. </div>'; 
+ 
+      $('.errorAlert').empty(); 
+      $('.errorAlert').prepend(html); 
+      $(".alert").alert(); 
+    }, 
 
-        }, function(data) {
-          vinBooksCollection.add(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() }));
-          //that.prependVinbook(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() })); 
-        });
-        this.model.fetch();
-        return false;
+    createShow: function (){
+      if ( $('input[name=title]').val() != "" ) {
+
+        $('#notebookCreaterForm').slideUp(); 
+        var vinBooksCollection = this.model.vinbooks; 
+        var that = this;
+        $.post('/accounts/' + this.model.get('_id')+'/vinbook', {
+            AccountId: this.model.get('_id'),
+            title: $('input[name=title]').val(),
+            subject: $('select[name=subject]').val(),
+            description: $('input[name=description]').val()
+
+          }, function(data) {
+            vinBooksCollection.add(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() }));
+            //that.prependVinbook(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() })); 
+             if (data.error){ window.location.hash = 'login'; }
+
+          });
+
+          this.model.fetch();
+      }
+      else {
+        this.alert(); 
+         return true;
+      }
+      return false;
     },
 
      prependVinbook: function(vinBookModel) {  

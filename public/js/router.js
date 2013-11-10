@@ -30,6 +30,21 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
       "": "defaultRoute"
     },
 
+    checkLogin: function (){
+        var areYouIn; 
+        $.ajax("/account/authenticated", {
+        method: "GET",
+        success: function() {
+          areYouIn = true;
+        },
+        error: function(data) {
+          areYouIn = false;
+        }
+      });
+        if (!areYouIn) { window.location.hash = 'login'; }
+
+    }, 
+
 
     changeView: function(view) {
       if ( null != this.currentView ) {
@@ -64,12 +79,15 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
     },
 
     desk: function (id){
+     // this.checkLogin(); 
       var model = new Account({id:id});
       this.changeView(new DeskView({model:model}));
-      model.fetch({ success: function(response){ if (response.me =='me'){window.location.hash = 'login'; }   } });
+      model.fetch({ error: function(response){ window.location.hash = 'login';    } });
     }, 
 
     showVinbook: function(id) {
+  //      this.checkLogin(); 
+
       var model = new Account({id:'me'}); 
       this.changeView( new vinbookDocView({ 
           id: id,
@@ -79,6 +97,8 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
     },
 
     settings: function(id){
+     // this.checkLogin(); 
+
       var model = new Account({id:'me'}); 
       this.changeView( new settingsView({ 
           id: id,
@@ -123,6 +143,8 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
     },
 
     edit: function(id){
+      this.checkLogin(); 
+
       var model = new Account({id:id});
       model.fetch({ success: function(response){ if (response.me =='me'){window.location.hash = 'login'; }   } });
       this.changeView(new EditView({ model:model }) );
