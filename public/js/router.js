@@ -143,7 +143,7 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
     },
 
     edit: function(id){
-      this.checkLogin(); 
+    //  this.checkLogin(); 
 
       var model = new Account({id:id});
       model.fetch({ success: function(response){ if (response.me =='me'){window.location.hash = 'login'; }   } });
