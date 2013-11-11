@@ -60,7 +60,7 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
     },
 
     index: function() {
-      this.changeView(new IndexView());
+      var newindexview =  new IndexView.initPage(function(obj){ obj.render() }) ;
     },
 
     about: function() {
@@ -156,8 +156,6 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
     },
 
     defaultRoute: function(path) {
-     // console.log( new IndexView.initPage() ); 
-
       var newindexview =  new IndexView.initPage(function(obj){ obj.render() }) ;
     }
 
