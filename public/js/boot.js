@@ -7,7 +7,6 @@ require.config({
     d3: 'libs/d3',
     doc: 'libs/doc',
     pep: 'libs/pep',
-    models: 'models',
     Underscore: 'libs/underscore',
     Backbone: 'libs/backbone',
     text: '/js/libs/text',

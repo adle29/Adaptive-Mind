@@ -1,5 +1,5 @@
 define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/vinbookDocIphone.html', 'models/Vinbook',
-			'models/EntriesCollection','modules/img', 'modules/vid', 'modules/txt'], 
+			'models/EntriesCollection','modules/img', 'modules/vid', 'modules/txt', 'modules/script'], 
 	function(AdaptiveMindView, vinbookDocTemplate, vinbookDocTemplateIphone, Vinbook, EntriesCollection, Img, Vid, Txt){
       var page = 1, newPage = 0, newImgG = '';
       var imageSearch;
@@ -23,6 +23,7 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
    		 	'click #IMG': 'showEntryImg',
    		 	'click #VID': 'showEntryVid',
    		 	'click #TXT': 'showEntryTxt',
+        'click #script': 'script',
    		 	'click #close': 'closeEntry',
    		 	'click #sub': 'mediaEntry',
         'click #search': 'mediaEntryPic', 
@@ -230,6 +231,16 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
         this.entries.add(newEntry);
             //$('#closeModal').trigger('click');
     }, 
+
+    script: function (){
+        var newEntry = new Vid ();
+        var randomNum = Math.random().toString(36).substring(7); 
+        var url  = "http://jsbin.com/"+randomNum+"/1/embed?html,output"; 
+        newEntry.set( {y:$(window).scrollTop()/5 , Ourl: url , ids: Math.random().toString(36).substring(7)  } );
+        newEntry.render();
+        this.entries.add(newEntry);
+
+    },
 
 		render: function (myid, model) {
 

@@ -1,12 +1,6 @@
-define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 'views/desk',
-     'views/search', 'views/social', 'views/profile', 'views/group',  'views/edit',
-     'views/vinbookDoc', 'views/world', 'views/about', 'views/contact', 'views/settings',
-     'models/Account', 'models/Vinbook', 'models/vinBooksCollection','models/GroupCollection' ],
+define(['models/Account'],
 
-  function(IndexView, RegisterView, LoginView, ForgotPasswordView, DeskView,
-                        SearchView,  SocialView, ProfileView, GroupView, EditView,
-                        vinbookDocView, worldView, aboutView, contactView, settingsView,
-                        Account, Vinbook, vinBooksCollection, GroupCollection) {
+  function(Account ) {
   
   var SocialRouter = Backbone.Router.extend({
     currentView: null,
@@ -30,133 +24,94 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
       "": "defaultRoute"
     },
 
-    checkLogin: function (){
-        var areYouIn; 
-        $.ajax("/account/authenticated", {
-        method: "GET",
-        success: function() {
-          areYouIn = true;
-        },
-        error: function(data) {
-          areYouIn = false;
-        }
-      });
-        if (!areYouIn) { window.location.hash = 'login'; }
-
-    }, 
-
-
-    changeView: function(view) {
-      if ( null != this.currentView ) {
-        this.currentView.undelegateEvents();
-      }
-      
-      this.currentView = view;
-      this.currentView.render();
-    },
-
-    login: function() {
-      this.changeView(new LoginView());
-    },
-
-    index: function() {
-      var newindexview =  new IndexView.initPage(function(obj){ obj.render() }) ;
-    },
-
     about: function() {
-      this.changeView(new aboutView());
+      this.changeView('about');
+    },
+
+    changeView: function(view, model, id) {
+      require(['views/' + view], function(View) {
+        if ( model == null && id == null ){
+          var newView = new View();
+              newView.render(); 
+        }
+        else if ( model == null && id != null){
+          var newView = new View({id: id});
+              newView.render(); 
+        }
+        else{
+          var newView = new View({model:model, id: id});
+              newView.render(); 
+        }
+      }); 
     },
 
     contact: function() {
-      this.changeView(new contactView());
+      this.changeView('contact');
+    },
+
+    defaultRoute: function() {
+      this.changeView('index'); 
+    },
+
+    edit: function(id){
+      var model = new Account({id:id});
+      model.fetch({ success: function(response){ if (response.me =='me'){window.location.hash = 'login'; }   } });
+      this.changeView('edit', model );
+    },
+
+    login: function() {
+      this.changeView('login'); 
+    },
+
+    index: function() {
+      this.changeView('index'); 
     },
 
     forgotpassword: function() {
-      this.changeView(new ForgotPasswordView());
+      this.changeView('forgotpassword'); 
     },
 
     register: function() {
-      this.changeView(new RegisterView());
+      this.changeView('register');
     },
 
     desk: function (id){
-     // this.checkLogin(); 
       var model = new Account({id:id});
-      this.changeView(new DeskView({model:model}));
+      this.changeView('desk', model );
       model.fetch({ error: function(response){ window.location.hash = 'login';    } });
     }, 
 
     showVinbook: function(id) {
-  //      this.checkLogin(); 
-
       var model = new Account({id:'me'}); 
-      this.changeView( new vinbookDocView({ 
-          id: id,
-          model : model
-      }));
+      this.changeView('vinbookDoc', model, id);
       model.fetch({ error: function(response){  }  });
     },
 
     settings: function(id){
-     // this.checkLogin(); 
-
       var model = new Account({id:'me'}); 
-      this.changeView( new settingsView({ 
-          id: id,
-          model : model
-      }));
+      this.changeView('settings', model, id);
       model.fetch({ error: function(response){  }  });
     },
 
     search: function (){
       var model = new Account({id:'me'});
-      this.changeView(new SearchView({model:model}) );
+      this.changeView('search', model );
     },
 
     social: function (id){
       var model = new Account({id:'me'});
-      this.changeView(new SocialView({model:model}));
+      this.changeView('social', model);
       model.fetch({ success: function(response){ if (response.me =='me'){window.location.hash = 'login'; }      } });
     },
-
-    group: function (id){
-      var model = new Account({id:'me'});
-      var trial; 
-
-      var getCollection = new GroupCollection();
-      getCollection.url = '/accounts/me/group';
-
-      getCollection.fetch({ error: function(response){   window.location.hash = 'login'; } });
-      
-      model.fetch({ error: function(response){  trial =JSON.stringify(response); }  });
-      this.changeView( new GroupView({ 
-          model: model, 
-          collection: getCollection,
-          id: id
-      }));
-    }, 
-
 
     profile: function (id){
       var model = new Account({id:id});
       model.fetch({ error: function(response){  console.log ('error'+JSON.stringify(response));  } });
-      this.changeView(new ProfileView({ model:model }) );
-    },
-
-    edit: function(id){
-    //  this.checkLogin(); 
-
-      var model = new Account({id:id});
-      model.fetch({ success: function(response){ if (response.me =='me'){window.location.hash = 'login'; }   } });
-      this.changeView(new EditView({ model:model }) );
+      this.changeView('profile', model );
     },
 
     world: function (){
-      this.changeView(new worldView());
-    },
-
-    defaultRoute: function(path) {
-      var newindexview =  new IndexView.initPage(function(obj){ obj.render() }) ;
+      this.changeView('world');
     }
 
 
@@ -164,5 +119,23 @@ define(['views/index', 'views/register', 'views/login', 'views/forgotpassword', 
 
   return new SocialRouter();
 });
+
+
+    // group: function (id){
+    //   var model = new Account({id:'me'});
+    //   var trial; 
+
+    //   var getCollection = new GroupCollection();
+    //   getCollection.url = '/accounts/me/group';
+
+    //   getCollection.fetch({ error: function(response){   window.location.hash = 'login'; } });
+      
+    //   model.fetch({ error: function(response){  trial =JSON.stringify(response); }  });
+    //   this.changeView( new GroupView({ 
+    //       model: model, 
+    //       collection: getCollection,
+    //       id: id
+    //   }));
+    // }, 
 
 

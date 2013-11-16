@@ -12,6 +12,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
     },
 
     initialize: function() {
+      
       this.model.bind('change', this.render, this);
       this.model.vinbooks.on('add', this.render, this);
       $('div.navbar.navbar-inverse').show();
