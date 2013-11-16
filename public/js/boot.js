@@ -17,8 +17,7 @@ require.config({
 
   shim: {
     'jQueryAI': ['jQuery'],
-    'd3': ['jQuery'], 
-    'pep': ['jQuery'],
+    //'d3': ['jQuery'], 
     'bootJs': ['jQuery'], 
     'doc': ['jQuery'],
     'Backbone': ['Underscore', 'jQuery'],
