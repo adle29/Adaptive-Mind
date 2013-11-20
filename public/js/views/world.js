@@ -117,7 +117,7 @@ function(AdaptiveMindView, worldTemplate) {
             // Append the labels to each group
             //10
             var circle = node.append("circle")
-              .attr("r", function(d) { console.log(d.name.length); return d.value == 1 ? 40 : 20 })
+              .attr("r", function(d) { return d.value == 1 ? 40 : 20 })
               .attr("class", function(d) { return d.value == 1 ? 'leaf' : 'branch' }   ); 
             //  .html("<a href='newPage.html'>new page</a>");
           //    .style("fill", function(d) { return d.value == 1 ? 'red' : 'blue' } );
