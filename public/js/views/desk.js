@@ -13,7 +13,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
     initialize: function() {
       
       this.model.bind('change', this.render, this);
-      this.onVinbookCollectionReset(); 
+           
     },
 
     //ACTION TO CREATE A NOTEBOOK
@@ -62,7 +62,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
 
      prependVinbook: function(vinBookModel) {  
       if (vinBookModel != null) {
-
+        console.log('yeap', vinBookModel);
         var vinBookHtml = (new vinBookView ({ model: vinBookModel }) ).render().el;
         $(vinBookHtml).prependTo('#vinBookListUl').hide().fadeIn('slow');
       }
@@ -93,7 +93,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
     },
 
     render: function() {
-
+       this.onVinbookCollectionReset(); 
       var that = this;
         this.$el.html(
           _.template(deskTemplate, this.model.toJSON() )
