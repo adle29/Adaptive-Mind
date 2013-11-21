@@ -70,25 +70,25 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
 
      onVinbookCollectionReset: function() {      
       var that = this; 
+      if (that.model.get('_id') != null){ 
+        $.get('myVinbooks', {
+          myId: that.model.get('_id')
+        }, 
+        function(data) {
+          var vinbooksCollection = data; 
+                  for (var i = 0; i< vinbooksCollection.length; i++){
+             var vinbookModel = new Vinbook (data[i]);
+             that.prependVinbook(vinbookModel);
 
-      $.get('myVinbooks', {
-        myId: that.model.get('_id')
-      }, 
-      function(data) {
-        var vinbooksCollection = data; 
-                for (var i = 0; i< vinbooksCollection.length; i++){
-           var vinbookModel = new Vinbook (data[i]);
-           that.prependVinbook(vinbookModel);
-
-        }
-        console.log(data);
-
-
-      }).error(function(){
-
-      });
+          }
+          console.log(data);
 
 
+        }).error(function(){
+
+        });
+
+    }//end if 
 
     },
 
