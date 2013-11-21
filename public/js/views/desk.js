@@ -45,6 +45,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
             //that.prependVinbook(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() })); 
             // if (data.error){ window.location.hash = 'login'; }
             //that.prependVinbook(); 
+            that.model.fetch();
             console.log(data);
           });
 
