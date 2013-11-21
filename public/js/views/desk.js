@@ -7,7 +7,6 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
     el: $('#content'),
 
     events: {
-      "click #newVinbook": "create",
       "submit form": "createShow"
     },
 
@@ -15,13 +14,9 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
       
       this.model.bind('change', this.render, this);
       this.model.vinbooks.on('add', this.render, this);
-      $('div.navbar.navbar-inverse').show();
     },
 
     //ACTION TO CREATE A NOTEBOOK
-    create: function (){
-      $('#notebookCreaterForm').slideDown(); 
-    },
 
     alert: function (){
       var html = '<div class="alert alert-danger fade in"> <button type="button" '+
@@ -36,7 +31,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
     createShow: function (){
       if ( $('input[name=title]').val() != "" ) {
 
-        $('#notebookCreaterForm').slideUp(); 
+  
         var vinBooksCollection = this.model.vinbooks; 
         var that = this;
         $.post('/accounts/' + this.model.get('_id')+'/vinbook', {
@@ -48,7 +43,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
           }, function(data) {
             vinBooksCollection.add(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() }));
             //that.prependVinbook(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() })); 
-             if (data.error){ window.location.hash = 'login'; }
+            // if (data.error){ window.location.hash = 'login'; }
 
           });
 

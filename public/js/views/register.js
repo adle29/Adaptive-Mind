@@ -54,7 +54,7 @@ define(['text!templates/register.html'], function(registerTemplate) {
         return false;
       }
       else 
-        return true; 
+        return false; 
     },
 
     register: function() { //POST REQUEST TO SAVE USER

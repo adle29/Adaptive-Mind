@@ -66,6 +66,8 @@ app.get('/vinbook', function(req, res) {
 
 app.post ('/accounts/:id/vinbook', function (req,res){
   console.log('POST REQUEST - SUCCESSFUL');
+  console.log('malaui');
+
   var accountId = req.param.id == 'me'
                   ? req.session.accountId
                   : req.params.id;
@@ -74,7 +76,7 @@ app.post ('/accounts/:id/vinbook', function (req,res){
   var subject = req.param('subject', null);
   var description = req.param('description', null);
   var AccountId = req.param('AccountId', null);
-  
+  if ( title != null){
   models.Account.findById(accountId, function(account) {
       var vinBook = {
         AccountId: AccountId, 
@@ -98,7 +100,7 @@ app.post ('/accounts/:id/vinbook', function (req,res){
       });
   });
   
-
+}
   res.send(200);
 });
 
@@ -153,7 +155,7 @@ app.delete('/accounts/:id/vinbook', function(req,res) {
     if ( !account ) return;
     models.Account.removeVinbook(account, vinbookId);
   });
-
+  console.log('malaui');
   res.send(200);
 });
 
