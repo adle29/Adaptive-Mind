@@ -374,6 +374,8 @@ app.post('/login', function(req, res) {
     req.session.accountId = account._id;
     res.send(200);
   });
+
+  //res.send(200); 
 });
 
 app.post('/register', function(req, res) {
