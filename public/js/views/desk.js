@@ -13,7 +13,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
     initialize: function() {
       
       this.model.bind('change', this.render, this);
-           
+
     },
 
     //ACTION TO CREATE A NOTEBOOK
@@ -41,7 +41,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
             description: $('input[name=description]').val()
 
           }, function(data) {
-            vinBooksCollection.add(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() }));
+           // vinBooksCollection.add(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() }));
             //that.prependVinbook(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() })); 
             // if (data.error){ window.location.hash = 'login'; }
             if (data.length >= 1){
@@ -52,6 +52,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
           });
 
           //this.model.fetch();
+          return false; 
       }
       else {
         this.alert(); 
@@ -93,11 +94,12 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
     },
 
     render: function() {
-       this.onVinbookCollectionReset(); 
       var that = this;
         this.$el.html(
           _.template(deskTemplate, this.model.toJSON() )
         );
+              $('#vinBookListUl').empty(); 
+       this.onVinbookCollectionReset(); 
        // this.onVinbookCollectionReset();     
     }
 
