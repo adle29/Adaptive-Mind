@@ -7,7 +7,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
     el: $('#content'),
 
     events: {
-      "submit form": "createShow"
+      "click #enterData": "createShow"
     },
 
     initialize: function() {
@@ -44,7 +44,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
             vinBooksCollection.add(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() }));
             //that.prependVinbook(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() })); 
             // if (data.error){ window.location.hash = 'login'; }
-            that.prependVinbook(); 
+            //that.prependVinbook(); 
             console.log(data);
           });
 
