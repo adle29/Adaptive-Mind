@@ -53,6 +53,16 @@ app.get('/accounts/:id/vinbook', function(req, res) {
 
 });
 
+app.get('/myVinbooks', function(req, res) {
+  var accountId = req.param('myId', null);
+
+  models.Account.findById(accountId, function(account) {
+    console.log('GET REQUEST - SUCCESSFUL ');
+    res.send(account.vinbooks);
+  });
+
+});
+
 app.get('/vinbook', function(req, res) {
   console.log(models.Account.vinbooks);
   var vinId = req.param('vinId', null);
@@ -98,10 +108,11 @@ app.post ('/accounts/:id/vinbook', function (req,res){
           console.log('POST REQUEST (Saving vinbook) - SUCCESSFUL');
         }
       });
+      res.send(account.vinbooks);
   });
   
 }
-  res.send(200);
+ // res.send(200);
 });
 
 app.post ('/settings', function (req,res){

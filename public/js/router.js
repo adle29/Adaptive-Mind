@@ -83,7 +83,7 @@ define(['models/Account'],
 
     showVinbook: function(id) {
       var model = new Account({id:'me'}); 
-      this.changeView('vinbookDoc', model, id);
+      this.changeView('vinbookDoc', id);
       model.fetch({ error: function(response){  }  });
     },
 

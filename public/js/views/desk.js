@@ -13,7 +13,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
     initialize: function() {
       
       this.model.bind('change', this.render, this);
-      this.model.vinbooks.on('add', this.render, this);
+      this.onVinbookCollectionReset(); 
     },
 
     //ACTION TO CREATE A NOTEBOOK
@@ -44,12 +44,14 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
             vinBooksCollection.add(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() }));
             //that.prependVinbook(new Vinbook ({  title: $('input[name=title]').val(), subject: $('input[name=subject]').val() })); 
             // if (data.error){ window.location.hash = 'login'; }
-            //that.prependVinbook(); 
-            that.model.fetch();
+            if (data.length >= 1){
+              var vinbookModel = new Vinbook (data[data.length-1] );
+              that.prependVinbook( vinbookModel); 
+            }
             console.log(data);
           });
 
-          this.model.fetch();
+          //this.model.fetch();
       }
       else {
         this.alert(); 
@@ -60,6 +62,7 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
 
      prependVinbook: function(vinBookModel) {  
       if (vinBookModel != null) {
+
         var vinBookHtml = (new vinBookView ({ model: vinBookModel }) ).render().el;
         $(vinBookHtml).prependTo('#vinBookListUl').hide().fadeIn('slow');
       }
@@ -67,25 +70,35 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
 
      onVinbookCollectionReset: function() {      
       var that = this; 
-      var vinbooksCollection = this.model.get('vinbooks');
 
-      if (null != JSON.stringify(vinbooksCollection) ){
-        _.each (vinbooksCollection, function(vinbookJson){
-           var vinbookModel = new Vinbook (vinbookJson);
+      $.get('myVinbooks', {
+        myId: that.model.get('_id')
+      }, 
+      function(data) {
+        var vinbooksCollection = data; 
+                for (var i = 0; i< vinbooksCollection.length; i++){
+           var vinbookModel = new Vinbook (data[i]);
            that.prependVinbook(vinbookModel);
-          
-        });
-      }
+
+        }
+        console.log(data);
+
+
+      }).error(function(){
+
+      });
+
+
+
     },
 
     render: function() {
 
       var that = this;
-     // if ( this.model.me != 'me'  ){
         this.$el.html(
           _.template(deskTemplate, this.model.toJSON() )
         );
-        this.onVinbookCollectionReset();     
+       // this.onVinbookCollectionReset();     
     }
 
   });
