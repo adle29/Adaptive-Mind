@@ -29,18 +29,26 @@ define(['models/Account'],
     },
 
     changeView: function(view, model, id) {
+      var that = this; 
+      if (this.currentView != null) {
+        this.currentView.undelegateEvents();
+        //objView.undelegateEvents();
+        console.log('MXAAA');
+      }
+      console.log('MXAAA2', this.currentView);
+
       require(['views/' + view], function(View) {
         if ( model == null && id == null ){
-          var newView = new View();
-              newView.render(); 
+          that.currentView = new View();
+              that.currentView.render(); 
         }
         else if ( model == null && id != null){
-          var newView = new View({id: id});
-              newView.render(); 
+          that.currentView = new View({id: id});
+              that.currentView.render(); 
         }
         else{
-          var newView = new View({model:model, id: id});
-              newView.render(); 
+         that.currentView = new View({model:model, id: id});
+              that.currentView.render(); 
         }
       }); 
     },

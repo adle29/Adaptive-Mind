@@ -3,10 +3,19 @@ function(AdaptiveMindView, profileTemplate, profile2Template) {
     var profileView = AdaptiveMindView.extend ({
     	el: $('#content'),
 
+      events: {
+        "click #share": "share"
+      },
+
     	initialize: function() {
 	       this.model.bind('change', this.render, this);
          $(window).on("resize", this.render, this);
 	    },
+
+      share: function(){
+        alert("Share this link of your profile with others! " +
+          "adaptivemind.heroku.com/#profile/" + this.model.get('_id' )) ; 
+      }, 
 
       renderText: function(model){
             if (this.model.get('story').photoUrl != null){
