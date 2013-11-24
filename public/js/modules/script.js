@@ -1,13 +1,13 @@
 define([], function (){
 	return Backbone.Model.extend ({
 		defaults: {
-		    module: "vid",
+		    module: "script",
 		    ids: Math.random().toString(36).substring(7) , 
 		    Ourl: '', 
 		    width: 42.0,
 			height: 31.5,
 			x: 30,
-			y: 60
+			y: 170
 		},
 
 		events: {
@@ -17,7 +17,7 @@ define([], function (){
 
 		initialize: function(att) {
 			if (att != null) {
-				this.set({'module': 'vid'});
+				this.set({'module': 'script'});
 				this.set({'Ourl': att.Ourl });
 				this.set({'width': att.width});
 				this.set({'height': att.height});
@@ -51,24 +51,8 @@ define([], function (){
 			var position = " style='display:inline-block; position:absolute; left:"+xfinal +"px; top:" 
 							+yfinal+ "px; width:"+ widthFinal +"px;  height:"+heightFinal+"px; '" 
 
-			var html = "<div  class='pict' "+ id + position + "> <iframe  "+ id2 +" src='//" + url
-					   + "' style='width:100%;  height:100%; '"  + " frameborder='0' allowfullscreen ></iframe>"  ;
-
-		    console.log(html);
-		    
-		    if ($(window).width() < 600){
-			 html = "<iframe  src='//" + this.get('Ourl') 
-					   + "'  width='100%' height='315' " + " frameborder='0' allowfullscreen ></iframe><br/><br/>" 
-					   console.log('smaller display');
-
-			/*
-			<a class="jsbin-embed" 
-          href="http://jsbin.com/EXEVefi/1/embed?html,output">
-          JS Bin</a><script src="http://static.jsbin.com/js/embed.js">
-          </script>
-
-			*/
-			}
+			var html = "<div  class='pict' "+ id + position +  "><iframe "+id2+"class='iframeSize'  src='" + this.get('Ourl') 
+					   + "'  ></iframe></div>";
 
 			//RENDERING IMAGE
 			$('#art').append(html);
@@ -114,6 +98,7 @@ define([], function (){
 
 				function save(){
 					var position = $(id).position();
+					console.log($(id2), $(id2).attr('src'));
 					that.set({'x':     Math.round( position.left*100 / $(window).width() )  });
 					that.set({'y':     Math.round( position.top *100 / 600 ) });
 					that.set({'width': Math.round( $(id).width()*100 / $(window).width() ) });

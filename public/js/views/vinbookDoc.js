@@ -1,6 +1,6 @@
 define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/vinbookDocIphone.html', 'models/Vinbook',
 			'models/EntriesCollection','modules/img', 'modules/vid', 'modules/txt', 'modules/script'], 
-	function(AdaptiveMindView, vinbookDocTemplate, vinbookDocTemplateIphone, Vinbook, EntriesCollection, Img, Vid, Txt){
+	function(AdaptiveMindView, vinbookDocTemplate, vinbookDocTemplateIphone, Vinbook, EntriesCollection, Img, Vid, Txt, Script){
       var page = 1, newPage = 0, newImgG = '';
       var imageSearch;
       var yes = ''; 
@@ -165,11 +165,15 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
 		 		 		this.entries.add(newEntry);
 		 		 	}
 		 		 	else if (gettingEntry.module == "vid")  {
-            console.log('VIDEO YEAH');
 		 		 		var newEntry = new Vid (gettingEntry);
 		 		 		newEntry.render(this.options.notYou);
 		 		 		this.entries.add(newEntry);
 		 		 	}
+          else if (gettingEntry.module == "script")  {
+            var newEntry = new Script (gettingEntry);
+            newEntry.render(this.options.notYou);
+            this.entries.add(newEntry);
+          }
 		 		 	else {
 		 		 		var newEntry = new Txt (gettingEntry);
 		 		 		newEntry.render(this.options.notYou);
@@ -221,21 +225,20 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
 
     video: function(){
        var video=prompt("Please enter the video:","Video"); 
-      
-       video = getVideoString(video); 
-
-
-        var newEntry = new Vid ();
-        newEntry.set( {y:$(window).scrollTop()/5 , Ourl: video, ids: Math.random().toString(36).substring(7)  } );
-        newEntry.render();
-        this.entries.add(newEntry);
+      if (video != null){
+          video = getVideoString(video);        
+          var newEntry = new Vid ();
+          newEntry.set( {y:$(window).scrollTop()/5 , Ourl: video, ids: Math.random().toString(36).substring(7)  } );
+          newEntry.render();
+          this.entries.add(newEntry);
+      }
             //$('#closeModal').trigger('click');
     }, 
 
     script: function (){
-        var newEntry = new Vid ();
+        var newEntry = new Script ();
         var randomNum = Math.random().toString(36).substring(7); 
-        var url  = "http://jsbin.com/"+randomNum+"/1/embed?html,output"; 
+        var url  = "http://jsbin.com/OtAVUbi/1/edit"; 
         newEntry.set( {y:$(window).scrollTop()/5 , Ourl: url , ids: Math.random().toString(36).substring(7)  } );
         newEntry.render();
         this.entries.add(newEntry);

@@ -55,6 +55,11 @@ body{
 	color:purple;
 }
 
+.iframeSize{
+  width:100%;
+  height:100%;
+}
+
 .info {
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#cccccc), to(#aaaaaa), color-stop(0.6, #cccccc));
   text-shadow: rgba(255, 255, 255, 0.8) 0 1px 0;

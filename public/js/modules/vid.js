@@ -39,6 +39,8 @@ define([], function (){
 			var id = " id='"+this.get('ids') + "'";
 			var id2 = " id='"+this.get('ids') + "2'";
 			var url = this.get('Ourl') ; 
+			var idEliminate = " id='"+this.get('ids') + "eliminate'";
+
 			//IMAGE HTML 
 
 			xfinal = Math.round( this.get('x')*.01*$(window).width() );
@@ -46,13 +48,14 @@ define([], function (){
 			widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
 			heightFinal = Math.round( this.get('height')*.01*600) ; 
 			//url = getVideoString(this.get('Ourl')); 
-			
+			var deleteIcon = "<button"+idEliminate+" class='btn btn-xs btn-danger imgClose'>X</button> ";
+
 
 			var position = " style='display:inline-block; position:absolute; left:"+xfinal +"px; top:" 
 							+yfinal+ "px; width:"+ widthFinal +"px;  height:"+heightFinal+"px; '" 
 
-			var html = "<div  class='pict' "+ id + position + "> <iframe  "+ id2 +" src='//" + url
-					   + "' style='width:100%;  height:100%; '"  + " frameborder='0' allowfullscreen ></iframe>"  ;
+			var html = "<div  class='pict' "+ id + position + ">"+deleteIcon+" <iframe  "+ id2 +" src='//" + url
+					   + "' style='width:100%;  height:100%;  padding:15px;'"  + " frameborder='0' allowfullscreen ></iframe>"  ;
 
 		    console.log(html);
 		    
@@ -69,6 +72,7 @@ define([], function (){
 			if (showcase || showcase == null && $(window).width() > 600  ){
 				id = '#'+this.get('ids'); 
 				id2 = '#'+this.get('ids')+'2'; 
+				idEliminate = '#'+this.get('ids') + "eliminate";
 				$('.del').hide(); 
 
 
@@ -101,7 +105,7 @@ define([], function (){
 				  });
 
 				$(id).mouseout(function(){ $('.del').hide();  });
-				$(id).dblclick(function(){ that.removeImg()   } );
+				$(idEliminate).click(function(){ that.removeImg()   } );
 
 
 				function save(){
