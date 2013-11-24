@@ -33,9 +33,7 @@ define(['models/Account'],
       if (this.currentView != null) {
         this.currentView.undelegateEvents();
         //objView.undelegateEvents();
-        console.log('MXAAA');
       }
-      console.log('MXAAA2', this.currentView);
 
       require(['views/' + view], function(View) {
         if ( model == null && id == null ){

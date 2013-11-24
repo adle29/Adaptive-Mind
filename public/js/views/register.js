@@ -58,7 +58,8 @@ define(['text!templates/register.html'], function(registerTemplate) {
     },
 
     register: function() { //POST REQUEST TO SAVE USER
-      if ( this.verification() ) { 
+      if ( !this.verification() ) { 
+        console.log('YES IT SHOULD WORK');
         $.post('/register', {
           firstName: $('input[name=firstName]').val(),
           lastName: $('input[name=lastName]').val(),
