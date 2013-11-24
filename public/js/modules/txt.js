@@ -41,18 +41,16 @@ define([], function (){
 			var ids3 = " id='"+this.get('ids') + "3'"+'';
 			var xfinal = Math.round( this.get('x')*.01*$(window).width() );
 			var yfinal = Math.round( this.get('y')*.01*600);
-			var widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
-			var heightFinal = Math.round( this.get('height')*.01*$(window).height()	); 
+			var widthFinal = Math.round( this.get('width') *.01*$(window).width()); 
+			var heightFinal = Math.round( this.get('height') *.01*$(window).height())+30; 
 
 			var style = " style='position:absolute; top:"+yfinal + "px; left:"
 				+ xfinal + "px;"+ " width:"+widthFinal+"px; height:"+ 
 				heightFinal + "px;'"; 
 
-			var html = '<div '+id+style+' >'+
+			var html = '<div class="txtaBord" '+id+style+' >'+
 				'<div '+ids3+' class="txta"><button class="close txtclose">×</button></div>'+ 
-				'<p '+ids2+' class="txtFormat" contenteditable="true">'+
-				
-				'</p></div>';
+				'<p '+ids2+' class="txtFormat" contenteditable="true">'+ '</p></div>';
 			//----------------------Small Screen---------------------------------------
 
 			if ($(window).width() < 600){
@@ -99,7 +97,7 @@ define([], function (){
 			    $(ids2 +' p').css('font-size', scale * 100 + '%');
 			 }//end if 
 
-			//----------------------DDING JQUERY----------------------------------------
+			//----------------------DOING JQUERY----------------------------------------
 
 			if (showcase || showcase == null && $(window).width() > 600 ){
 
@@ -108,21 +106,15 @@ define([], function (){
 					$(ids2).focus(); 
 			    });
 
-				$(ids).css('border', '2px solid blue') ; 
-
-
-				console.log('less',showcase, showcase == null, $(window).width()  );
 				var that = this;
 				$(ids).draggable();
 				$(ids3).css('visibility', 'visible' );
 
 				$(ids).mouseover(function(){
-
 					save(); 
 				});
 
 				$(ids).mouseout(function(){
-
 					save();
 				});
 
@@ -153,7 +145,10 @@ define([], function (){
 			      helper: "ui-resizable-helper"
 			    });
 
-			    $( ids3 ).on( "resize", function( event, ui ) {save(); } );
+			    $( ids3 ).on( "resize", function( event, ui ) {
+			    	save(); 
+
+			    } );
 
 			    $(ids2).on('paste', function(e) {
 				  //  $(this).removeAttr("style");
@@ -162,25 +157,21 @@ define([], function (){
 				});
 
 		
-
 				$(ids).click(function() {
 					save(); 
 				});
 
 				 function save (){
+
 				 	var position = $(ids).position();
-					that.set({'width': Math.round( $(ids).width()*100 / $(window).width() ) });
-					that.set({'height': Math.round( $(ids).height()*100 / $(window).height() ) });
+					that.set({'width': Math.round( $(ids2).width()*100 / $(window).width() ) });
+					that.set({'height': Math.round( $(ids2).height()*100 / $(window).height() ) });
 					that.set({'x':     Math.round( position.left*100 / $(window).width() )  });
 					that.set({'y':     Math.round( position.top *100 / 600 ) });
 					that.set({'content': $(ids2).html()  });
 				 }
 		
-
-				// $(id).mouseover(function(){ $('.del').show();  });
-				// $(id).mouseout(function(){ $('.del').hide();  });
 				 $(ids3 + ' button').click(function(){ that.removeImg();   } );
-				// $(id).click(function(){ $(id).focus();  } );
 		}
 
 		else {

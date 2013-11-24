@@ -97,10 +97,6 @@ define([], function (){
 				    }
 				});
 
-		
-					//$(id).pep(); 
-		 		//$(id).draggable({ containment: "#art", cursor: "crosshair" });
-
 	                $(".ui-wrapper").css('position', 'absolute');
 	                $(id2).css('height', 'auto');
 	                $(id).css('position', 'absolute');

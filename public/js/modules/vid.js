@@ -60,7 +60,7 @@ define([], function (){
 		    console.log(html);
 		    
 		    if ($(window).width() < 600){
-			 html = "<iframe  src='//" + this.get('Ourl') 
+			 		html = "<iframe  src='//" + this.get('Ourl') 
 					   + "'  width='100%' height='315' " + " frameborder='0' allowfullscreen ></iframe><br/><br/>" 
 					   console.log('smaller display');
 			}

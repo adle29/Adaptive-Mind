@@ -238,12 +238,10 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
     script: function (){
         var newEntry = new Script ();
         var randomNum = Math.random().toString(36).substring(7); 
-        var url = prompt("Please enter the URL:","url"); 
-        if (url != null){
-          newEntry.set( {y:$(window).scrollTop()/5 , Ourl: url , ids: Math.random().toString(36).substring(7)  } );
-          newEntry.render();
-          this.entries.add(newEntry);
-        }
+        var url  = "http://jsbin.com/OtAVUbi/1/edit"; 
+        newEntry.set( {y:$(window).scrollTop()/5 , Ourl: url , ids: Math.random().toString(36).substring(7)  } );
+        newEntry.render();
+        this.entries.add(newEntry);
 
     },
 

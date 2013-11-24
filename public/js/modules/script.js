@@ -39,6 +39,7 @@ define([], function (){
 			var id = " id='"+this.get('ids') + "'";
 			var id2 = " id='"+this.get('ids') + "2'";
 			var url = this.get('Ourl') ; 
+			var idEliminate = " id='"+this.get('ids') + "eliminate'";
 			//IMAGE HTML 
 
 			xfinal = Math.round( this.get('x')*.01*$(window).width() );
@@ -46,13 +47,22 @@ define([], function (){
 			widthFinal = Math.round( this.get('width')*.01*$(window).width()); 
 			heightFinal = Math.round( this.get('height')*.01*600) ; 
 			//url = getVideoString(this.get('Ourl')); 
-			
+			var deleteIcon = "<button"+idEliminate+" class='btn btn-xs btn-danger imgClose'>X</button> ";
+
 
 			var position = " style='display:inline-block; position:absolute; left:"+xfinal +"px; top:" 
 							+yfinal+ "px; width:"+ widthFinal +"px;  height:"+heightFinal+"px; '" 
 
-			var html = "<div  class='pict' "+ id + position +  "><iframe "+id2+"class='iframeSize'  src='" + this.get('Ourl') 
-					   + "'  ></iframe></div>";
+			var html = "<div  class='pict' "+ id + position +  ">"+deleteIcon+"<iframe "+id2+"class='iframeSize'  src='" + this.get('Ourl') 
+					   + "' style='padding:15px;'  ></iframe></div>";
+
+
+
+		    if ($(window).width() < 600){
+			 		html = "<iframe  src='" + this.get('Ourl') 
+					   + "'  width='100%' height='315' " + " frameborder='0'  ></iframe><br/><br/>" 
+					   console.log('smaller display');
+			}
 
 			//RENDERING IMAGE
 			$('#art').append(html);
@@ -62,6 +72,7 @@ define([], function (){
 				id = '#'+this.get('ids'); 
 				id2 = '#'+this.get('ids')+'2'; 
 				$('.del').hide(); 
+				idEliminate = '#'+this.get('ids') + "eliminate";
 
 
 				$(id).resizable({handles: 'se'});
@@ -76,13 +87,11 @@ define([], function (){
 				    }
 				});
 
-		
-					//$(id).pep(); 
-		 		//$(id).draggable({ containment: "#art", cursor: "crosshair" });
+				$(idEliminate).click(function(){ that.removeImg()   } );
 
-	                $(".ui-wrapper").css('position', 'absolute');
-	               // $(id2).css('height', 'auto');
-	                $(id).css('position', 'absolute');
+                $(".ui-wrapper").css('position', 'absolute');
+               // $(id2).css('height', 'auto');
+                $(id).css('position', 'absolute');
 
 				$(id).mouseup(function() {
 					save();
@@ -93,7 +102,6 @@ define([], function (){
 				  });
 
 				$(id).mouseout(function(){ $('.del').hide();  });
-				$(id).dblclick(function(){ that.removeImg()   } );
 
 
 				function save(){
@@ -103,11 +111,7 @@ define([], function (){
 					that.set({'y':     Math.round( position.top *100 / 600 ) });
 					that.set({'width': Math.round( $(id).width()*100 / $(window).width() ) });
 					that.set({'height': Math.round( $(id).height()*100 / 600 ) });
-
 				}
-
-				//work please
-
 
 			}
       	}
@@ -115,8 +119,3 @@ define([], function (){
 
 	});
 });
-
-
-
-
-	
