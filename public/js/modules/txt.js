@@ -48,26 +48,29 @@ define([], function (){
 				+ xfinal + "px;"+ " width:"+widthFinal+"px; height:"+ 
 				heightFinal + "px;'"; 
 
-			var html = '<div class="txtaBord" '+id+style+' >'+
-				'<div '+ids3+' class="txta"><button class="close txtclose">×</button></div>'+ 
-				'<p '+ids2+' class="txtFormat" contenteditable="true">'+ '</p></div>';
 			//----------------------Small Screen---------------------------------------
 
-			if ($(window).width() < 600 || !showcase){
+			if (showcase || showcase == null && $(window).width() > 600 ){
+				var html = '<div class="txtaBord" '+id+style+' >'+
+				'<div '+ids3+' class="txta"><button class="close txtclose">×</button></div>'+ 
+				'<p '+ids2+' class="txtFormat" contenteditable="true">'+this.get('content') +
+				 '</p></div>';
 
-			    html = '<div class="txtFormatMobile">'+
-					this.get('content') + '</div>';
-
-				console.log('smaller devices');
-			}
+		    }
+		    else {
+				var html = '<div '+style+' >'+
+				'<p '+ids2+' class="txtFormat" contenteditable="true">'+this.get('content')+ '</p></div>'; 	
+		    }
+		    
 
 			//----------------------append html----------------------------------------
 
-			
-			$('#art').append(html);
-			if ($(window).width() > 600) {
-				$('#'+this.get('ids')+'2').append(this.get('content')); 
+			if ($(window).width() < 600) {
+				html = '<div class="txtFormatMobile">'+
+					this.get('content') + '</div>';
 			}
+
+			$('#art').append(html);
 
 			//----------------------Scaling functions----------------------------------------
 
@@ -75,9 +78,6 @@ define([], function (){
 			ids2 = '#'+this.get('ids')+'2';
 			ids3 = '#'+this.get('ids')+'3';
 			$(ids3).css('visibility', 'hidden' );
-			
-			//$(ids2+ ' p').removeAttr('style');
-			console.log('removing', $(ids2+ ' p'));
 
 			if ($(window).width() > 600 ){
 			  var scaleFactor = 0.5;
@@ -94,7 +94,8 @@ define([], function (){
 			    else if (scale < minScale) {
 			      scale = minScale;
 			    }
-			    $(ids2 +' p').css('font-size', scale * 100 + '%');
+			    $(ids2 ).css('font-size', scale * 100 + '%');
+			    console.log('true here');
 			 }//end if 
 
 			//----------------------DOING JQUERY----------------------------------------
