@@ -54,14 +54,22 @@ define([], function (){
 			var position = " style='display:inline-block; position:absolute; left:"+xfinal +"px; top:" 
 							+yfinal+ "px; width:"+ widthFinal +"px;  height:"+heightFinal+"px; '" 
 
+
+		    console.log(html);
+
+		    if (showcase || showcase == null && $(window).width() > 600  ){
 			var html = "<div  class='pict' "+ id + position + ">"+deleteIcon+" <iframe  "+ id2 +" src='//" + url
 					   + "' style='width:100%;  height:100%;  padding:15px;'"  + " frameborder='0' allowfullscreen ></iframe>"  ;
 
-		    console.log(html);
+		    }
+		    else {
+			var html = "<div  class='pict' "+ id + position + "> <iframe  "+ id2 +" src='//" + url
+					   + "' style='width:100%;  height:100%;  '"  + " frameborder='0' allowfullscreen ></iframe>"  ;    	
+		    }
 		    
-		    if ($(window).width() < 600){
+		    if ($(window).width() < 600 ){
 			 		html = "<iframe  src='//" + this.get('Ourl') 
-					   + "'  width='100%' height='315' " + " frameborder='0' allowfullscreen ></iframe><br/><br/>" 
+					   + "'  width='100%' height='315' " + " frameborder='0' allowfullscreen ></iframe>" 
 					   console.log('smaller display');
 			}
 

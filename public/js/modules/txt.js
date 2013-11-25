@@ -53,7 +53,7 @@ define([], function (){
 				'<p '+ids2+' class="txtFormat" contenteditable="true">'+ '</p></div>';
 			//----------------------Small Screen---------------------------------------
 
-			if ($(window).width() < 600){
+			if ($(window).width() < 600 || !showcase){
 
 			    html = '<div class="txtFormatMobile">'+
 					this.get('content') + '</div>';

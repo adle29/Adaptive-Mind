@@ -53,13 +53,19 @@ define([], function (){
 			var position = " style='display:inline-block; position:absolute; left:"+xfinal +"px; top:" 
 							+yfinal+ "px; width:"+ widthFinal +"px;  height:"+heightFinal+"px; '" 
 
+
+			if (showcase || showcase == null && $(window).width() > 600  ){
 			var html = "<div  class='pict' "+ id + position +  ">"+deleteIcon+"<iframe "+id2+"class='iframeSize'  src='" + this.get('Ourl') 
 					   + "' style='padding:15px;'  ></iframe></div>";
 
+		    }
+		    else {
+			var html = "<div  class='pict' "+ id + position +  "><iframe "+id2+"class='iframeSize'  src='" + this.get('Ourl') 
+					   + "' style='padding:15px;'  ></iframe></div>";	    	
+		    }
 
-
-		    if ($(window).width() < 600){
-			 		html = "<iframe   src='" + this.get('Ourl') 
+		    if ($(window).width() < 600 ){
+			 html = "<iframe   src='" + this.get('Ourl') 
 					   + "'  width='100%' height='315' " + " frameborder='0' scrolling='yes' ></iframe><br/><br/>" 
 					   console.log('smaller display');
 			}
