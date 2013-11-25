@@ -59,8 +59,8 @@ define([], function (){
 
 
 		    if ($(window).width() < 600){
-			 		html = "<iframe  src='" + this.get('Ourl') 
-					   + "'  width='100%' height='315' " + " frameborder='0'  ></iframe><br/><br/>" 
+			 		html = "<iframe   src='" + this.get('Ourl') 
+					   + "'  width='100%' height='315' " + " frameborder='0' scrolling='yes' ></iframe><br/><br/>" 
 					   console.log('smaller display');
 			}
 
