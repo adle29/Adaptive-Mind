@@ -6,9 +6,82 @@ function(AdaptiveMindView, worldTemplate) {
 
       initialize: function(){
         var that = this; 
-       // setInterval(function(){  that.locateDate(); },3000);
-       that.locateDate();
+        that.locateDate();
       },
+
+      snow: function (){
+        window.requestAnimFrame = (function(){
+          return  window.requestAnimationFrame       || 
+                  window.webkitRequestAnimationFrame || 
+                  window.mozRequestAnimationFrame    || 
+                  window.oRequestAnimationFrame      || 
+                  window.msRequestAnimationFrame     || 
+                  function( callback ){
+                    window.setTimeout(callback, 1000 / 60);
+                  };
+        })();
+
+        var canvas = document.getElementById('myCanvas');
+        console.log('yes', $('#myCanvas'));
+        var context = canvas.getContext ('2d');
+
+
+        var snowBalls = []; 
+        var numberOfSnowBalls = 100; 
+        var rad = 5; 
+        var velocity = 5;
+
+        function init () {
+          for (var i = 0; i< numberOfSnowBalls; i++){
+            var snowBall = {
+              x: Math.random()*canvas.width-1,
+              y:  Math.random()*canvas.height-1,
+              r: Math.random()*rad,
+              v:  Math.random() * (5 - 1) + 1
+            };  
+            snowBalls.push(snowBall);
+          }
+          console.log(snowBalls); 
+        }
+
+        function draw(){
+          
+          for (var i = 0; i< numberOfSnowBalls; i++){
+          var newBall = snowBalls[i];
+            context.beginPath();
+            context.arc(newBall.x,newBall.y,newBall.r,0,2*Math.PI, false);
+            context.fillStyle = 'white';
+            context.fill(); 
+            context.lineWidth = 1;
+            context.stroke();
+
+            newBall.y += newBall.v; 
+            if( newBall.y -newBall.r > canvas.height){
+              newBall.r = Math.random()*rad; 
+              newBall.y = - newBall.r;
+              newBall.x = Math.random()*canvas.width-1;
+            }
+          }
+        }
+
+        init(); 
+
+        function animate () {
+          canvas = document.getElementById('myCanvas');
+          context = canvas.getContext ('2d');
+          canvas.width = $(window).width(); 
+          canvas.height = $(window).height(); 
+          
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          draw(); 
+          requestAnimFrame(function() {
+                  animate();
+                });
+        }
+
+
+        animate();
+      }, 
 
       locateDate: function() {
         var that = this; 
@@ -77,14 +150,20 @@ function(AdaptiveMindView, worldTemplate) {
       },
 
       render: function(json) {
+          
           if (json != null ) {
             this.$el.html(worldTemplate);
+            this.snow(); 
+
             var width = $(window).width(),
                 height = $(window).height();
 
             var svg = d3.select("#myDiv").append("svg")
                 .attr("width", width)
-                .attr("height", height);
+                .attr("height", height)
+                .attr("position", "absolute")
+                .attr("top", "0px")
+                .attr("left", "0px"); 
 
             var force = d3.layout.force()
                 .gravity(.05)
@@ -138,6 +217,8 @@ function(AdaptiveMindView, worldTemplate) {
             });
 
           }//end if
+
+
       }//end render
 
     }); //end object
