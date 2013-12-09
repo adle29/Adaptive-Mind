@@ -41,7 +41,7 @@ function(AdaptiveMindView, profileTemplate, profile2Template) {
                 var myVinbooks = this.model.get('vinbooks');
                 var html = "<div class='bigTitle' > <h3>Adaptive Mind Pages</h3></div>"+
                            "<hr><div id='pages'><dl></dl></div>";
-                           console.log(myVinbooks);
+                           console.log("here", myVinbooks);
                 if ( myVinbooks.length != 0){
                   $('#leftColumn').append(html); 
                   for (var i = 0; i < myVinbooks.length; i++){

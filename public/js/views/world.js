@@ -2,19 +2,19 @@
 define(['AdaptiveMindView', 'text!templates/world.html'],
 function(AdaptiveMindView, worldTemplate) {
     var worldView = AdaptiveMindView.extend ({
-    	el: $('#content'),
+      el: $('#content'),
 
-    	initialize: function(){
+      initialize: function(){
         var that = this; 
        // setInterval(function(){  that.locateDate(); },3000);
        that.locateDate();
-    	},
+      },
 
-    	locateDate: function() {
-    	  var that = this; 
+      locateDate: function() {
+        var that = this; 
         $('#myDiv').css('height', $(window).height());
 
-    	  $.get('/world', {}, 
+        $.get('/world', {}, 
           function(data){
             var json = {}; 
             var count = 7; 
@@ -74,14 +74,11 @@ function(AdaptiveMindView, worldTemplate) {
             that.render(json); 
           }); //end get
 
-	    },
+      },
 
-    	render: function(json) {
-      		if (json != null ) {
-        		this.$el.html(worldTemplate);
-            // var json = { nodes: data }
-            // json.links = [{"source":1,"target":0,"value":1},{"source":2,"target":0}]  ;
-             console.log(json);
+      render: function(json) {
+          if (json != null ) {
+            this.$el.html(worldTemplate);
             var width = $(window).width(),
                 height = $(window).height();
 
@@ -98,14 +95,11 @@ function(AdaptiveMindView, worldTemplate) {
                 .links(json.links)
                 .start();
 
-          console.log(JSON.stringify(json, null, 2));
 
           var link = svg.selectAll(".link")
           .data(json.links)
           .enter().append("line")
           .attr("class", "link");
-
-          var circle
 
             // Add one circle in each group
             var node = svg.selectAll(".node")
@@ -116,20 +110,18 @@ function(AdaptiveMindView, worldTemplate) {
 
             // Append the labels to each group
             //10
-            var circle = node.append("circle")
-              .attr("r", function(d) { return d.value == 1 ? 40 : 20 })
+            var circle = node.append("circle")  
+              .attr("r", function(d) { return d.value == 1 ? 40 : 8})
               .attr("class", function(d) { return d.value == 1 ? 'leaf' : 'branch' }   ); 
-            //  .html("<a href='newPage.html'>new page</a>");
-          //    .style("fill", function(d) { return d.value == 1 ? 'red' : 'blue' } );
 
-            var labels = node
-            //append("text")
-              .attr("text-anchor", "middle")
 
-              // .text(function(d) { return  d.name })
-              // .on('click', function (d) { window.location.hash = 'vinbooks/'+d.id; });
-              .append("svg:a").attr("xlink:href", function(d) { return d.value == 1 ? '' : '#vinbook/'+d.id; })
+              var labels = node
+              
+              .attr("dy", function(d) { if (d.value ==1){ return 0;} else {  return ".50em";  } } )
+              .attr("text-anchor", function(d) { if (d.value ==1) return "middle"; } )
+              .append("svg:a").attr("xlink:href", function(d) { return d.value == 0 ? '#vinbook/'+d.id : ''; })
               .append("svg:text").text(function(d) { return d.name; })
+              .attr("x", function(d) { if (d.value ==1){ return 0;} else {  return "13px";  } });
 
 
             force.on("tick", function() {
@@ -138,7 +130,6 @@ function(AdaptiveMindView, worldTemplate) {
                 .attr("y1", function(d) { return d.source.y; })
                 .attr("x2", function(d) { return d.target.x; })
                 .attr("y2", function(d) { return d.target.y; });
-
               // Translate the groups
               node.attr("transform", function(d) { 
                 return 'translate(' + [d.x, d.y] + ')'; 
@@ -146,8 +137,8 @@ function(AdaptiveMindView, worldTemplate) {
 
             });
 
-  		    }//end if
-    	}//end render
+          }//end if
+      }//end render
 
     }); //end object
     
