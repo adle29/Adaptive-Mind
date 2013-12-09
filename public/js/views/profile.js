@@ -24,7 +24,6 @@ function(AdaptiveMindView, profileTemplate, profile2Template) {
                 var birthday = this.model.get('birthday').month + ' '
                                + this.model.get('birthday').day + ', ' +
                                 this.model.get('birthday').year;
-                console.log(birthday);
 
                 //$('#story').val(this.model.get('story').photoUrl   );
                // $('#fullname').append(name); 
@@ -38,6 +37,23 @@ function(AdaptiveMindView, profileTemplate, profile2Template) {
                 $('#participation').append('<p>'+ this.model.get('participation').text + '</p>' );
                 //$('input[name=pictureUrl4]').val( this.model.get('portfolio').photoUrl );
                 $('#portfolio').append('<p>'+  this.model.get('portfolio' ).text + '</p>' );
+
+                var myVinbooks = this.model.get('vinbooks');
+                var html = "<div class='bigTitle' > <h3>Adaptive Mind Pages</h3></div>"+
+                           "<hr><div id='pages'><dl></dl></div>";
+                           console.log(myVinbooks);
+                if ( myVinbooks.length != 0){
+                  $('#leftColumn').append(html); 
+                  for (var i = 0; i < myVinbooks.length; i++){
+                    var page = myVinbooks[i]; 
+                    var des = page.description == "" ? "-No description available" : page.description ; 
+                    html = " <dt> <a class='cap' href='#vinbook/"+ page._id +"'>"+page.title+"</a></dt>"+
+                      "<dd>"+page.subject+"</dd>"+
+                      "<dd><p class='text-muted'> "+ des +"</p></dd><hr>";
+                    $('#pages dl').append(html); 
+
+                  }
+                }//end iff
             }
       }, 
 

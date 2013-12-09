@@ -15,6 +15,10 @@ body{
   overflow:auto;
 }
 
+.cap{
+  text-transform: capitalize;
+}
+
 
 #content{
   height:100%;
