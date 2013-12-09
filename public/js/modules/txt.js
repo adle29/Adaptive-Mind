@@ -53,13 +53,14 @@ define([], function (){
 			if (showcase || showcase == null && $(window).width() > 600 ){
 				var html = '<div class="txtaBord" '+id+style+' >'+
 				'<div '+ids3+' class="txta"><button class="close txtclose">×</button></div>'+ 
-				'<p '+ids2+' class="txtFormat" contenteditable="true">'+this.get('content') +
-				 '</p></div>';
-
+				'<div '+ids2+' class="txtFormat" contenteditable="true">'+this.get('content') +
+				 '</div></div>';
+				 console.log('yes');	
 		    }
 		    else {
 				var html = '<div '+style+' >'+
-				'<p '+ids2+' class="txtFormat" contenteditable="true">'+this.get('content')+ '</p></div>'; 	
+				'<div '+ids2+' class="txtFormat" contenteditable="true">'+this.get('content')+ '</div></div>'; 
+				console.log('not');	
 		    }
 		    
 
