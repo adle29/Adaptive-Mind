@@ -41,6 +41,11 @@ body{
 
 }
 
+.myContainer{
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
 .del{
 	color:red;
 }
@@ -69,6 +74,10 @@ form {
 
 #the-sticky-div {
     position: relative;
+}
+
+.stLine{
+  border: solid 2px black; 
 }
 /* ------------------------PICTURE DOC-------------------*/
 
@@ -107,6 +116,14 @@ form {
 	border: solid 10px red;
 	-moz-box-shadow: 1px 1px 5px #999;
 	-webkit-box-shadow: 1px 1px 5px #999;
+        box-shadow: 1px 1px 5px #999;
+    background-color: white;
+}
+
+.shadow{
+  
+  -moz-box-shadow: 1px 1px 5px #999;
+  -webkit-box-shadow: 1px 1px 5px #999;
         box-shadow: 1px 1px 5px #999;
     background-color: white;
 }
@@ -293,7 +310,7 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 }
 
 .bigCaption{
-  border: 1px solid black;
+  
   word-wrap:break-word;
 }
 
@@ -305,7 +322,7 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
  }
 
 .smallCaption{
-  border: 1px solid black;
+  
   word-wrap:break-word;
   text-align: justify;
 }
@@ -523,7 +540,60 @@ display: block;
   height: 1500px;
 }
 
+.backColor2 { 
+  background: rgb(64,150,238);
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top:0px;
+  background: -moz-linear-gradient(top,  rgba(64,150,238,1) 0%, rgba(64,150,238,1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(64,150,238,1)), color-stop(100%,rgba(64,150,238,1)));
+  background: -webkit-linear-gradient(top,  rgba(64,150,238,1) 0%,rgba(64,150,238,1) 100%);
+  background: -o-linear-gradient(top,  rgba(64,150,238,1) 0%,rgba(64,150,238,1) 100%);
+  background: -ms-linear-gradient(top,  rgba(64,150,238,1) 0%,rgba(64,150,238,1) 100%);
+  background: linear-gradient(to bottom,  rgba(64,150,238,1) 0%,rgba(64,150,238,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4096ee', endColorstr='#4096ee',GradientType=0 );
 
+
+}
+
+
+
+.paper2 {
+       
+  font: normal 12px/1.5 "Lucida Grande", arial, sans-serif;
+  width: 50%;
+  height: 80%;
+  margin: 0 auto;
+  padding: 8px 10px 4px 10px;
+  position: relative;
+  color: #444;
+  line-height: 20px;
+  border: 1px solid #d2d2d2;
+  background: #fff;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+  background: -webkit-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+  background: -moz-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+  background: -ms-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+  background: -o-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+  background: linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+  -webkit-background-size: 100% 20px;
+  -moz-background-size: 100% 20px;
+  -ms-background-size: 100% 20px;
+  -o-background-size: 100% 20px;
+  background-size: 100% 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+
+
+  border-radius: 3px;
+
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  
+  width: 90%;
+}
 
 
 .slideDownArrow{

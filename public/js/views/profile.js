@@ -40,7 +40,7 @@ function(AdaptiveMindView, profileTemplate, profile2Template) {
 
                 var myVinbooks = this.model.get('vinbooks');
                 var html = "<div class='bigTitle' > <h3>Adaptive Mind Pages</h3></div>"+
-                           "<hr><div id='pages'><dl></dl></div>";
+                           "<hr class='stLine'><div id='pages'><dl></dl></div>";
                            console.log("here", myVinbooks);
                 if ( myVinbooks.length != 0){
                   $('#leftColumn').append(html); 
@@ -49,7 +49,7 @@ function(AdaptiveMindView, profileTemplate, profile2Template) {
                     var des = page.description == "" ? "-No description available" : page.description ; 
                     html = " <dt> <a class='cap' href='#vinbook/"+ page._id +"'>"+page.title+"</a></dt>"+
                       "<dd>"+page.subject+"</dd>"+
-                      "<dd><p class='text-muted'> "+ des +"</p></dd><hr>";
+                      "<dd><p class='text-muted'> "+ des +"</p></dd><hr class='stLine' >";
                     $('#pages dl').append(html); 
 
                   }
