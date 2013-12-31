@@ -28,13 +28,13 @@
 
 // ------------------------------RESPONSIVE------------------------------------------
 
-  $( window ).resize(function() {
+
       var theGoodHeight = $( "html").height(); 
 
       if ( $(window).height() < 600){
           $( ".paper").height(theGoodHeight); 
           $( ".backColor").height(theGoodHeight); 
       }
-  });
+
 
 }());
