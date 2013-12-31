@@ -5,6 +5,7 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
       var imageSearch;
       var yes = ''; 
       var mod; 
+      var name = "";
     	var vinbookDocView = AdaptiveMindView.extend ({
     		el: $('#content'),
     		defaults: {
@@ -46,6 +47,7 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
           $.get('/vinbook', {
             vinId: this.id
           }, function(data){
+            name = data[0].name.first + " " + data[0].name.last; 
             that.gettingVinbook2(data); 
           }); 
    		},
@@ -267,13 +269,26 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
 			if (model != null){
         if ( windowWith < 600 || this.model.me != myid  ){
           this.$el.html( _.template(vinbookDocTemplateIphone, model ) );
+          console.log(this.model);
           this.options.notYou = false; 
           console.log('not you', this.options.notYou, this.model.me );
+
+        $("#nam").append(name); 
+          console.log(name, "hurray");
+        
         }
         else {
   				this.$el.html( _.template(vinbookDocTemplate, model  ) );
+          console.log(this.model);
           this.options.notYou = true; 
+       
+        $("#nam").append(name); 
+          console.log(name, "hurray");
         }
+        
+
+
+
 
 			}
 
