@@ -32,8 +32,11 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
         "click #bold": "bold",
         "click #list": "list",
         "click #link": "link",
-        "click #video": "video"
-
+        "click #video": "video",
+        "click #video": "video",
+        'click #slide': "slide",
+        'click #slideDown': "slideUp"
+        
    		 },
 
    		gettingVinbook: function () {
@@ -245,6 +248,16 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
           this.entries.add(newEntry);
         }
 
+    },
+
+    slide: function (){
+      $("#bar").slideToggle( "slow"); 
+      $("#slideDown").removeClass("hidden");
+    },
+
+    slideUp: function (){
+      $("#bar").slideToggle( "slow"); 
+      $("#slideDown").addClass("hidden");
     },
 
 		render: function (myid, model) {

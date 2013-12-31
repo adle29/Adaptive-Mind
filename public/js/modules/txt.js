@@ -44,6 +44,8 @@ define([], function (){
 			var widthFinal = Math.round( this.get('width') *.01*$(window).width()); 
 			var heightFinal = Math.round( this.get('height') *.01*$(window).height())+30; 
 
+
+
 			var style = " style='position:absolute; top:"+yfinal + "px; left:"
 				+ xfinal + "px;"+ " width:"+widthFinal+"px; height:"+ 
 				heightFinal + "px;'"; 
@@ -56,11 +58,19 @@ define([], function (){
 				'<div '+ids2+' class="txtFormat" contenteditable="true">'+this.get('content') +
 				 '</div></div>';
 				 console.log('yes');	
+
 		    }
 		    else {
+		    	yfinal += 27 ;
+		    	style = " style='position:absolute; top:"+yfinal + "px; left:"
+				+ xfinal + "px;"+ " width:"+widthFinal+"px; height:"+ 
+				heightFinal + "px;'"; 
+
+
 				var html = '<div '+style+' >'+
-				'<div '+ids2+' class="txtFormat" contenteditable="true">'+this.get('content')+ '</div></div>'; 
+				'<div '+ids2+' class="txtFormat" >'+this.get('content')+ '</div></div>'; 
 				console.log('not');	
+				
 		    }
 		    
 
@@ -69,6 +79,7 @@ define([], function (){
 			if ($(window).width() < 600) {
 				html = '<div class="txtFormatMobile">'+
 					this.get('content') + '</div>';
+
 			}
 
 			$('#art').append(html);
@@ -168,8 +179,8 @@ define([], function (){
 				 	var position = $(ids).position();
 					that.set({'width': Math.round( $(ids2).width()*100 / $(window).width() ) });
 					that.set({'height': Math.round( $(ids2).height()*100 / $(window).height() ) });
-					that.set({'x':     Math.round( position.left*100 / $(window).width() )  });
-					that.set({'y':     Math.round( position.top *100 / 600 ) });
+					that.set({'x': Math.round( position.left*100 / $(window).width() )  });
+					that.set({'y': Math.round( position.top *100 / 600 ) });
 					that.set({'content': $(ids2).html()  });
 				 }
 		

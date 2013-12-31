@@ -1,5 +1,8 @@
 
-	<nav id="bar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <span id="slideDown" class="hidden btn btn-default slideDownArrow" ><i class="fa fa-arrow-down"></i></span>
+
+
+  <nav id="bar" class="navbar navbar-default navbar-fixed-top" role="navigation">
 	&nbsp;
   <button type="button" id="save"  data-loading-text="Loading..." class="btn btn-success"> Save </button>
 
@@ -22,25 +25,38 @@
   <a href="#settings/<%= _id %> " class="btn btn-warning navbar-btn "><span class="glyphicon glyphicon-cog "></span></a>
 
 
-	<a href="#desk/me" class="btn btn-warning navbar-btn "><span class="glyphicon glyphicon-arrow-left "></span></a>
+	<a href="#desk/me" class="btn btn-warning navbar-btn "><i class="fa fa-home"></i></a>
+
+    <span id="slide" class="btn btn-warning navbar-btn" ><i class="fa fa-arrow-up"></i></span>
 
 </nav>
-<br /><br /><br />
 
 
-<div id="art" class="specialContainer"  >
-
-				
-	<h1><%= title %> </h1>
-	<h4><%= subject %>  </h4> 
-	<hr>
-	<div class="aler">  </div> 
 
 			
-	
-  <!-- Modal -->
-<div class='myToolTip'>yes</div>
+<div class="backColor"> 
+<br>
+  <section class="paper">
+        <article class="head"  >
+          <div>
+            <p class="pull-right">&nbsp; &nbsp;</p> 
+            <a class="pull-right btn btn-default" href="http://adaptivemind.herokuapp.com"><img src="/img/logo2.png"  class=" logo" /></a>
+            <p class="pull-right">&nbsp;</p> 
+             <a href="#world" ><p class="pull-right btn btn-primary "><span class="glyphicon glyphicon-globe "></span></p></a>
 
+  
+            <h1><%= title %> </h1>
+        <h4><%= subject %>  </h4>
+          <div class="aler">  </div> 
+
+      <div>
+        </article>
+
+        <div id="art" class="specialContainer">
+
+        </div>
+
+  </section>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -50,25 +66,26 @@
           <h4 class="modal-title">Look for an image!</h4>
         </div>
         <div class="modal-body">
-        	<!-- INPUT IMAGES -->
-			<div class="input-group">
-		      <input type="text" class="form-control" name="searchbox" id="request">
-		      <span class="input-group-btn">
-		        <button class="btn btn-default" type="button" id="search" >Google</button>
-		        <button class="btn btn-default" type="button" id="more" >More+</button>
-		      </span>
-		    </div>
+          <!-- INPUT IMAGES -->
+      <div class="input-group">
+          <input type="text" class="form-control" name="searchbox" id="request">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="search" >Google</button>
+            <button class="btn btn-default" type="button" id="more" >More+</button>
+          </span>
+        </div>
 
-      	<!-- INPUT IMAGES -->
+        <!-- INPUT IMAGES -->
         </div>
         <br />
         <div class="modal-footer">
-        	  <div id="image-content">
-		      </div>
+            <div id="image-content">
+          </div>
     
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 
-</div> 
+
+</div>
