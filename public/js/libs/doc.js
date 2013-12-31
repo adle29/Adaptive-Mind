@@ -1,5 +1,4 @@
-
-      (function() {
+(function() {
 // do not cache any ajax requests
      // $.ajaxSetup({ cache: false });
 
@@ -26,4 +25,16 @@
             console[method] = noop;
         }
     }
+
+// ------------------------------RESPONSIVE------------------------------------------
+
+  $( window ).resize(function() {
+      var theGoodHeight = $( "html").height(); 
+
+      if ( $(window).height() < 600){
+          $( ".paper").height(theGoodHeight); 
+          $( ".backColor").height(theGoodHeight); 
+      }
+  });
+
 }());
