@@ -263,37 +263,35 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
     },
 
 		render: function (myid, model) {
-
-      var windowWith = $( window ).width(); 
+      var windowWith = $(window).width();
 
 			if (model != null){
         if ( windowWith < 600 || this.model.me != myid  ){
           this.$el.html( _.template(vinbookDocTemplateIphone, model ) );
-          console.log(this.model);
           this.options.notYou = false; 
-          console.log('not you', this.options.notYou, this.model.me );
-
-        $("#nam").append(name); 
-          console.log(name, "hurray");
-        
+          $("#nam").append(name); 
         }
+
         else {
   				this.$el.html( _.template(vinbookDocTemplate, model  ) );
-          console.log(this.model);
           this.options.notYou = true; 
-       
-        $("#nam").append(name); 
-          console.log(name, "hurray");
-        }
-        
+          $("#nam").append(name); 
+        }//else
+		  
 
 
+      var theGoodHeight = $( "#art" ).height()+200;
+      console.log(theGoodHeight);
+      $( ".paper").height(theGoodHeight); 
+      $( ".backColor").height(theGoodHeight); 
+
+      }//if 
 
 
-			}
+      // $( ".backColor").css("border", "solid red");
 
 
-		}
+		}//render
 	});
 
 	return vinbookDocView; 

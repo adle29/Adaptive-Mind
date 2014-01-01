@@ -9,8 +9,12 @@
 /* ------------------------DOC-------------------*/
 
 body{
-	height:100%;
+
   overflow:auto;
+}
+
+#totalHeight{
+  display: inline-block;
 }
 
 .cap{
@@ -19,7 +23,6 @@ body{
 
 
 #content{
-  height:100%;
   overflow:auto;
 }
 
