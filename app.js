@@ -2,7 +2,7 @@ var express     = require("express");
 var app         = express();
 var nodemailer  = require('nodemailer');
 var MemoryStore = require('connect').session.MemoryStore;
-//var dbPath      = 'mongodb://localhost/nodebackbone'; fdss
+//var dbPath      = 'mongodb://localhost/nodebackbone'; 
 var dbPath      = 'mongodb://heroku_app17644347:cgug0p762b1rthc3aadncpgdpo@ds041208.mongolab.com:41208/heroku_app17644347';
 
 // Import the data layer
@@ -362,7 +362,7 @@ app.post('/social/:id', function (req, res) {
 }); 
 
 
-//-------------------REGISTRATION - ACCOUNT--------------------------------
+//************************ LOGGIN ************************
 
 app.post('/login', function(req, res) {
   console.log('login request');
@@ -371,7 +371,7 @@ app.post('/login', function(req, res) {
 
   if ( null == email || email.length < 1
       || null == password || password.length < 1 ) {
-    res.send(400);
+    res.send(401);
     return;
   }
 
@@ -389,6 +389,24 @@ app.post('/login', function(req, res) {
   //res.send(200); 
 });
 
+//************************ VERIFICATION ************************
+
+app.get('/logged', function(req,res){
+  if ( req.session.loggedIn == true){
+    res.send(req.session.accountId);
+  } else{
+    res.send(401);
+  }
+});
+
+//************************ LOG OUT ************************
+app.get('/logOut', function(req, res) {
+    req.session.loggedIn = false; 
+    req.session.accountId = "";
+    res.send(200);
+});
+
+//************************ REGISTER ************************
 app.post('/register', function(req, res) {
   var firstName = req.param('firstName', '');
   var lastName = req.param('lastName', '');

@@ -81,10 +81,17 @@ define(['models/Account'],
       this.changeView('register');
     },
 
-    desk: function (id){
-      var model = new Account({id:id});
-      this.changeView('desk', model );
-      model.fetch({ error: function(response){ window.location.hash = 'login';    } });
+    desk: function (){
+      var that = this; 
+      this.verification( function (myId){
+        if ( myId != "") {
+          var model = new Account({id:myId});
+          that.changeView('desk', model );
+          model.fetch({ error: function(response){ window.location.hash = 'login';    } });
+        }else {
+          window.location.hash = 'login';
+        }
+      }); 
     }, 
 
     showVinbook: function(id) {
@@ -100,8 +107,15 @@ define(['models/Account'],
     },
 
     search: function (){
-      var model = new Account({id:'me'});
-      this.changeView('search', model );
+      var that = this; 
+      this.verification( function (myId){
+        if (myId != ""){
+          var model = new Account({id:'me'});
+          that.changeView('search', model );
+        }else{
+          window.location.hash = 'login';
+        }
+      }); 
     },
 
     social: function (id){
@@ -118,6 +132,19 @@ define(['models/Account'],
 
     world: function (){
       this.changeView('world');
+    }, 
+
+    verification: function ( callback ){
+      var logged = false; 
+         $.ajax("/logged", {
+          method: "GET",
+          success: function(data) {
+            callback(data); 
+          },
+          error: function(data) {
+            callback(""); 
+          }
+        });
     }
 
 

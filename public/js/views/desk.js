@@ -97,9 +97,8 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
         this.$el.html(
           _.template(deskTemplate, this.model.toJSON() )
         );
-              //$('#vinBookListUl').empty(); 
        this.onVinbookCollectionReset(); 
-       // this.onVinbookCollectionReset();     
+   
     }
 
   });
