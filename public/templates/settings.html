@@ -1,21 +1,20 @@
 <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Adaptive Mind</a>
+
+          <a class="navbar-brand hidden-xs" href="#">Adaptive Mind</a>
         </div>
-        <div class="collapse navbar-collapse">
+        <div class="">
 
-          <a href="#desk/me"><p class=" btn btn-info navbar-btn">Desk</p></a>
-          <a href="#search" ><p class=" btn btn-purple navbar-btn">Search</p></a>
-          <a href="#social/me" ><p class=" btn btn-primary navbar-btn">Social</p></a>
-           <a href="#profile/me" ><p class=" btn btn-warning navbar-btn">Profile</p></a>
+          <a href="#desk/me"><p class=" btn btn-info navbar-btn"><i class="fa fa-home"></i></p></a>
+          <a href="#search" ><p class=" btn btn-purple navbar-btn"><i class="fa fa-search"></i> </p></a>
+<!--           <a href="#social/me" ><p class=" btn btn-primary navbar-btn">Social</p></a> -->
+           <a href="#profile/me" ><p class=" btn btn-warning navbar-btn"><i class="fa fa-user"></i></p></a>
+           <a href="#world" ><p class=" btn btn-primary navbar-btn"><span class="glyphicon glyphicon-globe "></span></p></a>
 
-          <a href="" ><p class="pull-right btn btn-danger navbar-btn">Logout</p></a>
+          <a href="#login" ><p class="pull-right btn btn-danger navbar-btn">
+        <i class="fa fa-sign-out"></i>
+          </p></a>
         </div><!--/.nav-collapse -->
       </div>
 </div>
@@ -44,13 +43,10 @@
 			</select>
             <br/> 
             <strong> Description:<strong> <br/>  <br/><input type="text" name="description"  class="form-control" placeholder="Description"  />
-
-          <!--   <br/> 
-            <strong> Webpage Height:<strong><br/>  <br/> <select name="size" class="form-control"  form="notebookCreaterForm" >
-					<option value="1000">1000 px</option>
-					<option value="2000">2000 px</option>
-			</select> -->
-			<br/> 
+              <br/>
+            <input type="radio" name="design" value="1">Blog Format
+             <input type="radio" name="design" value="0">Notes Format
+			<br/>  <br/>
             <input type="submit" value="Save" 
             class="btn btn-success btn-lg btn-block"  />
 		  </div>

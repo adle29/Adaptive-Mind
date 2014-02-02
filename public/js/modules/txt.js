@@ -39,7 +39,7 @@ define([], function (){
 			var id = " id='"+this.get('ids') + "'";
 			var ids2 = " id='"+this.get('ids') + "2'"+'';
 			var ids3 = " id='"+this.get('ids') + "3'"+'';
-			var xfinal = Math.round( this.get('x')*.01*$(window).width() );
+			/* var xfinal = Math.round( this.get('x')*.01*$(window).width() );
 			var yfinal = Math.round( this.get('y')*.01*600);
 			var widthFinal = Math.round( this.get('width') *.01*$(window).width()); 
 			var heightFinal = Math.round( this.get('height') *.01*$(window).height())+30; 
@@ -71,22 +71,22 @@ define([], function (){
 				'<div '+ids2+' class="txtFormat" >'+this.get('content')+ '</div></div>'; 
 				console.log('not');	
 				
-		    }
+		    }*/
 		    
 
 			//----------------------append html----------------------------------------
 
-			if ($(window).width() < 600) {
+			
 				html = '<div class="txtFormatMobile">'+
 					this.get('content') + '</div>';
 
-			}
+			
 
 			$('#art').append(html);
 
 			//----------------------Scaling functions----------------------------------------
 
-			var ids = '#'+this.get('ids');
+	/*		var ids = '#'+this.get('ids');
 			ids2 = '#'+this.get('ids')+'2';
 			ids3 = '#'+this.get('ids')+'3';
 			$(ids3).css('visibility', 'hidden' );
@@ -190,7 +190,7 @@ define([], function (){
 		else {
 			$('p').attr("contentEditable", "false");
 			console.log('true');
-		}
+		}*/
 
       }
 

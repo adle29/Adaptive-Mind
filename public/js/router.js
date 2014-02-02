@@ -24,6 +24,7 @@ define(['models/Account'],
       "": "defaultRoute"
     },
 
+
     about: function() {
       this.changeView('about');
     },

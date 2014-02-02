@@ -45,6 +45,7 @@ function(AdaptiveMindView, settingsTemplate) {
                 title: $( "input[name=title]" ).val(),
                 subject: $('select[name=subject]').val(),
                 description: $('input[name=description]').val(),
+                design: $('input[name=design]:checked').val(),
                 AccountId: that.model.me,
                 vinId: that.id
               //  height: $('input[name=height]').val()
@@ -65,13 +66,25 @@ function(AdaptiveMindView, settingsTemplate) {
                 $('input[name=title]').val(model.title);
                 $('input[name=description]').val(model.description);
                 $('select[name=subject]').val(model.subject);
+                $('input[name=design][value=' + model.design + ']').prop('checked',true);
+
         }, 
 
     	render: function(model) {
+            var that = this; 
             if (model != null){ 
-                console.log(this.model);
-      		    this.$el.html(_.template(settingsTemplate, this.model.toJSON()));
-                this.renderText(model); 
+                 $.ajax("/logged", {
+                  method: "GET",
+                  success: function(data) {
+                    console.log(model);
+                      that.$el.html(_.template(settingsTemplate, that.model.toJSON()));
+                      that.renderText(model); 
+                  },
+                  error: function(data) {
+                      window.location.replace('#desk/me');
+                  }
+
+                });
             }
     	}//end render
 

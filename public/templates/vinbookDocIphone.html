@@ -1,28 +1,59 @@
 
-<div id="totalHeight">
   <div class="backColor"> 
-  <br>
-    <section class="paper">
-        	<article class="head caps"  >
-        		<div>
-        			<p class="pull-right">&nbsp; &nbsp;</p> 
-        			<a class="pull-right btn btn-default" href=""><img src="/img/logo2.png"  class=" logo" /></a>
-        			<p class="pull-right">&nbsp;</p> 
-  	           <a href="#world" ><p class="pull-right btn btn-primary "><span class="glyphicon glyphicon-globe "></span></p></a>
 
-  	           <br class="hidden-sm hidden-md hidden-lg">
-        			<h1><%= title %> <small><%= subject %> </small>  </h1>
-          <h4><strong> Author:</strong> <span id="nam" style="color:rgb(64,150,238);"> </span> </h4>  
+<br>
+  <section class="paper myContainer">
+        <article class="head"  >
+          <div>
+            <p class="pull-right">&nbsp; &nbsp;</p> 
+            <a class="pull-right btn btn-default" href="http://adaptivemind.herokuapp.com"><img src="/img/logo2.png"  class=" logo" /></a>
+            <p class="pull-right">&nbsp;</p> 
+             <a href="#world" ><p class="pull-right btn btn-primary "><span class="glyphicon glyphicon-globe "></span></p></a>
 
-  			</div>
-        	</article>
+  
+            <h1><%= title %> </h1>
+        <h4><%= subject %>  </h4>
+          <div class="aler">  </div> 
 
-        	<div id="art" class="specialContainer">
+      <div>
+        </article>
 
-        	</div>
+        <div id="art" class="specialContainer" >
 
-    </section>
+        </div>
+
+  </section>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" id='closeModal' class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Look for an image!</h4>
+        </div>
+        <div class="modal-body">
+          <!-- INPUT IMAGES -->
+      <div class="input-group">
+          <input type="text" class="form-control" name="searchbox" id="request">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="search" >Google</button>
+            <button class="btn btn-default" type="button" id="more" >More+</button>
+          </span>
+        </div>
+
+        <!-- INPUT IMAGES -->
+        </div>
+        <br />
+        <div class="modal-footer">
+            <div id="image-content">
+          </div>
+    
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 
 
-  </div>
 </div>
+
+

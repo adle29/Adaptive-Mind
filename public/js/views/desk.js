@@ -39,7 +39,8 @@ function(AdaptiveMindView,  deskTemplate,  Vinbook, vinBookView ) {
             AccountId: this.model.get('_id'),
             title: $('input[name=title]').val(),
             subject: $('select[name=subject]').val(),
-            description: $('input[name=description]').val()
+            description: $('input[name=description]').val(),
+            design: $('input[name=design]:checked').val()
 
           }, function(data) {
            console.log('triple point');

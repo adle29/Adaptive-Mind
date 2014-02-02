@@ -1,5 +1,5 @@
 
-define(['AdaptiveMindView', 'text!templates/world.html'],
+define(['AdaptiveMindView', 'text!templates/world.html', 'js/libs/d3.js'],
 function(AdaptiveMindView, worldTemplate) {
     var worldView = AdaptiveMindView.extend ({
       el: $('#content'),

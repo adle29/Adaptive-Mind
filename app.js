@@ -67,7 +67,6 @@ app.get('/vinbook', function(req, res) {
   console.log(models.Account.vinbooks);
   var vinId = req.param('vinId', null);
   models.Account.findVinbook2( vinId, function(book) {
-    console.log('GET REQUEST - SUCCESSFUL ', book);
     res.send(book);
   });
 
@@ -76,7 +75,7 @@ app.get('/vinbook', function(req, res) {
 
 app.post ('/accounts/:id/vinbook', function (req,res){
   console.log('POST REQUEST - SUCCESSFUL');
-  console.log('malaui');
+  
 
   var accountId = req.param.id == 'me'
                   ? req.session.accountId
@@ -86,6 +85,11 @@ app.post ('/accounts/:id/vinbook', function (req,res){
   var subject = req.param('subject', null);
   var description = req.param('description', null);
   var AccountId = req.param('AccountId', null);
+  var design = req.param('AccountId', null);
+  var links = req.param('links', null);
+ console.log('*************malaui'); 
+  console.log('*************malaui', links);
+
   if ( title != null){
   models.Account.findById(accountId, function(account) {
       var vinBook = {
@@ -96,7 +100,9 @@ app.post ('/accounts/:id/vinbook', function (req,res){
         date: {
           creation: new Date(),
           lastUpdate: ''
-        }
+        },
+        design: design,
+        links: links
       };
       account.vinbooks.push(vinBook);
 
@@ -126,17 +132,19 @@ app.post ('/settings', function (req,res){
   var description = req.param('description', null);
   var AccountId = req.param('AccountId', null);
   var vinId = req.param('vinId', null);
+  var design = req.param('design', null);
 
   console.log('POST REQUEST - SUCCESSFUL');
 
   models.Account.findById(AccountId, function(account) {
-    console.log( 'working here' ,account.vinbooks);
+    
       for (var i = 0; i < account.vinbooks.length; i++){
         if (account.vinbooks[i]._id == vinId ){
             var vin = account.vinbooks[i];
             vin.title = title; 
             vin.subject = subject; 
             vin.description = description;
+            vin.design = design; 
         }
       }
 
@@ -172,56 +180,6 @@ app.delete('/accounts/:id/vinbook', function(req,res) {
 
 app.get('/', function(req, res){
   res.render('index.jade');
-});
-
-
-
-//----------------GROUPS DISPLAY AND RETRIEVAL----------------
-
-app.get('/accounts/:id/group', function(req, res) {
-  var accountId = req.params.id == 'me'
-                     ? req.session.accountId
-                     : req.params.id;
-
-  models.Account.findById(accountId, function(account) {
-    console.log('GET GROUP REQUEST - SUCCESSFUL ');
-    res.send(account.groups);
-  });
-
-});
-
-app.post('/group/:id', function (req, res) {
-  var accountId = req.params.id == 'me'
-  ? req.session.accountId
-  : req.params.id;
-
-   var ids = req.param('ids', null);
-   var idAccount = req.param('AccountId', null);
-
-   var status = req.param('status', null);
-   var idOwner = req.param('idOwner', null);
-   var owner = req.param('owner', null);
-
-   models.Account.findById(idAccount, function(account) {
-    models.Account.saveStatus(account, ids, status, idOwner, owner ); 
-   });
-
-   res.send(200);
-}); 
-
-app.delete('/accounts/:id/status', function(req,res) {
-
-  var owner = req.param('owner', null);
-   var groupId = req.param('groupId', null);
-   var statusId = req.param('statusId', null);
- 
-  models.Account.findById(owner, function(account) {
-    
-    if ( !account ) return;
-      models.Account.removeComment(account, groupId, statusId);
-    });
-
-  res.send(200);
 });
 
 
@@ -274,11 +232,9 @@ app.post('/vinbook/:id', function (req, res) {
    var id = req.param('ids', null);
    var idAccount = req.param('AccountId', null);
    var entries = req.param('entries', null);
-   console.log('POST REQUEST - (saving document) - SUCCESSFUL', id, idAccount);
-   console.log( 'ANALYSING ENTRY', entries);
-
+   var links = req.param('links', null);
    models.Account.findById(idAccount, function(account) {
-    models.Account.findVinbookToSave(account, id, entries); 
+    models.Account.findVinbookToSave(account, id, entries, links); 
    });
 
    res.send(200);
@@ -288,7 +244,6 @@ app.post('/vinbook/:id', function (req, res) {
 app.post('/search', function(req, res) {
   var SearchData = req.param('searchData', null);
   var TypeOfData = req.param('typeOfData', null);
-  console.log('Worked: ',SearchData, TypeOfData ); 
   if ( null == SearchData ) {
     res.send(400);
     return;

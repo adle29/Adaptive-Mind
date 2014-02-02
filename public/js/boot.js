@@ -4,7 +4,6 @@ require.config({
     jQuery: 'libs/jquery',
     jQueryAI: 'libs/jqueryAI', 
     bootJs: 'libs/bootstrap.min',
-    d3: 'libs/d3',
     doc: 'libs/doc',
     pep: 'libs/pep',
     Underscore: 'libs/underscore',
@@ -16,12 +15,11 @@ require.config({
   waitSeconds: 200,
 
   shim: {
+    'bootJs': ['jQuery'],
     'jQueryAI': ['jQuery'],
-    //'d3': ['jQuery'], 
-    'bootJs': ['jQuery'], 
-    'doc': ['jQuery'],
     'Backbone': ['Underscore', 'jQuery'],
-    'AdaptiveMind': ['Backbone',  'd3', 'doc', 'jQueryAI', 'bootJs']
+    'AdaptiveMind': ['Backbone',  'doc',  'bootJs', 'jQueryAI']
+
   }
 });
 

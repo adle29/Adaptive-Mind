@@ -68,12 +68,14 @@ define([], function (){
 					   + "' style='width:"+ widthFinal +"px;  height:auto; ' />  </div> "  ;		    	
 		    }
 		    
-		    if ($(window).width() < 600){
+		  
 			 html = "<div"+ id + "> <img "+ id2 +" src='" + this.get('Ourl') 
-					   + "'  width='100%' height='auto' "  + " />"  ;
+					   + "'  width='300' height='auto' "  + " />"  ;
 					   console.log('smaller display');
-			}
+			$('#art').append(html);
 
+
+/*
 			//RENDERING IMAGE
 			$('#art').append(html);
 			console.log( 'showcase', showcase);
@@ -116,16 +118,16 @@ define([], function (){
 
 
 				function save(){
-										var position = $(id).position();
+					var position = $(id).position();
 					that.set({'x':     Math.round( position.left*100 / $(window).width() )  });
 					that.set({'y':     Math.round( position.top *100 / 600 ) });
 					that.set({'width': Math.round( $(id2).width()*100 / $(window).width() ) });
 					that.set({'height': Math.round( $(id2).height()*100 / 600 ) });
-				}
+				}*/
 
 
 
-			}
+			
       	}
 
 

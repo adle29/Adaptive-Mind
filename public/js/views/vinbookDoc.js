@@ -1,6 +1,6 @@
-define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/vinbookDocIphone.html', 'models/Vinbook',
-			'models/EntriesCollection','modules/img', 'modules/vid', 'modules/txt', 'modules/script'], 
-	function(AdaptiveMindView, vinbookDocTemplate, vinbookDocTemplateIphone, Vinbook, EntriesCollection, Img, Vid, Txt, Script){
+define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/vinbookDocIphone.html', 'text!templates/blogTemplate.html','models/Vinbook',
+			'models/EntriesCollection'], 
+	function(AdaptiveMindView, vinbookDocTemplate, vinbookDocTemplateIphone, blogTemplate, Vinbook, EntriesCollection){
       var page = 1, newPage = 0, newImgG = '';
       var imageSearch;
       var yes = ''; 
@@ -34,10 +34,12 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
         "click #list": "list",
         "click #link": "link",
         "click #video": "video",
-        "click #video": "video",
+        "click #left": "left",
+        "click #center": "center",
+        "click #justify": "justify",
+        "click #heading": "heading",
         'click #slide': "slide",
         'click #slideDown': "slideUp"
-        
    		 },
 
    		gettingVinbook: function () {
@@ -61,9 +63,8 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
              if (mod._id == that.id ) { 
 
                 //RENDER BOOK DATA
-                that.render(data[0]._id, mod);
+                that.render(data[0]._id, mod, mod.Entries);
                 //RENDER ENTRRIES 
-                that.renderEntries (mod.Entries);
                 return;
               }
           }
@@ -76,7 +77,6 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
 
    		showEntryVid: function (){
    			$("#txtUrl").prop('placeholder', 'Vid'); 
-   			//$("#form1").prop('name', 'videoUrl'); 
    			$('#mediaForm').toggle(function(){console.log('pancakes'); });
    		},
 
@@ -89,22 +89,9 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
    		},
 
    		mediaEntry: function (ifText){
-
    			var object = $('input[name=txtUrl]').val() ;
    			var Type = ifText == 'yes' ? '' : $('input[name=txtUrl]').attr( "placeholder" ); 
    			var newEntry;
-   			if (Type == "Img") {
-   				newEntry = new Img ();
-   				newEntry.set( { Ourl: object, ids: Math.random().toString(36).substring(7)  } );
-   			}
-   			else if (Type == "Vid")  {
-   				newEntry = new Vid ({Ourl: object, ids: Math.random().toString(36).substring(7)  }   );
-   			}
-   			else {
-   				console.log('text',ifText, Type);
-   				newEntry = new Txt ();
-   			}
-   			this.entries.add(newEntry);
    			newEntry.render();
    		}, 
 
@@ -150,52 +137,30 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
       },
 
        mediaEntryImg: function(gUrl){
-          var newEntry = new Img ();
-          newEntry.set( {y:$(window).scrollTop()/5 , Ourl: gUrl, ids: Math.random().toString(36).substring(7)  } );
-                      newEntry.render();
-            this.entries.add(newEntry);
-            $('#closeModal').trigger('click');
+         var id = Math.random().toString(36).substring(7);
+         var html = "<p id='"+id+"'> <img  class='pict' src='" + gUrl
+         + "'  width='300' height='auto' "  + " /></p>"  ;
+        console.log(html);
+          $('#art').append(html);
+          $('#'+id).resizable({handles: 'se'});
+          $('#closeModal').trigger('click');
       }, 
 
 
    		renderEntries: function (entries){
-   			this.entries = new EntriesCollection();
-   			if (entries != 0) {
-		 		 var entrada = entries[0];
-		 		 for (var i = 0; i < entrada.length; i++){
-		 		 	var gettingEntry = entrada[i]; 
-		 		 	if (gettingEntry.module == "img"){
-		 		 		var newEntry = new Img (gettingEntry);
-		 		 		newEntry.render(this.options.notYou);
-		 		 		this.entries.add(newEntry);
-		 		 	}
-		 		 	else if (gettingEntry.module == "vid")  {
-		 		 		var newEntry = new Vid (gettingEntry);
-		 		 		newEntry.render(this.options.notYou);
-		 		 		this.entries.add(newEntry);
-		 		 	}
-          else if (gettingEntry.module == "script")  {
-            var newEntry = new Script (gettingEntry);
-            newEntry.render(this.options.notYou);
-            this.entries.add(newEntry);
-          }
-		 		 	else {
-		 		 		var newEntry = new Txt (gettingEntry);
-		 		 		newEntry.render(this.options.notYou);
-		 		 		this.entries.add(newEntry);
-		 		 	}
-		 		 }
-
-   			}
+        console.log(entries); 
+        $("#art").append(entries);
    		},
 
    		saveDoc: function (){
         $('#save').removeClass();
         $('#save').addClass('btn btn-danger'); 
+        console.log($("#myLinks").html());
    			$.post('/vinbook/:id', {
 	        	ids: this.id,
 	        	AccountId: this.model.me,
-	        	entries: this.entries.toJSON() 
+	        	entries: $("#art").html(),
+            links: $("#myLinks").html()
 	        }, function(data) {
 
             if (!data.error){ 
@@ -213,43 +178,52 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
 
 
     bold: function(){
-                    console.log('here');
         document.execCommand("bold", false);
     },
 
     list: function(){
-                    console.log('here');
         document.execCommand("insertUnorderedList", false);
     },  
     
     link: function(){
-                    console.log('here');
         var links=prompt("Please enter the link:","Link"); 
         document.execCommand("CreateLink", false, links);
+    },
+
+    heading: function(){
+        document.execCommand("formatBlock", false, "H3");
+    },
+
+    center: function(){
+        document.execCommand("justifyCenter", false);
+    },
+
+    justify: function(){
+        document.execCommand("justifyFull", false);
+    },
+
+    left: function(){
+        document.execCommand("justifyLeft", false);
     },
 
     video: function(){
        var video=prompt("Please enter the video:","Video"); 
       if (video != null){
-          video = getVideoString(video);        
-          var newEntry = new Vid ();
-          newEntry.set( {y:$(window).scrollTop()/5 , Ourl: video, ids: Math.random().toString(36).substring(7)  } );
-          newEntry.render();
-          this.entries.add(newEntry);
+          video = getVideoString(video);       
+          console.log(video); 
+          var html = "<iframe  src='//" + video
+             + "'  width='100%' height='315' " + " frameborder='0' scrolling='yes' ></iframe><br/><br/>"; 
+          $('#art').append(html);
       }
-            //$('#closeModal').trigger('click');
     }, 
 
     script: function (){
-        var newEntry = new Script ();
-        var randomNum = Math.random().toString(36).substring(7); 
+        var id = Math.random().toString(36).substring(7); 
         var url = prompt("Please enter the URL:","url"); 
-        if (url != null){
-          newEntry.set( {y:$(window).scrollTop()/5 , Ourl: url , ids: Math.random().toString(36).substring(7)  } );
-          newEntry.render();
-          this.entries.add(newEntry);
-        }
-
+        var html = "<iframe id='"+id+"' src='" + url
+         + "'  width='100%' height='315' " + " frameborder='0' scrolling='yes' ></iframe><br/><br/>"; 
+        $('#art').append(html);
+        $('#'+id).resizable({handles: 'se'});
     },
 
     slide: function (){
@@ -262,34 +236,80 @@ define([ 'AdaptiveMindView' , 'text!templates/vinbookDoc.html', 'text!templates/
       $("#slideDown").addClass("hidden");
     },
 
-		render: function (myid, model) {
+		render: function (myid, model, entries) {
+      console.log(model); 
       var windowWith = $(window).width();
-
+      var that = this;
 			if (model != null){
-        if ( windowWith < 600 || this.model.me != myid  ){
-          this.$el.html( _.template(vinbookDocTemplateIphone, model ) );
-          this.options.notYou = false; 
-          $("#nam").append(name); 
-        }
+        console.log(model);
+        $.ajax("/logged", {
+          method: "GET",
+          success: function(data) {
+             if ( windowWith < 600 ){ 
+                switch (model.design){
+                  case "0" :
+                    that.$el.html( _.template(vinbookDocTemplateIphone, model  ) );
+                    break; 
+                  case "1" :
+                    that.$el.html( _.template(blogTemplate, model  ) );
+                    break; 
 
-        else {
-  				this.$el.html( _.template(vinbookDocTemplate, model  ) );
-          this.options.notYou = true; 
-          $("#nam").append(name); 
-        }//else
-		  
+                }
+                
+                that.options.notYou = true; 
+                $(".name").append(name); 
+                that.renderEntries (entries);  
+                console.log("$$$$",model.links); 
+                $("#myLinks").append(model.links);   
+                $("#bar").hide(); 
+                $("#art").attr("contenteditable", "false"); 
 
+             } else{
+                switch (model.design){
+                  case "0" :
+                    that.$el.html( _.template(vinbookDocTemplate, model  ) );
+                    break; 
+                  case "1" :
+                    that.$el.html( _.template(blogTemplate, model  ) );
+                    break; 
 
-      var theGoodHeight = $( "#art" ).height()+200;
-      console.log(theGoodHeight);
-      $( ".paper").height(theGoodHeight); 
-      $( ".backColor").height(theGoodHeight); 
+                }
+                that.options.notYou = false; 
+                $(".name").append(name); 
+                that.renderEntries (entries);
+                $("#myLinks").append(model.links); 
+             }
+          },
+          error: function(data) {
+            switch (model.design){
+              case "0" :
+                that.$el.html( _.template(vinbookDocTemplateIphone, model  ) );
+                break; 
+              case "1" :
+                that.$el.html( _.template(blogTemplate, model  ) );
+                break; 
+
+            }
+            that.options.notYou = false; 
+            $(".name").append(name); 
+            that.renderEntries (entries);
+
+            $("#bar").hide(); 
+            $("#art").attr("contenteditable", "false"); 
+
+            $("#myLinks").append(model.links); 
+          }
+
+        });
 
       }//if 
 
-
-      // $( ".backColor").css("border", "solid red");
-
+      $(window).resize(function(){
+        if ($(window).width() < 400){
+          $("img").css("width","100%");
+          $("img").css("height","auto");
+        }
+      });
 
 		}//render
 	});

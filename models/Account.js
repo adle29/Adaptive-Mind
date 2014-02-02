@@ -12,7 +12,9 @@ module.exports = function(config, mongoose, nodemailer) {
       creation: { type: Date },
       lastUpdate: { type: Date }
     },
+    design: {type: String},
     height: { type: String },
+    links: { type: String  },
     Entries: [Entry]
   });
 
@@ -265,31 +267,25 @@ module.exports = function(config, mongoose, nodemailer) {
   };
 
   var findVinbook2 = function(id,callback) {
-    console.log(Account.vinbooks);
       Account.find({'vinbooks._id':id },function(err,doc){
-        console.log(err, doc, 'id:' +id);
         callback(doc);
       });
   };
 
   var findAllVinbooks = function(callback) {
-    console.log(Account.vinbooks);
       Account.find({},function(err,doc){
-        console.log(err, doc);
         callback(doc);
       });
   };
 
-  var findVinbookToSave = function (account, id, entries){
+  var findVinbookToSave = function (account, id, entries, links){
     if ( null == account.vinbooks ) return;
 
     account.vinbooks.forEach(function(vinbook) {
       if ( vinbook._id == id ) {
         vinbook.Entries =[];
+        vinbook.links = links; 
         vinbook.Entries.push(entries);
-        console.log( 'ARRAY' ,vinbook.Entries);
-        // vinbook.Entries.push(entries);
-        // console.log ('ENTRIES SAVED');
       }
     });
     account.save();

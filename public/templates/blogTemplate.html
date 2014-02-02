@@ -1,0 +1,117 @@
+
+  <nav id="bar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  &nbsp;
+  <button type="button" id="save"  data-loading-text="Loading..." class="btn btn-success"> <i class="fa fa-save"></i>  </button>
+
+  <button id="IMG"  type="button" data-media="1" class="btn btn-info navbar-btn">
+  <span class="glyphicon glyphicon-camera " data-toggle="modal" data-target="#myModal"></span></button>
+
+  <button id="video"  type="button"  class="btn btn-info navbar-btn">
+  <span class="glyphicon glyphicon-film " ></span></button>
+
+  <button id="script"  type="button" class="btn btn-info navbar-btn">URL</span></button>
+
+  <button id="bold"  type="button" class="btn btn-info navbar-btn"><span class="glyphicon glyphicon-bold "></span></button>
+  
+  <button type="button" id="list" class="btn btn-info navbar-btn"><span class="glyphicon glyphicon-list "></span></button>
+
+  <button type="button" id="link" class="btn btn-info navbar-btn"><span class="glyphicon glyphicon-link "></span></button>
+
+  <button type="button" id="center" class="btn btn-info navbar-btn"><i class="fa fa-align-center"></i> </button>
+
+  <button type="button" id="justify" class="btn btn-info navbar-btn"><i class="fa fa-align-justify"></i> </button>
+
+  <button type="button" id="left" class="btn btn-info navbar-btn"><i class="fa fa-align-left"></i> </button> 
+
+    <button type="button" id="heading" class="btn btn-info navbar-btn"><strong>H4</strong></button> 
+
+
+  <a href="#settings/<%= _id %> " class="btn btn-warning navbar-btn "><span class="glyphicon glyphicon-cog "></span></a>
+
+  <a href="#desk/me" class="btn btn-warning navbar-btn "><i class="fa fa-home"></i></a>
+
+</nav>
+
+
+
+
+<div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" href="#">AdaptiveMind</a>
+          <a class="blog-nav-item" href="#world">World</a>
+        </nav>
+      </div>
+  </div>
+
+<div class="container">
+
+      <div class="blog-header">
+        <h1 class="blog-title"><%= title %> </h1>
+        <p class="lead blog-description"><%= subject %>  / Author: <span class="name caps" style="color:rgb(64,150,238);"> </span>   </p>
+      </div>
+
+      <div class="row">
+
+        <div  class="col-sm-8 blog-main" >
+            <div id="art" class="blog-post" contenteditable="true"> 
+
+            </div>
+         
+
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p><%= description %></p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Other links</h4>
+            <div id="myLinks" contenteditable="true">
+
+            </div>
+          </div>
+          
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <div class="blog-footer">
+      <p>Knowledge page built by <a href="https://twitter.com/mdo" class="name">  </a>.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </div>
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" id='closeModal' class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Look for an image!</h4>
+        </div>
+        <div class="modal-body">
+          <!-- INPUT IMAGES -->
+      <div class="input-group">
+          <input type="text" class="form-control" name="searchbox" id="request">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="search" >Google</button>
+            <button class="btn btn-default" type="button" id="more" >More+</button>
+          </span>
+        </div>
+
+        <!-- INPUT IMAGES -->
+        </div>
+        <br />
+        <div class="modal-footer">
+            <div id="image-content">
+          </div>
+    
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
